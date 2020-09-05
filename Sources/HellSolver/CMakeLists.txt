@@ -21,6 +21,7 @@ file(GLOB_RECURSE sources
     ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
 
 # Custom-build event
+if (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
 set(hell_solver_header_gen_py ${root_dir}/Scripts/header_gen.py)
 add_custom_command(
     COMMAND python ${hell_solver_header_gen_py}
@@ -29,6 +30,16 @@ add_custom_command(
 )
 add_custom_target(hell_solver_header_gen_py ALL
     DEPENDS ${root_dir}/Includes/HellSolver.hpp)
+else ()
+set(hell_solver_header_gen_py ${root_dir}/Scripts/header_gen.py)
+add_custom_command(
+    COMMAND python3 ${hell_solver_header_gen_py}
+    DEPENDS ${headers}
+    OUTPUT ${root_dir}/Includes/HellSolver.hpp
+)
+add_custom_target(hell_solver_header_gen_py ALL
+    DEPENDS ${root_dir}/Includes/HellSolver.hpp)
+endif ()
 
 # Build library
 add_library(${target}
