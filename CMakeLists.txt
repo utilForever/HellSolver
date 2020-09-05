@@ -34,5 +34,5 @@ set(CMAKE_MACOSX_RPATH ON)
 
 # Project modules
 add_subdirectory(Libraries/doctest)
-add_subdirectory(Sources)
+add_subdirectory(Sources/HellSolver)
 add_subdirectory(Tests/UnitTests)
