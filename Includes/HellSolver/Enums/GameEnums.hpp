@@ -3,11 +3,35 @@
 
 namespace hell_solver
 {
+enum class ObjectType
+{
+    FIXED_TYPE,
+    EMPTY,
+    WALL,
+    DEVIL,
+    SPIKE,
+    KEY,
+    LOCK,
+    MOVING_TYPE,
+    PLAYER,
+    UNDEAD,
+    ROCK,
+    LURKER
+};
+
+enum class MoveState
+{
+    MOVE,
+    STAND,
+    STOP
+};
+
 enum class PlayerStatus
 {
     PLAYING,
     WIN,
-    LOST
+    LOST,
+    INVALID
 };
 
 enum class Direction
