@@ -57,10 +57,7 @@ MoveState Game::CanMove(std::size_t x, std::size_t y, Direction dir)
 
 // TODO: ProcessMove will be considered below:
 //
-void Game::ProcessMove(std::size_t x, std::size_t y, Direction dir)
-{
-    std::pair<int, int> d_pair = Move(x, y, dir);
-}
+// void Game::ProcessMove(std::size_t x, std::size_t y, Direction dir);
 
 PlayerStatus Game::GetPlayerStatus() const
 {
