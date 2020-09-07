@@ -9,7 +9,7 @@
 namespace hell_solver
 {
 Map::Map(std::size_t width, std::size_t height, std::size_t count)
-    : m_height(height), m_width(width), m_count(count)
+    : m_width(width), m_height(height), m_count(count)
 {
     m_initCount = m_count;
     m_board.reserve(m_width);

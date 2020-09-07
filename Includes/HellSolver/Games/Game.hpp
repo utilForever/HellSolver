@@ -56,7 +56,7 @@ class Game
     //! \param y The y position.
     //! \param dir The direction to move.
     //! \param type The object type to move.
-    void ProcessMove(std::size_t x, std::size_t y, Direction dir);
+    // void ProcessMove(std::size_t x, std::size_t y, Direction dir);
 
     Map m_map;
 

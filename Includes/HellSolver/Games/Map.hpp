@@ -63,4 +63,4 @@ class Map
 };
 }  // namespace hell_solver
 
-#endif  // HELLSOLVER_MAP_HPP
+#endif  // HELL_SOLVER_MAP_HPP
