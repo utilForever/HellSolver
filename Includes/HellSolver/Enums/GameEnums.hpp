@@ -5,9 +5,9 @@ namespace hell_solver
 {
 enum class PlayerStatus
 {
-   PLAYING,
-   WIN,
-   LOST
+    PLAYING,
+    WIN,
+    LOST
 };
 
 enum class Direction
@@ -18,6 +18,6 @@ enum class Direction
     RIGHT
 };
 
-}
+}  // namespace hell_solver
 
-#endif  // !HELL_SOLVER_GAME_ENUMS_HPP
+#endif  // HELL_SOLVER_GAME_ENUMS_HPP
