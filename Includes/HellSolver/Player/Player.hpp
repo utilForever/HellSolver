@@ -1,14 +1,14 @@
 #ifndef HELL_SOLVER_PLAYER_HPP
 #define HELL_SOLVER_PLAYER_HPP
 
-#include <utility>
 #include <HellSolver/Enums/GameEnums.hpp>
+#include <utility>
 
 namespace hell_solver
 {
 class Player
 {
-public:
+ public:
     Player() = default;
     Player(std::size_t initX, std::size_t initY, std::size_t moveCount);
 
@@ -18,12 +18,12 @@ public:
 
     [[nodiscard]] PlayerStatus GetPlayerStatus();
 
-private:
+ private:
     std::size_t x = 0;
     std::size_t y = 0;
-    std::size_t  moveCount = 0;
+    std::size_t moveCount = 0;
     PlayerStatus status = PlayerStatus::INVALID;
 };
 }  // namespace hell_solver
 
-#endif  // !HELL_SOLVER_PLAYER_HPP
+#endif  // HELL_SOLVER_PLAYER_HPP
