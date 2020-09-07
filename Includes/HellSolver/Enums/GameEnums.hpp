@@ -12,11 +12,14 @@ enum class ObjectType
     SPIKE,        // 4
     KEY,          // 5
     LOCK,         // 6
-    MOVING_TYPE,  // 7
-    PLAYER,       // 8
-    UNDEAD,       // 9
-    ROCK,         // 10
-    LURKER        // 11
+    LURKER_TYPE,  // 7
+    UP,           // 8
+    DOWN,         // 9
+    MOVING_TYPE,  // 10
+    PLAYER,       // 11
+    UNDEAD,       // 12
+    ROCK,         // 13
+
 };
 
 enum class MoveState
