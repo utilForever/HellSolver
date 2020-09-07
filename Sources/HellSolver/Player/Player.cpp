@@ -1,4 +1,5 @@
 #include <HellSolver/Player/Player.hpp>
+#include <iostream>
 
 namespace hell_solver{
 Player::Player(int initX, int initY, int initMoveCount) : x(initX), y(initY), moveCount(initMoveCount) {}
@@ -6,6 +7,7 @@ Player::Player(int initX, int initY, int initMoveCount) : x(initX), y(initY), mo
 std::pair<int, int> Player::MovePlayer(Direction dir)
 {
     // waiting for CanMove method
+    std::cout << static_cast<std::underlying_type<Direction>::type>(dir) << std::endl;
 
     return std::make_pair(x, y);
 }

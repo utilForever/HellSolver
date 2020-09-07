@@ -7,7 +7,8 @@
 #ifndef HELL_SOLVER_HPP
 #define HELL_SOLVER_HPP
 
+#include <HellSolver/Player/Player.hpp>
+#include <HellSolver/Enums/GameEnums.hpp>
 #include <HellSolver/HellSolver.hpp>
-#include <HellSolver/Test.hpp>
 
 #endif  // HELL_SOLVER_HPP

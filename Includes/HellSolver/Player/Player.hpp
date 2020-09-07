@@ -19,7 +19,9 @@ public:
     [[nodiscard]] PlayerStatus GetPlayerStatus();
 
 private:
-    int x = 0, y = 0, moveCount = 0;
+    int x = 0;
+    int y = 0;
+    int  moveCount = 0;
     PlayerStatus status = PlayerStatus::INVALID;
 };
 }  // namespace hell_solver
