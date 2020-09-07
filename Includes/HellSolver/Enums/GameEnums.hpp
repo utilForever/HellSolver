@@ -7,7 +7,8 @@ enum class PlayerStatus
 {
     PLAYING,
     WIN,
-    LOST
+    LOST,
+    INVALID
 };
 
 enum class Direction
