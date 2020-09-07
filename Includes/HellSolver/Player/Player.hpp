@@ -10,7 +10,7 @@ class Player
 {
 public:
     Player() = default;
-    Player(int moveCount, int x, int y);
+    Player(std::size_t initX, std::size_t initY, std::size_t moveCount);
 
     [[nodiscard]] std::pair<int, int> MovePlayer(Direction dir);
 
@@ -19,9 +19,9 @@ public:
     [[nodiscard]] PlayerStatus GetPlayerStatus();
 
 private:
-    int x = 0;
-    int y = 0;
-    int  moveCount = 0;
+    std::size_t x = 0;
+    std::size_t y = 0;
+    std::size_t  moveCount = 0;
     PlayerStatus status = PlayerStatus::INVALID;
 };
 }  // namespace hell_solver

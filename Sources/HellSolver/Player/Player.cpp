@@ -2,7 +2,7 @@
 #include <iostream>
 
 namespace hell_solver{
-Player::Player(int initX, int initY, int initMoveCount) : x(initX), y(initY), moveCount(initMoveCount) {}
+Player::Player(std::size_t initX, std::size_t initY, std::size_t initMoveCount) : x(initX), y(initY), moveCount(initMoveCount) {}
 
 std::pair<int, int> Player::MovePlayer(Direction dir)
 {
@@ -30,6 +30,8 @@ void Player::ProcessMove(Direction dir)
             x++;
             break;
     }
+
+    moveCount--;
 }
 PlayerStatus Player::GetPlayerStatus()
 {
