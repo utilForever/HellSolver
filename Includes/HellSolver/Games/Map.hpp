@@ -56,6 +56,7 @@ class Map
     std::size_t m_height = 0;
     std::size_t m_count = 1;
     bool m_key = false;
+    bool m_LURKER = true;
 
     std::size_t m_initCount = 1;
     std::vector<std::vector<ObjectType>> m_board;
