@@ -9,6 +9,9 @@
 
 #include <HellSolver/Player/Player.hpp>
 #include <HellSolver/Enums/GameEnums.hpp>
+#include <HellSolver/Enums/GameEnums.hpp>
+#include <HellSolver/Games/Game.hpp>
+#include <HellSolver/Games/Map.hpp>
 #include <HellSolver/HellSolver.hpp>
 
 #endif  // HELL_SOLVER_HPP
