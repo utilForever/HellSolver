@@ -12,7 +12,7 @@ public:
     Player() = default;
     Player(std::size_t initX, std::size_t initY, std::size_t moveCount);
 
-    [[nodiscard]] std::pair<int, int> MovePlayer(Direction dir);
+    [[nodiscard]] std::pair<std::size_t, std::size_t> MovePlayer(Direction dir);
 
     void ProcessMove(Direction dir);
 
