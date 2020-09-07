@@ -2,8 +2,8 @@
 // Created by flow on 2020-09-07.
 //
 
-#ifndef HELLSOLVER_MAP_HPP
-#define HELLSOLVER_MAP_HPP
+#ifndef HELL_SOLVER_MAP_HPP
+#define HELL_SOLVER_MAP_HPP
 
 #include <HellSolver/Enums/GameEnums.hpp>
 
