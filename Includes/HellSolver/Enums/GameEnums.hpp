@@ -1,7 +1,7 @@
 #ifndef HELL_SOLVER_GAME_ENUMS_HPP
 #define HELL_SOLVER_GAME_ENUMS_HPP
 
-namesapce hell_solver
+namespace hell_solver
 {
 enum class PlayerStatus
 {
