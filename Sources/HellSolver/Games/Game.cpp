@@ -24,17 +24,6 @@ Map& Game::GetMap()
     return m_map;
 }
 
-const Map& Game::GetMap() const
-{
-    return m_map;
-}
-
-void Game::MovePlayer(Direction dir)
-{
-    auto position = m_player;
-}
-
-
 MoveState Game::CanMove(Direction dir)
 {
     std::pair<std::size_t, std::size_t> d_pair = GamePlayer.MovePlayer(dir);
@@ -87,7 +76,6 @@ MoveState Game::CanMove(Direction dir)
     // If encountered block is DEVIL,
     if (blockType.HasType(ObjectType::DEVIL))
     {
-        m_playerStatus = PlayerStatus::WIN;
         return MoveState::MOVE;
     }
 

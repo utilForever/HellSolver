@@ -28,10 +28,12 @@ class Game
     //! \return the map.
     Map& GetMap();
 
+    void Reset();
+
     //! Checks an object can move.
     //! \param dir The direction to move.
     //! \return the flag indicates that the player can move.
-    MoveState CanMove(std::size_t x, std::size_t y, Direction dir);
+    MoveState CanMove(Direction dir);
 
  private:
     //! Gets the moved coordinate of the player.
@@ -41,8 +43,6 @@ class Game
     //! \return the pair contains the coordinate of moved player.
     static std::pair<int, int> Move(std::size_t x, std::size_t y,
                                     Direction dir);
-                                    
-    MoveState CanMove(Direction dir);
 
  private:
     Map m_map;
