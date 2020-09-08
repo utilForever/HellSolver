@@ -3,7 +3,6 @@
 //
 
 #include <HellSolver/Games/Map.hpp>
-#include <HellSolver/Games/Object.hpp>
 
 #include <utility>
 
@@ -25,18 +24,24 @@ void Object::Add(ObjectType type)
 
 void Object::Remove(ObjectType type)
 {
-    if ((type == ObjectType::KEY && o_tile.second == ObjectType::KEY) ||
-        (type == ObjectType::ROCK && o_tile.second == ObjectType::ROCK) ||
-        (type == ObjectType::PLAYER && o_tile.second == ObjectType::PLAYER) ||
-        (type == ObjectType::UNDEAD && o_tile.second == ObjectType::UNDEAD))
+    if ((type == ObjectType::ROCK && o_tile.first == ObjectType::ROCK) ||
+        (type == ObjectType::PLAYER && o_tile.first == ObjectType::PLAYER) ||
+        (type == ObjectType::UNDEAD && o_tile.first == ObjectType::UNDEAD) ||
+        (type == ObjectType::LOCK && o_tile.first == ObjectType::LOCK))
     {
         o_tile.first = ObjectType::EMPTY;
     }
+    else if (type == ObjectType::KEY && o_tile.second == ObjectType::KEY)
+    {
+        o_tile.second = ObjectType::EMPTY;
+    }
 }
 
-void Object::Init(ObjectType type){
-    if(type == ObjectType::KEY || IsLurkerType(type) ||
-       type == ObjectType::SPIKE || type == ObjectType::ENDPOINT){
+void Object::Init(ObjectType type)
+{
+    if (type == ObjectType::KEY || IsLurkerType(type) ||
+        type == ObjectType::SPIKE || type == ObjectType::ENDPOINT)
+    {
         o_tile.second = type;
     }
 }
