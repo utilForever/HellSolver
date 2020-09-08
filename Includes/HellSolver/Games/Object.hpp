@@ -38,8 +38,6 @@ class Object
 
     [[nodiscard]] bool HasType(ObjectType type) const;
 
-    [[nodiscard]] static bool HasType(const Tile& tile, ObjectType type);
-
  private:
     Tile objectTile;
 };

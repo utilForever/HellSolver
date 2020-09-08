@@ -55,16 +55,4 @@ bool Object::HasType(ObjectType type) const
     }
     return false;
 }
-
-bool Object::HasType(const Tile& tile, ObjectType type)
-{
-    if (tile.first == type || tile.second == type)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
 }  // namespace hell_solver

@@ -27,7 +27,8 @@ Map& Game::GetMap()
     return m_map;
 }
 
-MoveState Game::CanMove(Direction dir){
+MoveState Game::CanMove(Direction dir)
+{
     Position position = GamePlayer->GetPosition();
     return CanMove(position.first, position.second, dir);
 }
@@ -116,20 +117,20 @@ PlayerStatus Game::MovePlayer(Direction dir)
             break;
     }
 
-    Tile tile = m_map.At(position.first, position.second).GetTypes();
-    if (Object::HasType(tile, ObjectType::KEY))
+    Object block = m_map.At(position.first, position.second);
+    if (block.HasType(ObjectType::KEY))
     {
         GamePlayer->SetKey();
         m_map.At(position.first, position.second).Remove(ObjectType::KEY);
     }
-    if (Object::HasType(tile, ObjectType::SPIKE) ||
-        (!m_map.GetLurker() && Object::HasType(tile, ObjectType::DOWN)) ||
-        (m_map.GetLurker() && Object::HasType(tile, ObjectType::UP)))
+    if (block.HasType(ObjectType::SPIKE) ||
+        (!m_map.GetLurker() && block.HasType(ObjectType::DOWN)) ||
+        (m_map.GetLurker() && block.HasType(ObjectType::UP)))
     {
         GamePlayer->DecreaseMoveCount();
     }
-    
-    return GamePlayer->GetPlayerStatus(Object::HasType(tile, ObjectType::ENDPOINT));
+
+    return GamePlayer->GetPlayerStatus(block.HasType(ObjectType::ENDPOINT));
 }
 
 Position Game::Move(std::size_t x, std::size_t y, Direction dir)
