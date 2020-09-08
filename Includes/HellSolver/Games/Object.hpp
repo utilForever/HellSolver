@@ -15,7 +15,8 @@ namespace hell_solver
 //! This class represents objects in one tile.
 //! One object represents one tile, tile can hold at most two object types.
 //!
-class Object{
+class Object
+{
  public:
     //! Default constructor.
     Object() = default;
@@ -33,13 +34,15 @@ class Object{
 
     //! Gets the type of object.
     //! \return Pair of object type.
-    Tile GetTypes() const;
+    [[nodiscard]] Tile GetTypes() const;
 
-    bool HasType(ObjectType type) const;
+    [[nodiscard]] bool HasType(ObjectType type) const;
+
+    [[nodiscard]] static bool HasType(const Tile& tile, ObjectType type);
 
  private:
     Tile objectTile;
 };
-}
+}  // namespace hell_solver
 
 #endif  // HELL_SOLVER_OBJECT_HPP

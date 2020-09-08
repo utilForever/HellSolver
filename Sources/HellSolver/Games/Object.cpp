@@ -2,8 +2,8 @@
 // Created by flow on 2020-09-08.
 //
 
-#include <HellSolver/Games/Object.hpp>
 #include <HellSolver/Games/Map.hpp>
+#include <HellSolver/Games/Object.hpp>
 
 #include <utility>
 
@@ -53,7 +53,21 @@ bool Object::HasType(ObjectType type) const
         return IsLurkerType(objectTile.second);
     }
     if (objectTile.first == type || objectTile.second == type)
+    {
         return true;
+    }
     return false;
+}
+
+bool Object::HasType(const Tile& tile, ObjectType type)
+{
+    if (tile.first == type || tile.second == type)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 }  // namespace hell_solver
