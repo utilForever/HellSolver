@@ -27,74 +27,6 @@ Map& Game::GetMap()
     return m_map;
 }
 
-MoveState Game::CanMove(Direction dir)
-{
-    Position position = GamePlayer->GetPosition();
-    return CanMove(position.first, position.second, dir);
-}
-
-MoveState Game::CanMove(size_t x, size_t y, Direction dir)
-{
-    Position d_pair = Move(x, y, dir);
-    std::size_t _x = d_pair.first, _y = d_pair.second;
-
-    Object blockType = m_map.At(_x, _y);
-
-    // If encountered block is WALL, STOP.
-    if (blockType.HasType(ObjectType::WALL))
-    {
-        return MoveState::STOP;
-    }
-
-    // If encountered block is ROCK,
-    if (blockType.HasType(ObjectType::ROCK))
-    {
-        Object nextType = m_map.At(_x, _y);
-
-        // If the block behind ROCK is EMPTY or KEY or LURKER
-        if (nextType.HasType(ObjectType::EMPTY) ||
-            nextType.HasType(ObjectType::KEY) ||
-            nextType.HasType(ObjectType::LURKER_TYPE))
-        {
-            return MoveState::STAND;
-        }
-        else
-        {
-            return MoveState::STOP;
-        }
-    }
-
-    // If encountered block is UNDEAD,
-    if (blockType.HasType(ObjectType::UNDEAD))
-    {
-        return MoveState::STAND;
-    }
-
-    // If encountered block is SPECIAL block,
-    if (blockType.HasType(ObjectType::EMPTY))
-    {
-        return MoveState::MOVE;
-    }
-
-    // If encountered block is LOCK,
-    if (blockType.HasType(ObjectType::LOCK))
-    {
-        if (GamePlayer->HasKey())
-        {
-            return MoveState::MOVE;
-        }
-        return MoveState::STOP;
-    }
-
-    // If encountered block is DEVIL,
-    if (blockType.HasType(ObjectType::DEVIL))
-    {
-        return MoveState::MOVE;
-    }
-
-    return MoveState::STOP;
-}
-
 PlayerStatus Game::MovePlayer(Direction dir)
 {
     Position position = GamePlayer->GetPosition();
@@ -105,6 +37,21 @@ PlayerStatus Game::MovePlayer(Direction dir)
     {
         case MoveState::MOVE:
             position = GamePlayer->ProcessMove(dir);
+            GamePlayer->DecreaseMoveCount();
+            m_map.SetLurker();
+            break;
+
+        case MoveState::ROCK:
+            PushRock(position.first, position.second, dir);
+            GamePlayer->DecreaseMoveCount();
+            m_map.SetLurker();
+            break;
+
+        case MoveState::UNDEAD:
+            PushUndead(position.first, position.second, dir);
+            GamePlayer->DecreaseMoveCount();
+            m_map.SetLurker();
+            break;
 
         case MoveState::STAND:
             GamePlayer->DecreaseMoveCount();
@@ -121,7 +68,11 @@ PlayerStatus Game::MovePlayer(Direction dir)
         GamePlayer->SetKey();
         m_map.At(position.first, position.second).Remove(ObjectType::KEY);
     }
-    if (block.HasType(ObjectType::SPIKE) ||
+    else if(block.HasType(ObjectType::LOCK))
+    {
+        m_map.At(position.first, position.second).Remove(ObjectType::LOCK);
+    }
+    else if (block.HasType(ObjectType::SPIKE) ||
         (!m_map.GetLurker() && block.HasType(ObjectType::DOWN)) ||
         (m_map.GetLurker() && block.HasType(ObjectType::UP)))
     {
@@ -129,6 +80,105 @@ PlayerStatus Game::MovePlayer(Direction dir)
     }
 
     return GamePlayer->GetPlayerStatus(block.HasType(ObjectType::ENDPOINT));
+}
+
+void Game::PushRock(size_t x, size_t y, Direction dir)
+{
+    Position curRockPosition = Move(x, y, dir);
+    Position nextRockPosition =
+        Move(curRockPosition.first, curRockPosition.second, dir);
+
+    Object nextRockPositionObject =
+        m_map.At(nextRockPosition.first, nextRockPosition.second);
+
+    if (nextRockPositionObject.HasType(ObjectType::FIXED_TYPE) ||
+        nextRockPositionObject.HasType(ObjectType::WALL) ||
+        nextRockPositionObject.HasType(ObjectType::DEVIL) ||
+        nextRockPositionObject.HasType(ObjectType::LOCK) ||
+        nextRockPositionObject.HasType(ObjectType::UNDEAD) ||
+        nextRockPositionObject.HasType(ObjectType::ROCK))
+    {
+        return;
+    }
+
+    else
+    {
+        m_map.At(curRockPosition.first, curRockPosition.second)
+            .Remove(ObjectType::ROCK);
+        m_map.At(nextRockPosition.first, nextRockPosition.second)
+            .Add(ObjectType::ROCK);
+    }
+}
+
+void Game::PushUndead(size_t x, size_t y, Direction dir)
+{
+    Position curUndeadPosition = Move(x, y, dir);
+    Position nextUndeadPosition =
+        Move(curUndeadPosition.first, curUndeadPosition.second, dir);
+
+    Object nextUndeadPositionObject =
+        m_map.At(nextUndeadPosition.first, nextUndeadPosition.second);
+
+    if (nextUndeadPositionObject.HasType(ObjectType::FIXED_TYPE) ||
+        nextUndeadPositionObject.HasType(ObjectType::WALL) ||
+        nextUndeadPositionObject.HasType(ObjectType::DEVIL) ||
+        nextUndeadPositionObject.HasType(ObjectType::LOCK) ||
+        nextUndeadPositionObject.HasType(ObjectType::UNDEAD) ||
+        nextUndeadPositionObject.HasType(ObjectType::ROCK))
+    {
+        m_map.At(curUndeadPosition.first, curUndeadPosition.second)
+            .Remove(ObjectType::UNDEAD);
+    }
+}
+
+MoveState Game::CanMove(size_t x, size_t y, Direction dir)
+{
+    Position d_pair = Move(x, y, dir);
+    std::size_t _x = d_pair.first, _y = d_pair.second;
+
+    Object blockType = m_map.At(_x, _y);
+
+    // If encountered block is SPECIAL block,
+    if (blockType.HasType(ObjectType::EMPTY))
+    {
+        return MoveState::MOVE;
+    }
+
+    // If encountered block is WALL, STOP.
+    if (blockType.HasType(ObjectType::WALL))
+    {
+        return MoveState::STOP;
+    }
+
+    // If encountered block is LOCK,
+    if (blockType.HasType(ObjectType::LOCK))
+    {
+        if (GamePlayer->HasKey())
+        {
+            return MoveState::MOVE;
+        }
+        return MoveState::STAND;
+    }
+
+    // If encountered block is PLAYER,
+    if (blockType.HasType(ObjectType::PLAYER))
+    {
+        return MoveState::MOVE;
+    }
+
+    // If encountered block is UNDEAD,
+    if (blockType.HasType(ObjectType::UNDEAD))
+    {
+        return MoveState::UNDEAD;
+    }
+
+    // If encountered block is ROCK,
+    if (blockType.HasType(ObjectType::ROCK))
+    {
+        return MoveState::ROCK;
+    }
+
+    return MoveState::STOP;
 }
 
 Position Game::Move(std::size_t x, std::size_t y, Direction dir)

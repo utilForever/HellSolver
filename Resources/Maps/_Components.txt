@@ -25,6 +25,9 @@ MOVING TYPE
 2차 입력이 있는 경우 맵 정보 뒤에 1을 받음. 없으면 0을 받음.
 
 ////////////////////////
+Object.second: SPIKE, LURKER, KEY, ENDPOINT
+
+////////////////////////
 RULES
 
 LURKER가 땅 속에 들어간 경우 UNDEAD가 위에 올라갈 수 있음.
