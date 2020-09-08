@@ -36,6 +36,7 @@ TEST_CASE("TEST - IsGameEndTest")
     Game game(TEST_MAPS_DIR "IsGameEndTest.txt");
 
     CHECK(game.GetMap().At(1, 1).HasType(ObjectType::PLAYER));
+    CHECK(game.GetMap().At(1, 2).HasType(ObjectType::SPIKE));
     CHECK(game.GetPlayer().GetMoveCount() == 10);
     CHECK(game.CanMove(Direction::UP) == MoveState::STOP);
     CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);

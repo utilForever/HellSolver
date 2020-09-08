@@ -71,9 +71,7 @@ MoveState Game::CanMove(size_t x, size_t y, Direction dir)
     }
 
     // If encountered block is SPECIAL block,
-    if (blockType.HasType(ObjectType::EMPTY) ||
-        blockType.HasType(ObjectType::SPIKE) ||
-        blockType.HasType(ObjectType::KEY))
+    if (blockType.HasType(ObjectType::EMPTY))
     {
         return MoveState::MOVE;
     }
