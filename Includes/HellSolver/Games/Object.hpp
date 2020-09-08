@@ -32,6 +32,8 @@ class Object
     //! \param types An object type to remove.
     void Remove(ObjectType type);
 
+    void Init(ObjectType type);
+
     //! Gets the type of object.
     //! \return Pair of object type.
     [[nodiscard]] Tile GetTypes() const;

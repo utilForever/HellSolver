@@ -76,8 +76,10 @@ void Map::Load(std::string_view filename)
         for (size_t i = 0; i < m_width * m_height; ++i)
         {
             mapFile >> val;
-            m_board[i].Add(static_cast<ObjectType>(val));
-            m_initBoard[i].Add(static_cast<ObjectType>(val));
+            auto type = static_cast<ObjectType>(val);
+
+            m_board[i].Init(type);
+            m_initBoard[i].Init(type);
         }
     }
 }
@@ -87,7 +89,8 @@ std::pair<std::size_t, std::size_t> Map::GetStartPoint() const
     return m_startPoint;
 }
 
-std::size_t Map::GetInitMoveCount() const {
+std::size_t Map::GetInitMoveCount() const
+{
     return m_initCount;
 }
 

@@ -34,6 +34,13 @@ void Object::Remove(ObjectType type)
     }
 }
 
+void Object::Init(ObjectType type){
+    if(type == ObjectType::KEY || IsLurkerType(type) ||
+       type == ObjectType::SPIKE || type == ObjectType::ENDPOINT){
+        o_tile.second = type;
+    }
+}
+
 Tile Object::GetTypes() const
 {
     return o_tile;
