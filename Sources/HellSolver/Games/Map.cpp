@@ -42,18 +42,6 @@ std::size_t Map::GetHeight() const
     return m_height;
 }
 
-/*
-bool Map::GetKey() const
-{
-    return m_key;
-}
-
-bool Map::GetLurker() const
-{
-    return m_lurker;
-}
-*/
-
 void Map::Load(std::string_view filename)
 {
     std::ifstream mapFile(filename.data());
@@ -86,6 +74,10 @@ void Map::Load(std::string_view filename)
 
 std::pair<std::size_t, std::size_t> Map::GetStartPoint() const {
     return m_startPoint;
+}
+
+std::size_t Map::GetInitMoveCount() const {
+    return m_initCount;
 }
 
 Object& Map::At(std::size_t x, std::size_t y) const

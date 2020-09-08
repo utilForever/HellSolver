@@ -41,6 +41,8 @@ class Map
     [[nodiscard]] std::size_t GetHeight() const;
 
     [[nodiscard]] std::pair<std::size_t, std::size_t> GetStartPoint() const;
+
+    [[nodiscard]] std::size_t GetInitMoveCount() const;
     /*
     [[nodiscard]] bool GetKey() const;
 
