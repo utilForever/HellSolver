@@ -50,6 +50,11 @@ PlayerStatus Player::GetPlayerStatus(bool isEndPoint) const
     }
 }
 
+std::size_t Player::GetMoveCount() const
+{
+    return moveCount;
+}
+
 bool Player::HasKey() const
 {
     return hasKey;

@@ -19,6 +19,8 @@ class Player
 
     [[nodiscard]] PlayerStatus GetPlayerStatus(bool isEndPoint) const;
 
+    [[nodiscard]] std::size_t GetMoveCount() const;
+
     [[nodiscard]] bool HasKey() const;
 
     void SetKey();

@@ -9,7 +9,7 @@ namespace hell_solver
 Game::Game(std::string_view filename)
 {
     m_map.Load(filename);
-    std::pair<std::size_t, std::size_t> StartPoint = m_map.GetStartPoint();
+    Position StartPoint = m_map.GetStartPoint();
     GamePlayer = new Player(StartPoint.first, StartPoint.second,
                             m_map.GetInitMoveCount());
 }
@@ -17,7 +17,7 @@ Game::Game(std::string_view filename)
 void Game::Reset()
 {
     delete (GamePlayer);
-    std::pair<std::size_t, std::size_t> StartPoint = m_map.GetStartPoint();
+    Position StartPoint = m_map.GetStartPoint();
     GamePlayer = new Player(StartPoint.first, StartPoint.second,
                             m_map.GetInitMoveCount());
 }
@@ -27,11 +27,14 @@ Map& Game::GetMap()
     return m_map;
 }
 
-MoveState Game::CanMove(Direction dir)
+MoveState Game::CanMove(Direction dir){
+    Position position = GamePlayer->GetPosition();
+    return CanMove(position.first, position.second, dir);
+}
+
+MoveState Game::CanMove(size_t x, size_t y, Direction dir)
 {
-    std::pair<std::size_t, std::size_t> position = GamePlayer->GetPosition();
-    std::pair<std::size_t, std::size_t> d_pair =
-        Move(position.first, position.second, dir);
+    Position d_pair = Move(x, y, dir);
     std::size_t _x = d_pair.first, _y = d_pair.second;
 
     Object blockType = m_map.At(_x, _y);
@@ -53,6 +56,10 @@ MoveState Game::CanMove(Direction dir)
             nextType.HasType(ObjectType::LURKER_TYPE))
         {
             return MoveState::STAND;
+        }
+        else
+        {
+            return MoveState::STOP;
         }
     }
 
@@ -89,8 +96,43 @@ MoveState Game::CanMove(Direction dir)
     return MoveState::STOP;
 }
 
-std::pair<std::size_t, std::size_t> Game::Move(std::size_t x, std::size_t y,
-                                               Direction dir)
+PlayerStatus Game::MovePlayer(Direction dir)
+{
+    Position position = GamePlayer->GetPosition();
+
+    MoveState result = CanMove(position.first, position.second, dir);
+
+    switch (result)
+    {
+        case MoveState::MOVE:
+            position = GamePlayer->ProcessMove(dir);
+
+        case MoveState::STAND:
+            GamePlayer->DecreaseMoveCount();
+            m_map.SetLurker();
+            break;
+
+        case MoveState::STOP:
+            break;
+    }
+
+    Tile tile = m_map.At(position.first, position.second).GetTypes();
+    if (Object::HasType(tile, ObjectType::KEY))
+    {
+        GamePlayer->SetKey();
+        m_map.At(position.first, position.second).Remove(ObjectType::KEY);
+    }
+    if (Object::HasType(tile, ObjectType::SPIKE) ||
+        (!m_map.GetLurker() && Object::HasType(tile, ObjectType::DOWN)) ||
+        (m_map.GetLurker() && Object::HasType(tile, ObjectType::UP)))
+    {
+        GamePlayer->DecreaseMoveCount();
+    }
+    
+    return GamePlayer->GetPlayerStatus(Object::HasType(tile, ObjectType::ENDPOINT));
+}
+
+Position Game::Move(std::size_t x, std::size_t y, Direction dir)
 {
     std::size_t dx = x, dy = y;
 
@@ -104,6 +146,11 @@ std::pair<std::size_t, std::size_t> Game::Move(std::size_t x, std::size_t y,
         dy += 1;
 
     return std::make_pair(dx, dy);
+}
+
+Player& Game::GetPlayer()
+{
+    return *GamePlayer;
 }
 
 }  // namespace hell_solver
