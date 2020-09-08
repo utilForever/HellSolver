@@ -84,13 +84,13 @@ std::pair<int, int> Game::Move(std::size_t x, std::size_t y, Direction dir)
     dx = dy = 0;
 
     if (dir == Direction::UP)
-        dy = -1;
-    else if (dir == Direction::DOWN)
-        dy = 1;
-    else if (dir == Direction::LEFT)
         dx = -1;
-    else if (dir == Direction::RIGHT)
+    else if (dir == Direction::DOWN)
         dx = 1;
+    else if (dir == Direction::LEFT)
+        dy = -1;
+    else if (dir == Direction::RIGHT)
+        dy = 1;
 
     _x += dx;
     _y += dy;
