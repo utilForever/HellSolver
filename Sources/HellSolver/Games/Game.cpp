@@ -3,6 +3,7 @@
 //
 
 #include <HellSolver/Games/Game.hpp>
+#include <HellSolver/Player/Player.hpp>
 
 namespace hell_solver
 {
@@ -10,12 +11,13 @@ Game::Game(std::string_view filename)
 {
     m_map.Load(filename);
 
-    m_playerStatus = PlayerStatus::PLAYING;
+    std::pair<std::size_t, std::size_t> StartPoint =  m_map.GetStartPoint();
+    Player(StartPoint.first, StartPoint.second, m_map.GetMoveCount());
 }
 
 void Game::Reset()
 {
-    m_playerStatus = PlayerStatus::PLAYING;
+    // Do nothing.
 }
 
 Map& Game::GetMap()
