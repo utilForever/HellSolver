@@ -11,28 +11,13 @@ Game::Game(std::string_view filename)
 {
     m_map.Load(filename);
 
-    std::pair<std::size_t, std::size_t> StartPoint =  m_map.GetStartPoint();
+    std::pair<std::size_t, std::size_t> StartPoint = m_map.GetStartPoint();
     Player(StartPoint.first, StartPoint.second, m_map.GetMoveCount());
-}
-
-void Game::Reset()
-{
-    // Do nothing.
 }
 
 Map& Game::GetMap()
 {
     return m_map;
-}
-
-const Map& Game::GetMap() const
-{
-    return m_map;
-}
-
-void Game::MovePlayer(Direction dir)
-{
-    auto position = m_player;
 }
 
 MoveState Game::CanMove(std::size_t x, std::size_t y, Direction dir)
@@ -75,7 +60,6 @@ MoveState Game::CanMove(std::size_t x, std::size_t y, Direction dir)
     // If encountered block is DEVIL,
     if (blockType.HasType(ObjectType::DEVIL))
     {
-        m_playerStatus = PlayerStatus::WIN;
         return MoveState::MOVE;
     }
 
@@ -85,11 +69,6 @@ MoveState Game::CanMove(std::size_t x, std::size_t y, Direction dir)
 // TODO: ProcessMove will be considered below;
 //
 // void Game::ProcessMove(std::size_t x, std::size_t y, Direction dir);
-
-PlayerStatus Game::GetPlayerStatus() const
-{
-    return m_playerStatus;
-}
 
 std::pair<int, int> Game::Move(std::size_t x, std::size_t y, Direction dir)
 {

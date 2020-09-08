@@ -5,7 +5,6 @@
 #ifndef HELL_SOLVER_OBJECT_HPP
 #define HELL_SOLVER_OBJECT_HPP
 
-#include <HellSolver/Games/Game.hpp>
 #include <HellSolver/Enums/GameEnums.hpp>
 
 namespace hell_solver

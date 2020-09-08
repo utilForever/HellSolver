@@ -5,16 +5,12 @@
 #ifndef HELL_SOLVER_GAME_HPP
 #define HELL_SOLVER_GAME_HPP
 
-#include <HellSolver/Enums/GameEnums.hpp>
 #include <HellSolver/Games/Map.hpp>
 
-#include <string>
-#include <utility>
+#include <string_view>
 
 namespace hell_solver
 {
-using Position = std::pair<int, int>;
-
 //!
 //! \brief Game class.
 //!
@@ -27,23 +23,16 @@ class Game
     //! \param filename The file name to load a map.
     explicit Game(std::string_view filename);
 
-    //! Resets map and blocks.
-    void Reset();
-
+    //! Gets map.
+    //! \return the map.
     Map& GetMap();
-
-    [[nodiscard]] const Map& GetMap() const;
-
-    //! Gets the player status of the game.
-    //! \return The player status of the game.
-    [[nodiscard]] PlayerStatus GetPlayerStatus() const;
 
     //! Checks an object can move.
     //! \param x The x position.
     //! \param y The y position.
     //! \param dir The direction to move.
     //! \return the flag indicates that the player can move.
-    // MoveState CanMove(std::size_t x, std::size_t y, Direction dir);
+    MoveState CanMove(std::size_t x, std::size_t y, Direction dir);
 
  private:
     //! Gets the moved coordinate of the player.
@@ -51,7 +40,8 @@ class Game
     //! \param y The original y position.
     //! \param dir The direction to move.
     //! \return the pair contains the coordinate of moved player.
-    static std::pair<int, int> Move(std::size_t x, std::size_t y, Direction dir);
+    static std::pair<int, int> Move(std::size_t x, std::size_t y,
+                                    Direction dir);
 
     Map m_map;
 };
