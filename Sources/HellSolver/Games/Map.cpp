@@ -18,8 +18,8 @@ Map::Map(std::size_t width, std::size_t height, std::size_t count)
     for (size_t i = 0; i < m_width * m_height; ++i)
     {
         // TODO: Optimization
-        m_board.emplace_back(Tile{ObjectType::EMPTY, ObjectType::EMPTY});
-        m_initBoard.emplace_back(Tile{ObjectType::EMPTY, ObjectType::EMPTY});
+        m_board.emplace_back(Tile{ ObjectType::EMPTY, ObjectType::EMPTY });
+        m_initBoard.emplace_back(Tile{ ObjectType::EMPTY, ObjectType::EMPTY });
     }
 
     m_key = false;
@@ -66,8 +66,10 @@ void Map::Load(std::string_view filename)
     for (size_t i = 0; i < m_width * m_height; ++i)
     {
         mapFile >> val;
-        m_board.emplace_back(Tile{static_cast<ObjectType>(val), ObjectType::EMPTY});
-        m_initBoard.emplace_back(Tile{static_cast<ObjectType>(val), ObjectType::EMPTY});
+        m_board.emplace_back(
+            Tile{ static_cast<ObjectType>(val), ObjectType::EMPTY });
+        m_initBoard.emplace_back(
+            Tile{ static_cast<ObjectType>(val), ObjectType::EMPTY });
     }
 
     mapFile >> val;
@@ -80,6 +82,18 @@ void Map::Load(std::string_view filename)
             m_initBoard[i].Add(static_cast<ObjectType>(val));
         }
     }
+}
+
+std::pair<std::size_t, std::size_t> Map::GetStartPoint() const
+{
+    for(std::size_t x = 0 ; x < m_width; x++){
+        for(std::size_t y = 0; y<m_height; y++){
+            if(At(x, y).HasType(ObjectType::PLAYER))
+                return {x, y};
+        }
+    }
+
+    return {0, 0};
 }
 
 Object& Map::At(std::size_t x, std::size_t y) const

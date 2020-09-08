@@ -10,6 +10,7 @@
 
 #include <string>
 #include <vector>
+#include <utility>
 
 namespace hell_solver
 {
@@ -40,6 +41,7 @@ class Map
     //! \return The height of the map.
     [[nodiscard]] std::size_t GetHeight() const;
 
+    [[nodiscard]] std::pair<std::size_t, std::size_t> GetStartPoint() const;
     /*
     [[nodiscard]] bool GetKey() const;
 
