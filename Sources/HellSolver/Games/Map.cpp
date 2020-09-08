@@ -62,6 +62,8 @@ void Map::Load(std::string_view filename)
 
     mapFile >> m_width >> m_height >> m_count;
 
+    mapFile >> m_startPoint.first >> m_startPoint.second;
+
     int val = 0;
     for (size_t i = 0; i < m_width * m_height; ++i)
     {
@@ -84,16 +86,13 @@ void Map::Load(std::string_view filename)
     }
 }
 
-std::pair<std::size_t, std::size_t> Map::GetStartPoint() const
-{
-    for(std::size_t x = 0 ; x < m_width; x++){
-        for(std::size_t y = 0; y<m_height; y++){
-            if(At(x, y).HasType(ObjectType::PLAYER))
-                return {x, y};
-        }
-    }
+std::pair<std::size_t, std::size_t> Map::GetStartPoint() const {
+    return m_startPoint;
+}
 
-    return {0, 0};
+std::size_t Map::GetMoveCount() const
+{
+    return m_count;
 }
 
 Object& Map::At(std::size_t x, std::size_t y) const
