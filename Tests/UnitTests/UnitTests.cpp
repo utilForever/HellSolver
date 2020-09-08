@@ -5,6 +5,7 @@
 #include "doctest.h"
 
 #include <HellSolver/Games/Game.hpp>
+#include <iostream>
 
 using namespace hell_solver;
 
@@ -60,6 +61,7 @@ TEST_CASE("TEST - LurkerTest")
 {
     Game game(TEST_MAPS_DIR "LurkerTest.txt");
 
+    CHECK(game.GetMap().At(1, 8).HasType(ObjectType::ENDPOINT));
     CHECK(game.GetMap().At(1, 1).HasType(ObjectType::PLAYER));
     CHECK(game.GetPlayer().GetMoveCount() == 9);
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
@@ -75,7 +77,6 @@ TEST_CASE("TEST - LurkerTest")
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
     CHECK(game.GetPlayer().GetMoveCount() == 1);
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::WIN);
-    CHECK(game.GetPlayer().GetMoveCount() == 0);
 }
 
 TEST_CASE("TEST - LockTest")
@@ -83,9 +84,9 @@ TEST_CASE("TEST - LockTest")
     Game game(TEST_MAPS_DIR "LockTest.txt");
 
     CHECK(game.GetMap().At(1, 1).HasType(ObjectType::KEY));
-    CHECK(game.GetPlayer().GetMoveCount() == 7);
+    CHECK(game.GetPlayer().GetMoveCount() == 8);
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.GetPlayer().GetMoveCount() == 6);
+    CHECK(game.GetPlayer().GetMoveCount() == 7);
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
     CHECK(game.GetPlayer().GetMoveCount() == 6);
     CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
@@ -94,12 +95,25 @@ TEST_CASE("TEST - LockTest")
     CHECK(game.GetPlayer().HasKey() == true);
     CHECK(game.GetPlayer().GetMoveCount() == 4);
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-
     CHECK(game.GetPlayer().GetMoveCount() == 3);
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
     CHECK(game.GetPlayer().GetMoveCount() == 2);
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
     CHECK(game.GetPlayer().GetMoveCount() == 1);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::WIN);
+    CHECK(game.GetPlayer().GetMoveCount() == 0);
+}
+
+TEST_CASE("TEST - UndeadMakeDead")
+{
+    Game game(TEST_MAPS_DIR "UndeadMakeDead.txt");
+
+    CHECK(game.GetMap().At(1, 1).HasType(ObjectType::PLAYER));
+    CHECK(game.GetPlayer().GetMoveCount() == 4);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 2);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::WIN);
     CHECK(game.GetPlayer().GetMoveCount() == 0);
 }
