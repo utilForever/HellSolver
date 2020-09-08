@@ -10,6 +10,9 @@ class Player
 {
  public:
     Player() = default;
+
+    ~Player() = default;
+
     Player(std::size_t initX, std::size_t initY, std::size_t moveCount);
 
     [[nodiscard]] std::pair<std::size_t, std::size_t> MovePlayer(Direction dir);
@@ -19,6 +22,8 @@ class Player
     [[nodiscard]] PlayerStatus GetPlayerStatus();
 
     [[nodiscard]] bool HasKey() const;
+
+    [[nodiscard]] std::pair<std::size_t, std::size_t> GetPosition() const;
 
   private:
     std::size_t x = 0;

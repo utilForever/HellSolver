@@ -16,6 +16,7 @@ std::pair<std::size_t, std::size_t> Player::MovePlayer(Direction dir)
 
     return std::make_pair(x, y);
 }
+
 void Player::ProcessMove(Direction dir)
 {
     switch (dir)
@@ -39,6 +40,7 @@ void Player::ProcessMove(Direction dir)
 
     moveCount--;
 }
+
 PlayerStatus Player::GetPlayerStatus()
 {
     return status;
@@ -47,6 +49,10 @@ PlayerStatus Player::GetPlayerStatus()
 bool Player::HasKey() const
 {
     return key;
+}
+
+std::pair<std::size_t, std::size_t> Player::GetPosition() const {
+    return {x, y};
 }
 
 }  // namespace hell_solver
