@@ -35,6 +35,8 @@ class Game
     //! \return the map.
     [[nodiscard]] Map& GetMap();
 
+    //! Gets player.
+    //! \return the player.
     [[nodiscard]] Player& GetPlayer();
 
     //! Moves the player to the direction.
@@ -42,8 +44,14 @@ class Game
     //! \return the status of the player.
     [[nodiscard]] PlayerStatus MovePlayer(Direction dir);
 
+    //! Push the rock.
+    //! \param x The current x coordinate of rock.
+    //! \param y The current y coordinate of rock.
     void PushRock(size_t x, size_t y, Direction dir);
 
+    //! Push the undead.
+    //! \param x The current x coordinate of undead.
+    //! \param y The current y coordinate of undead.
     void PushUndead(size_t x, size_t y, Direction dir);
 
  private:
@@ -56,6 +64,11 @@ class Game
     //! \return the flag indicates that the player can move.
     [[nodiscard]] MoveState CanMove(size_t x, size_t y, Direction dir);
 
+    //! Move current coordinates to \p direction.
+    //! \param x The current x coordinate.
+    //! \param y The current y coordinate.
+    //! \param dir The direction to move.
+    //! \return The moved coordinate.
     static std::pair<std::size_t, std::size_t> Move(std::size_t x,
                                                     std::size_t y,
                                                     Direction dir);

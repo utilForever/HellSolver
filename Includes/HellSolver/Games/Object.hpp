@@ -34,12 +34,17 @@ class Object
     //! \param types An object type to remove.
     void Remove(ObjectType type);
 
+    //! Initializes an object type.
+    //! Used only when loading the map data.
+    //! \param types An object type to initialize.
     void Init(ObjectType type);
 
     //! Gets the type of object.
     //! \return Pair of object type.
     [[nodiscard]] Tile GetTypes() const;
 
+    //! Returns true if the object has the \p type.
+    //! \return true if the object has the \p type.
     [[nodiscard]] bool HasType(ObjectType type) const;
 
  private:
