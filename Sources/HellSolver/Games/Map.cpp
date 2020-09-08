@@ -17,9 +17,13 @@ Map::Map(std::size_t width, std::size_t height, std::size_t count)
 
     for (size_t i = 0; i < m_width * m_height; ++i)
     {
-        m_board.emplace_back(ObjectType::EMPTY, ObjectType::EMPTY);
-        m_initBoard.emplace_back(ObjectType::EMPTY, ObjectType::EMPTY);
+        // TODO: Optimization
+        m_board.emplace_back(Tile{ObjectType::EMPTY, ObjectType::EMPTY});
+        m_initBoard.emplace_back(Tile{ObjectType::EMPTY, ObjectType::EMPTY});
     }
+
+    m_key = false;
+    m_lurker = true;
 };
 
 void Map::Reset()
@@ -40,6 +44,7 @@ std::size_t Map::GetHeight() const
     return m_height;
 }
 
+/*
 bool Map::GetKey() const
 {
     return m_key;
@@ -49,6 +54,7 @@ bool Map::GetLurker() const
 {
     return m_lurker;
 }
+*/
 
 void Map::Load(std::string_view filename)
 {
@@ -60,20 +66,24 @@ void Map::Load(std::string_view filename)
     for (size_t i = 0; i < m_width * m_height; ++i)
     {
         mapFile >> val;
-        m_board.emplace_back(static_cast<ObjectType>(val), ObjectType::EMPTY);
-        m_initBoard.emplace_back(static_cast<ObjectType>(val),
-                                 ObjectType::EMPTY);
+        m_board.emplace_back(Tile{static_cast<ObjectType>(val), ObjectType::EMPTY});
+        m_initBoard.emplace_back(Tile{static_cast<ObjectType>(val), ObjectType::EMPTY});
     }
 
-    for (size_t i = 0; i < m_width * m_height; ++i)
+    mapFile >> val;
+    if (val)
     {
-        mapFile >> val;
-        m_board[i].second = static_cast<ObjectType>(val);
+        for (size_t i = 0; i < m_width * m_height; ++i)
+        {
+            mapFile >> val;
+            m_board[i].Add(static_cast<ObjectType>(val));
+            m_initBoard[i].Add(static_cast<ObjectType>(val));
+        }
     }
 }
 
-Tile Map::At(std::size_t x, std::size_t y) const
+Object& Map::At(std::size_t x, std::size_t y) const
 {
-    return m_board.at(y * m_width + x);
+    return const_cast<Object&>(m_board.at(y * m_width + x));
 }
 }  // namespace hell_solver

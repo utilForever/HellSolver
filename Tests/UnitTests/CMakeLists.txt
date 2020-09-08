@@ -5,7 +5,7 @@ set(target UnitTests)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 # Sources
-file(GLOB sources
+file(GLOB_RECURSE sources
     ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
 
 # Build executable
@@ -32,6 +32,7 @@ target_compile_options(${target}
 )
 target_compile_definitions(${target}
     PRIVATE
+    MAPS_DIR="${PROJECT_SOURCE_DIR}/Resources/Maps/"
 )
 
 # Link libraries

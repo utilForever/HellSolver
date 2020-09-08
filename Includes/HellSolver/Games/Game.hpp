@@ -2,8 +2,8 @@
 // Created by flow on 2020-09-07.
 //
 
-#ifndef HELLSOLVER_GAME_HPP
-#define HELLSOLVER_GAME_HPP
+#ifndef HELL_SOLVER_GAME_HPP
+#define HELL_SOLVER_GAME_HPP
 
 #include <HellSolver/Enums/GameEnums.hpp>
 #include <HellSolver/Games/Map.hpp>
@@ -28,6 +28,10 @@ class Game
     //! Resets map and blocks.
     void Reset();
 
+    Map& GetMap();
+
+    [[nodiscard]] const Map& GetMap() const;
+
     //! Gets the player status of the game.
     //! \return The player status of the game.
     [[nodiscard]] PlayerStatus GetPlayerStatus() const;
@@ -42,7 +46,7 @@ class Game
     //! \param y The original y position.
     //! \param dir The direction to move.
     //! \return the pair contains the coordinate of moved player.
-    std::pair<int, int> Move(std::size_t x, std::size_t y, Direction dir);
+    static std::pair<int, int> Move(std::size_t x, std::size_t y, Direction dir);
 
     //! Checks an object can move.
     //! \param x The x position.
