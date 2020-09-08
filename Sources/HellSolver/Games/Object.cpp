@@ -3,6 +3,8 @@
 //
 
 #include <HellSolver/Games/Object.hpp>
+#include <HellSolver/Games/Map.hpp>
+
 #include <utility>
 
 namespace hell_solver
@@ -44,12 +46,14 @@ bool Object::HasType(ObjectType type) const
 {
     if (type == ObjectType::EMPTY)
     {
-        return objectTile.first == ObjectType::EMPTY &&
-               objectTile.second == ObjectType::EMPTY;
+        return objectTile.first == ObjectType::EMPTY;
+    }
+    if (type == ObjectType::LURKER_TYPE)
+    {
+        return IsLurkerType(objectTile.second);
     }
     if (objectTile.first == type || objectTile.second == type)
         return true;
     return false;
 }
-
 }  // namespace hell_solver
