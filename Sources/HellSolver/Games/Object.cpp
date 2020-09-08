@@ -14,13 +14,10 @@ Object::Object(Tile tile) : objectTile(std::move(tile)){};
 void Object::Add(ObjectType type)
 {
     if (type == ObjectType::KEY || type == ObjectType::SPIKE ||
-        type == ObjectType::UP || type == ObjectType::DOWN)
+        type == ObjectType::UP || type == ObjectType::DOWN ||
+        type == ObjectType::ENDPOINT)
     {
         objectTile.second = type;
-    }
-    else
-    {
-        objectTile.first = type;
     }
 }
 
