@@ -45,3 +45,25 @@ TEST_CASE("TEST - IsGameEndTest")
     CHECK(game.GetPlayer().GetMoveCount() == 8);
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::WIN);
 }
+
+TEST_CASE("TEST - LurkerTest")
+{
+    Game game(TEST_MAPS_DIR "LurkerTest.txt");
+
+    CHECK(game.GetMap().At(1, 1).HasType(ObjectType::PLAYER));
+    CHECK(game.GetPlayer().GetMoveCount() == 9);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 8);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 6);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 4);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 3);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 2);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 1);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::WIN);
+    CHECK(game.GetPlayer().GetMoveCount() == 0);
+}
