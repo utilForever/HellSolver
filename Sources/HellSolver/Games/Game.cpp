@@ -73,13 +73,13 @@ PlayerStatus Game::MovePlayer(Direction dir)
         GamePlayer->SetKey();
         m_map.At(position.first, position.second).Remove(ObjectType::KEY);
     }
-    else if(block.HasType(ObjectType::LOCK))
+    else if (block.HasType(ObjectType::LOCK))
     {
         m_map.At(position.first, position.second).Remove(ObjectType::LOCK);
     }
     else if (block.HasType(ObjectType::SPIKE) ||
-        (!m_map.GetLurker() && block.HasType(ObjectType::DOWN)) ||
-        (m_map.GetLurker() && block.HasType(ObjectType::UP)))
+             (!m_map.GetLurker() && block.HasType(ObjectType::DOWN)) ||
+             (m_map.GetLurker() && block.HasType(ObjectType::UP)))
     {
         GamePlayer->DecreaseMoveCount();
     }
@@ -134,6 +134,13 @@ void Game::PushUndead(size_t x, size_t y, Direction dir)
         m_map.At(curUndeadPosition.first, curUndeadPosition.second)
             .Remove(ObjectType::UNDEAD);
     }
+    else
+    {
+        m_map.At(curUndeadPosition.first, curUndeadPosition.second)
+            .Remove(ObjectType::UNDEAD);
+        m_map.At(nextUndeadPosition.first, nextUndeadPosition.second)
+            .Remove(ObjectType::UNDEAD);
+    }
 }
 
 MoveState Game::CanMove(size_t x, size_t y, Direction dir)
@@ -144,7 +151,8 @@ MoveState Game::CanMove(size_t x, size_t y, Direction dir)
     Object blockType = m_map.At(_x, _y);
 
     // If encountered block is ENDPOINT.
-    if(blockType.HasType(ObjectType::ENDPOINT)){
+    if (blockType.HasType(ObjectType::ENDPOINT))
+    {
         return MoveState::ENDPOINT;
     }
 
