@@ -21,6 +21,7 @@ enum class ObjectType
     PLAYER,       // 11
     UNDEAD,       // 12
     ROCK,         // 13
+    ENDPOINT      // 14
 };
 
 enum class MoveState
