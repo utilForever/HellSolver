@@ -10,6 +10,7 @@
 #include <HellSolver/Enums/GameEnums.hpp>
 #include <HellSolver/Games/Game.hpp>
 #include <HellSolver/Games/Map.hpp>
+#include <HellSolver/Games/Object.hpp>
 #include <HellSolver/HellSolver.hpp>
 #include <HellSolver/Player/Player.hpp>
 #include <HellSolver/Test/Test.hpp>
