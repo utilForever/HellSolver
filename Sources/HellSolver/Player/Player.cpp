@@ -21,19 +21,19 @@ void Player::ProcessMove(Direction dir)
     switch (dir)
     {
         case Direction::UP:
-            y--;
-            break;
-
-        case Direction::DOWN:
-            y++;
-            break;
-
-        case Direction::LEFT:
             x--;
             break;
 
-        case Direction::RIGHT:
+        case Direction::DOWN:
             x++;
+            break;
+
+        case Direction::LEFT:
+            y--;
+            break;
+
+        case Direction::RIGHT:
+            y++;
             break;
     }
 
