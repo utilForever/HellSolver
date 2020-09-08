@@ -67,3 +67,29 @@ TEST_CASE("TEST - LurkerTest")
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::WIN);
     CHECK(game.GetPlayer().GetMoveCount() == 0);
 }
+
+TEST_CASE("TEST - LockTest")
+{
+    Game game(TEST_MAPS_DIR "LockTest.txt");
+
+    CHECK(game.GetMap().At(1, 2).HasType(ObjectType::PLAYER));
+    CHECK(game.GetMap().At(1, 1).HasType(ObjectType::KEY));
+    CHECK(game.GetPlayer().GetMoveCount() == 7);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 6);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 6);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 5);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 4);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().HasKey() == true);
+    CHECK(game.GetPlayer().GetMoveCount() == 3);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 2);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 1);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::WIN);
+    CHECK(game.GetPlayer().GetMoveCount() == 0);
+}
