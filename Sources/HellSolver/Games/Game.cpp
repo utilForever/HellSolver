@@ -55,7 +55,8 @@ MoveState Game::CanMove(std::size_t x, std::size_t y, Direction dir)
     return MoveState::STOP;
 }
 
-// TODO: ProcessMove will be considered below:
+// TODO: ProcessMove will be considered below;
+//
 //
 // void Game::ProcessMove(std::size_t x, std::size_t y, Direction dir);
 
