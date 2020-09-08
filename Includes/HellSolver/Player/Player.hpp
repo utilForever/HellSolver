@@ -18,10 +18,13 @@ class Player
 
     [[nodiscard]] PlayerStatus GetPlayerStatus();
 
- private:
+    [[nodiscard]] bool HasKey() const;
+
+  private:
     std::size_t x = 0;
     std::size_t y = 0;
     std::size_t moveCount = 0;
+    bool key = false;
     PlayerStatus status = PlayerStatus::INVALID;
 };
 }  // namespace hell_solver

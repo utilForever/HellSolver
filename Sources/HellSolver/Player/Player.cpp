@@ -44,4 +44,9 @@ PlayerStatus Player::GetPlayerStatus()
     return status;
 }
 
+bool Player::HasKey() const
+{
+    return key;
+}
+
 }  // namespace hell_solver
