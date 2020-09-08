@@ -1,15 +1,17 @@
-FIXED
+FIXED TYPE
 빈 공간 : EMPTY
 벽 : WALL
 악마 : DEVIL
 가시 : SPIKE
 열쇠 : KEY
 보물상자 : LOCK
-MOVING
+LURKER TYPE
+올라온 가시 : UP
+내려간 가시 : DOWN
+MOVING TYPE
 플레이어 : PLAYER
 해골병사 : UNDEAD
 움직이는 돌 : ROCK
-나왔다 들어갔다 하는 가시 : LURKER
 
 ////////////////////////
 1차 입력: 가시 제외
