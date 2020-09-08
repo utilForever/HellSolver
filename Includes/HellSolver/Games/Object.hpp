@@ -39,7 +39,7 @@ class Object
     [[nodiscard]] bool HasType(ObjectType type) const;
 
  private:
-    Tile objectTile;
+    Tile o_tile;
 };
 }  // namespace hell_solver
 
