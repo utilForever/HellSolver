@@ -11,8 +11,7 @@ Game::Game(std::string_view filename)
 {
     m_map.Load(filename);
 
-    std::pair<std::size_t, std::size_t> StartPoint = m_map.GetStartPoint();
-    Player(StartPoint.first, StartPoint.second, m_map.GetMoveCount());
+    std::pair<std::size_t, std::size_t> StartPoint =  m_map.GetStartPoint();
 }
 
 Map& Game::GetMap()

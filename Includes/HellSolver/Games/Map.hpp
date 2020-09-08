@@ -40,8 +40,6 @@ class Map
     //! \return The height of the map.
     [[nodiscard]] std::size_t GetHeight() const;
 
-    [[nodiscard]] std::size_t GetMoveCount() const;
-
     [[nodiscard]] std::pair<std::size_t, std::size_t> GetStartPoint() const;
     /*
     [[nodiscard]] bool GetKey() const;
@@ -62,7 +60,6 @@ class Map
  private:
     std::size_t m_width = 0;
     std::size_t m_height = 0;
-    std::size_t m_count = 1;
     bool m_key = false;
     bool m_lurker = true;
 
