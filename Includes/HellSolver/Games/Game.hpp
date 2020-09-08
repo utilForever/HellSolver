@@ -13,6 +13,8 @@
 
 namespace hell_solver
 {
+using Position = std::pair<int, int>;
+
 //!
 //! \brief Game class.
 //!
@@ -64,6 +66,7 @@ class Game
 
     Map m_map;
 
+    Position m_player = {0, 0};
     PlayerStatus m_playerStatus = PlayerStatus::INVALID;
 };
 }  // namespace hell_solver

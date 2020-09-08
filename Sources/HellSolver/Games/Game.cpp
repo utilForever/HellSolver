@@ -27,46 +27,60 @@ const Map& Game::GetMap() const
 {
     return m_map;
 }
-/*
+
+void Game::MovePlayer(Direction dir)
+{
+    auto position = m_player;
+}
+
 MoveState Game::CanMove(std::size_t x, std::size_t y, Direction dir)
 {
     std::pair<int, int> d_pair = Move(x, y, dir);
     int _x = d_pair.first, _y = d_pair.second;
 
-    ObjectType blockType = m_map.At(_x, _y);
+    Object blockType = m_map.At(_x, _y);
 
     // If encountered block is WALL, STOP.
-    if (blockType == ObjectType::WALL)
+    if (blockType.HasType(ObjectType::WALL))
     {
         return MoveState::STOP;
     }
     // If encountered block is ROCK,
-    if (blockType == ObjectType::ROCK)
+    if (blockType.HasType(ObjectType::ROCK))
     {
-        ObjectType nextType = m_map.At(_x, _y);
+        Object nextType = m_map.At(_x, _y);
 
-        // If the block behind ROCK
-        if (nextType == ObjectType::EMPTY || nextType == ObjectType::KEY ||
-            nextType == ObjectType::LURKER)
+        // If the block behind ROCK is EMPTY or KEY or LURKER
+        if (nextType.HasType(ObjectType::EMPTY) ||
+            nextType.HasType(ObjectType::KEY) ||
+            nextType.HasType(ObjectType::LURKER_TYPE))
         {
             return MoveState::STAND;
         }
     }
-    if (blockType == ObjectType::DEVIL)
+    // If encountered block is UNDEAD,
+    if (blockType.HasType(ObjectType::UNDEAD))
     {
         return MoveState::STAND;
     }
-    if (blockType == ObjectType::EMPTY || blockType == ObjectType::SPIKE ||
-        blockType == ObjectType::KEY)
+    if (blockType.HasType(ObjectType::EMPTY) ||
+        blockType.HasType(ObjectType::SPIKE) ||
+        blockType.HasType(ObjectType::KEY))
     {
+        return MoveState::MOVE;
+    }
+
+    // If encountered block is DEVIL,
+    if (blockType.HasType(ObjectType::DEVIL))
+    {
+        m_playerStatus = PlayerStatus::WIN;
         return MoveState::MOVE;
     }
 
     return MoveState::STOP;
 }
-*/
+
 // TODO: ProcessMove will be considered below;
-//
 //
 // void Game::ProcessMove(std::size_t x, std::size_t y, Direction dir);
 
