@@ -3,10 +3,11 @@
 //
 
 #include <HellSolver/Games/Object.hpp>
+#include <utility>
 
 namespace hell_solver
 {
-Object::Object(Tile tile) : objectTile(tile){};
+Object::Object(Tile tile) : objectTile(std::move(tile)){};
 
 void Object::Add(ObjectType type)
 {
@@ -41,6 +42,11 @@ Tile Object::GetTypes() const
 
 bool Object::HasType(ObjectType type) const
 {
+    if (type == ObjectType::EMPTY)
+    {
+        return objectTile.first == ObjectType::EMPTY &&
+               objectTile.second == ObjectType::EMPTY;
+    }
     if (objectTile.first == type || objectTile.second == type)
         return true;
     return false;
