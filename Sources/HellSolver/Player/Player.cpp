@@ -8,16 +8,7 @@ Player::Player(std::size_t initX, std::size_t initY, std::size_t initMoveCount)
 {
 }
 
-std::pair<std::size_t, std::size_t> Player::MovePlayer(Direction dir)
-{
-    // waiting for CanMove method
-    std::cout << static_cast<std::underlying_type<Direction>::type>(dir)
-              << std::endl;
-
-    return std::make_pair(x, y);
-}
-
-void Player::ProcessMove(Direction dir)
+std::pair<std::size_t, std::size_t> Player::ProcessMove(Direction dir)
 {
     switch (dir)
     {
@@ -38,21 +29,45 @@ void Player::ProcessMove(Direction dir)
             break;
     }
 
-    moveCount--;
+    return { x, y };
 }
 
-PlayerStatus Player::GetPlayerStatus()
+PlayerStatus Player::GetPlayerStatus(bool isEndPoint) const
 {
-    return status;
+    if (isEndPoint)
+    {
+        return PlayerStatus::WIN;
+    }
+
+    else if (!moveCount)
+    {
+        return PlayerStatus::LOST;
+    }
+
+    else
+    {
+        return PlayerStatus::PLAYING;
+    }
 }
 
 bool Player::HasKey() const
 {
-    return key;
+    return hasKey;
 }
 
-std::pair<std::size_t, std::size_t> Player::GetPosition() const {
-    return {x, y};
+void Player::SetKey()
+{
+    hasKey = true;
+}
+
+std::pair<std::size_t, std::size_t> Player::GetPosition() const
+{
+    return { x, y };
+}
+
+void Player::DecreaseMoveCount()
+{
+    moveCount--;
 }
 
 }  // namespace hell_solver
