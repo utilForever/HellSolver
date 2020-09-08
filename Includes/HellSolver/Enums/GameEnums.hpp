@@ -30,7 +30,8 @@ enum class MoveState
     ROCK,
     UNDEAD,
     STAND,
-    STOP
+    STOP,
+    ENDPOINT
 };
 
 enum class PlayerStatus

@@ -58,6 +58,11 @@ PlayerStatus Game::MovePlayer(Direction dir)
             m_map.SetLurker();
             break;
 
+        case MoveState::ENDPOINT:
+            GamePlayer->DecreaseMoveCount();
+            m_map.SetLurker();
+            break;
+
         case MoveState::STOP:
             break;
     }
@@ -79,7 +84,7 @@ PlayerStatus Game::MovePlayer(Direction dir)
         GamePlayer->DecreaseMoveCount();
     }
 
-    return GamePlayer->GetPlayerStatus(block.HasType(ObjectType::ENDPOINT));
+    return GamePlayer->GetPlayerStatus(result == MoveState::ENDPOINT);
 }
 
 void Game::PushRock(size_t x, size_t y, Direction dir)
@@ -137,6 +142,11 @@ MoveState Game::CanMove(size_t x, size_t y, Direction dir)
     std::size_t _x = d_pair.first, _y = d_pair.second;
 
     Object blockType = m_map.At(_x, _y);
+
+    // If encountered block is ENDPOINT.
+    if(blockType.HasType(ObjectType::ENDPOINT)){
+        return MoveState::ENDPOINT;
+    }
 
     // If encountered block is SPECIAL block,
     if (blockType.HasType(ObjectType::EMPTY))
