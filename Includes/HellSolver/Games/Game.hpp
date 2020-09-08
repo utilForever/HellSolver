@@ -28,6 +28,10 @@ class Game
     //! Resets map and blocks.
     void Reset();
 
+    Map& GetMap();
+
+    [[nodiscard]] const Map& GetMap() const;
+
     //! Gets the player status of the game.
     //! \return The player status of the game.
     [[nodiscard]] PlayerStatus GetPlayerStatus() const;

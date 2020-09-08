@@ -18,6 +18,16 @@ void Game::Reset()
     m_playerStatus = PlayerStatus::PLAYING;
 }
 
+Map& Game::GetMap()
+{
+    return m_map;
+}
+
+const Map& Game::GetMap() const
+{
+    return m_map;
+}
+/*
 MoveState Game::CanMove(std::size_t x, std::size_t y, Direction dir)
 {
     std::pair<int, int> d_pair = Move(x, y, dir);
@@ -54,7 +64,7 @@ MoveState Game::CanMove(std::size_t x, std::size_t y, Direction dir)
 
     return MoveState::STOP;
 }
-
+*/
 // TODO: ProcessMove will be considered below;
 //
 //
