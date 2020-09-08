@@ -6,6 +6,7 @@
 #define HELL_SOLVER_MAP_HPP
 
 #include <HellSolver/Enums/GameEnums.hpp>
+#include <HellSolver/Games/Object.hpp>
 
 #include <string>
 #include <vector>
@@ -39,9 +40,11 @@ class Map
     //! \return The height of the map.
     [[nodiscard]] std::size_t GetHeight() const;
 
+    /*
     [[nodiscard]] bool GetKey() const;
 
     [[nodiscard]] bool GetLurker() const;
+    */
 
     //! Loads the data of the map.
     //! \param filename The name of file to be loaded.
@@ -51,7 +54,7 @@ class Map
     //! \param x The x position.
     //! \param y The y position.
     //! \return An object at row and column.
-    [[nodiscard]] Tile At(std::size_t x, std::size_t y) const;
+    [[nodiscard]] Object& At(std::size_t x, std::size_t y) const;
 
  private:
     std::size_t m_width = 0;
@@ -60,8 +63,8 @@ class Map
     bool m_key = false;
     bool m_lurker = true;
 
-    std::vector<Tile> m_board;
-    std::vector<Tile> m_initBoard;
+    std::vector<Object> m_board;
+    std::vector<Object> m_initBoard;
     std::size_t m_initCount = 1;
 };
 }  // namespace hell_solver
