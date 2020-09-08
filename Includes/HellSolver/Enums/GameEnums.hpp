@@ -5,18 +5,21 @@ namespace hell_solver
 {
 enum class ObjectType
 {
-    FIXED_TYPE,
-    EMPTY,
-    WALL,
-    DEVIL,
-    SPIKE,
-    KEY,
-    LOCK,
-    MOVING_TYPE,
-    PLAYER,
-    UNDEAD,
-    ROCK,
-    LURKER
+    FIXED_TYPE,   // 0
+    EMPTY,        // 1
+    WALL,         // 2
+    DEVIL,        // 3
+    SPIKE,        // 4
+    KEY,          // 5
+    LOCK,         // 6
+    LURKER_TYPE,  // 7
+    UP,           // 8
+    DOWN,         // 9
+    MOVING_TYPE,  // 10
+    PLAYER,       // 11
+    UNDEAD,       // 12
+    ROCK,         // 13
+
 };
 
 enum class MoveState
