@@ -6,6 +6,7 @@
 #define HELL_SOLVER_GAME_HPP
 
 #include <HellSolver/Games/Map.hpp>
+#include <HellSolver/Player/Player.hpp>
 
 #include <string_view>
 
@@ -28,8 +29,6 @@ class Game
     Map& GetMap();
 
     //! Checks an object can move.
-    //! \param x The x position.
-    //! \param y The y position.
     //! \param dir The direction to move.
     //! \return the flag indicates that the player can move.
     MoveState CanMove(std::size_t x, std::size_t y, Direction dir);
@@ -42,8 +41,13 @@ class Game
     //! \return the pair contains the coordinate of moved player.
     static std::pair<int, int> Move(std::size_t x, std::size_t y,
                                     Direction dir);
+                                    
+    MoveState CanMove(Direction dir);
 
+ private:
     Map m_map;
+
+    Player GamePlayer;
 };
 }  // namespace hell_solver
 
