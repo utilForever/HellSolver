@@ -9,14 +9,17 @@ namespace hell_solver
 Game::Game(std::string_view filename)
 {
     m_map.Load(filename);
-    std::pair<std::size_t, std::size_t> StartPoint =  m_map.GetStartPoint();
+    std::pair<std::size_t, std::size_t> StartPoint = m_map.GetStartPoint();
+    GamePlayer = new Player(StartPoint.first, StartPoint.second,
+                            m_map.GetInitMoveCount());
 }
 
 void Game::Reset()
 {
-    // Do nothing.
+    delete (GamePlayer);
     std::pair<std::size_t, std::size_t> StartPoint = m_map.GetStartPoint();
-    GamePlayer = Player(StartPoint.first, StartPoint.second, m_map.GetInitMoveCount());
+    GamePlayer = new Player(StartPoint.first, StartPoint.second,
+                            m_map.GetInitMoveCount());
 }
 
 Map& Game::GetMap()
@@ -26,7 +29,9 @@ Map& Game::GetMap()
 
 MoveState Game::CanMove(Direction dir)
 {
-    std::pair<std::size_t, std::size_t> d_pair = GamePlayer.MovePlayer(dir);
+    std::pair<std::size_t, std::size_t> position = GamePlayer->GetPosition();
+    std::pair<std::size_t, std::size_t> d_pair =
+        Move(position.first, position.second, dir);
     std::size_t _x = d_pair.first, _y = d_pair.second;
 
     Object blockType = m_map.At(_x, _y);
@@ -66,8 +71,10 @@ MoveState Game::CanMove(Direction dir)
     }
 
     // If encountered block is LOCK,
-    if(blockType.HasType(ObjectType::LOCK)){
-        if(GamePlayer.HasKey()){
+    if (blockType.HasType(ObjectType::LOCK))
+    {
+        if (GamePlayer->HasKey())
+        {
             return MoveState::MOVE;
         }
         return MoveState::STOP;
@@ -82,31 +89,21 @@ MoveState Game::CanMove(Direction dir)
     return MoveState::STOP;
 }
 
-// TODO: ProcessMove will be considered below;
-//
-// void Game::ProcessMove(std::size_t x, std::size_t y, Direction dir);
-
-std::pair<int, int> Game::Move(std::size_t x, std::size_t y, Direction dir)
+std::pair<std::size_t, std::size_t> Game::Move(std::size_t x, std::size_t y,
+                                               Direction dir)
 {
-    int _x = static_cast<int>(x);
-    int _y = static_cast<int>(y);
-
-    int dx, dy;
-    dx = dy = 0;
+    std::size_t dx = x, dy = y;
 
     if (dir == Direction::UP)
-        dx = -1;
+        dx -= 1;
     else if (dir == Direction::DOWN)
-        dx = 1;
+        dx += 1;
     else if (dir == Direction::LEFT)
-        dy = -1;
+        dy -= 1;
     else if (dir == Direction::RIGHT)
-        dy = 1;
+        dy += 1;
 
-    _x += dx;
-    _y += dy;
-
-    return std::make_pair(_x, _y);
+    return std::make_pair(dx, dy);
 }
 
 }  // namespace hell_solver

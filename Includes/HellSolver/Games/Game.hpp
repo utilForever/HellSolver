@@ -24,11 +24,12 @@ class Game
     //! \param filename The file name to load a map.
     explicit Game(std::string_view filename);
 
+    //! Resets game.
+    void Reset();
+
     //! Gets map.
     //! \return the map.
     Map& GetMap();
-
-    void Reset();
 
     //! Checks an object can move.
     //! \param dir The direction to move.
@@ -36,18 +37,13 @@ class Game
     MoveState CanMove(Direction dir);
 
  private:
-    //! Gets the moved coordinate of the player.
-    //! \param x The original x position.
-    //! \param y The original y position.
-    //! \param dir The direction to move.
-    //! \return the pair contains the coordinate of moved player.
-    static std::pair<int, int> Move(std::size_t x, std::size_t y,
-                                    Direction dir);
-
- private:
     Map m_map;
 
-    Player GamePlayer;
+    Player* GamePlayer;
+
+    static std::pair<std::size_t, std::size_t> Move(std::size_t x,
+                                                    std::size_t y,
+                                                    Direction dir);
 };
 }  // namespace hell_solver
 
