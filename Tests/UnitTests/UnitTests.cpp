@@ -9,7 +9,7 @@
 
 using namespace hell_solver;
 
-TEST_CASE("MAP 1 - LOADING")
+TEST_CASE("MAP 1 - SOLUTION")
 {
     Game game(MAPS_DIR "1.txt");
 
@@ -17,6 +17,58 @@ TEST_CASE("MAP 1 - LOADING")
     CHECK(game.GetMap().At(1, 6).HasType(ObjectType::PLAYER));
     CHECK(game.GetMap().At(2, 4).HasType(ObjectType::UNDEAD));
     CHECK(game.GetMap().At(5, 2).HasType(ObjectType::ROCK));
+    CHECK(game.GetMap().At(6, 6).HasType(ObjectType::ENDPOINT));
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+
+    // std::cout << game.GetPlayer().GetPosition().first << " " <<
+    // game.GetPlayer().GetPosition().second << std::endl;
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::WIN);
+}
+
+TEST_CASE("MAP 2 - SOLUTION")
+{
+    Game game(MAPS_DIR "2.txt");
+
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::WIN);
 }
 
 TEST_CASE("TEST - CanMoveTestMap")
@@ -38,7 +90,7 @@ TEST_CASE("TEST - CanMoveTestMap")
     CHECK(game.GetPlayer().GetPosition().first == 2);
     CHECK(game.GetPlayer().GetPosition().second == 2);
 
-    CHECK(game. MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
     CHECK(game.GetPlayer().GetPosition().first == 3);
     CHECK(game.GetPlayer().GetPosition().second == 2);
 }
@@ -116,4 +168,30 @@ TEST_CASE("TEST - UndeadMakeDead")
     CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::WIN);
     CHECK(game.GetPlayer().GetMoveCount() == 0);
+}
+
+TEST_CASE("TEST - DancingRock")
+{
+    Game game(TEST_MAPS_DIR "DancingRock.txt");
+
+    CHECK(game.GetMap().At(1, 1).HasType(ObjectType::PLAYER));
+    CHECK(game.GetPlayer().GetMoveCount() == 4);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 2);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::WIN);
+    CHECK(game.GetPlayer().GetMoveCount() == 0);
+    CHECK(game.GetMap().At(1, 3).HasType(ObjectType::ROCK));
+}
+
+TEST_CASE("TEST - SlidingUndead")
+{
+    Game game(TEST_MAPS_DIR "SlidingUndead.txt");
+
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::LOST);
 }
