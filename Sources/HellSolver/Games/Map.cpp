@@ -9,9 +9,8 @@
 namespace hell_solver
 {
 Map::Map(std::size_t width, std::size_t height, std::size_t count)
-    : m_width(width), m_height(height), m_count(count)
+    : m_width(width), m_height(height), m_initCount(count)
 {
-    m_initCount = m_count;
     m_board.reserve(m_width * m_height);
     m_initBoard.reserve(m_width * m_height);
 
@@ -29,7 +28,6 @@ Map::Map(std::size_t width, std::size_t height, std::size_t count)
 void Map::Reset()
 {
     m_board = m_initBoard;
-    m_count = m_initCount;
     m_key = false;
     m_lurker = true;
 }
@@ -60,7 +58,7 @@ void Map::Load(std::string_view filename)
 {
     std::ifstream mapFile(filename.data());
 
-    mapFile >> m_width >> m_height >> m_count;
+    mapFile >> m_width >> m_height >> m_initCount;
 
     mapFile >> m_startPoint.first >> m_startPoint.second;
 
@@ -88,11 +86,6 @@ void Map::Load(std::string_view filename)
 
 std::pair<std::size_t, std::size_t> Map::GetStartPoint() const {
     return m_startPoint;
-}
-
-std::size_t Map::GetMoveCount() const
-{
-    return m_count;
 }
 
 Object& Map::At(std::size_t x, std::size_t y) const
