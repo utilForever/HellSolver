@@ -84,6 +84,6 @@ void Map::Load(std::string_view filename)
 
 Object& Map::At(std::size_t x, std::size_t y) const
 {
-    return const_cast<Object&>(m_board.at(y * m_width + x));
+    return const_cast<Object&>(m_board.at(x * m_width + y));
 }
 }  // namespace hell_solver
