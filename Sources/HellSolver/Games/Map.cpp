@@ -42,6 +42,16 @@ std::size_t Map::GetHeight() const
     return m_height;
 }
 
+bool Map::GetLurker() const
+{
+    return m_lurker;
+}
+
+void Map::SetLurker()
+{
+    m_lurker = !GetLurker();
+}
+
 void Map::Load(std::string_view filename)
 {
     std::ifstream mapFile(filename.data());
@@ -72,7 +82,8 @@ void Map::Load(std::string_view filename)
     }
 }
 
-std::pair<std::size_t, std::size_t> Map::GetStartPoint() const {
+std::pair<std::size_t, std::size_t> Map::GetStartPoint() const
+{
     return m_startPoint;
 }
 

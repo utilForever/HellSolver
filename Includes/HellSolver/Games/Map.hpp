@@ -43,11 +43,10 @@ class Map
     [[nodiscard]] std::pair<std::size_t, std::size_t> GetStartPoint() const;
 
     [[nodiscard]] std::size_t GetInitMoveCount() const;
-    /*
-    [[nodiscard]] bool GetKey() const;
 
     [[nodiscard]] bool GetLurker() const;
-    */
+
+    void SetLurker();
 
     //! Loads the data of the map.
     //! \param filename The name of file to be loaded.
