@@ -10,6 +10,7 @@
 
 #include <string>
 #include <vector>
+#include <utility>
 
 namespace hell_solver
 {
@@ -40,6 +41,9 @@ class Map
     //! \return The height of the map.
     [[nodiscard]] std::size_t GetHeight() const;
 
+    [[nodiscard]] std::size_t GetMoveCount() const;
+
+    [[nodiscard]] std::pair<std::size_t, std::size_t> GetStartPoint() const;
     /*
     [[nodiscard]] bool GetKey() const;
 
@@ -66,6 +70,7 @@ class Map
     std::vector<Object> m_board;
     std::vector<Object> m_initBoard;
     std::size_t m_initCount = 1;
+    std::pair<std::size_t, std::size_t> m_startPoint;
 };
 }  // namespace hell_solver
 
