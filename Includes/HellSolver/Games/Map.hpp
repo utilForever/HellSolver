@@ -12,7 +12,7 @@
 
 namespace hell_solver
 {
-typedef std::pair<std::size_t, std::size_t> Position;
+typedef std::pair<ObjectType, ObjectType> Tile;
 
 //!
 //! \brief Map class.
@@ -41,6 +41,10 @@ class Map
     //! \return The height of the map.
     [[nodiscard]] std::size_t GetHeight() const;
 
+    [[nodiscard]] bool GetKey() const;
+
+    [[nodiscard]] bool GetLurker() const;
+
     //! Loads the data of the map.
     //! \param filename The name of file to be loaded.
     void Load(std::string_view filename);
@@ -49,7 +53,7 @@ class Map
     //! \param x The x position.
     //! \param y The y position.
     //! \return An object at row and column.
-    [[nodiscard]] std::vector<ObjectType>& At(std::size_t x, std::size_t y) const;
+    [[nodiscard]] Tile At(std::size_t x, std::size_t y) const;
 
  private:
     std::size_t m_width = 0;
@@ -58,9 +62,9 @@ class Map
     bool m_key = false;
     bool m_lurker = true;
 
+    std::vector<Tile> m_board;
+    std::vector<Tile> m_initBoard;
     std::size_t m_initCount = 1;
-    std::vector<std::vector<ObjectType>> m_board;
-    std::vector<std::vector<ObjectType>> m_initBoard;
 };
 }  // namespace hell_solver
 
