@@ -15,22 +15,23 @@ class Player
 
     Player(std::size_t initX, std::size_t initY, std::size_t moveCount);
 
-    [[nodiscard]] std::pair<std::size_t, std::size_t> MovePlayer(Direction dir);
+    [[nodiscard]] std::pair<std::size_t, std::size_t> ProcessMove(Direction dir);
 
-    void ProcessMove(Direction dir);
-
-    [[nodiscard]] PlayerStatus GetPlayerStatus();
+    [[nodiscard]] PlayerStatus GetPlayerStatus(bool isEndPoint) const;
 
     [[nodiscard]] bool HasKey() const;
 
+    void SetKey();
+
     [[nodiscard]] std::pair<std::size_t, std::size_t> GetPosition() const;
+
+    void DecreaseMoveCount();
 
   private:
     std::size_t x = 0;
     std::size_t y = 0;
     std::size_t moveCount = 0;
-    bool key = false;
-    PlayerStatus status = PlayerStatus::INVALID;
+    bool hasKey = false;
 };
 }  // namespace hell_solver
 
