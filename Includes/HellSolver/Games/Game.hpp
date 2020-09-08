@@ -31,26 +31,28 @@ class Game
 
     //! Gets map.
     //! \return the map.
-    Map& GetMap();
+    [[nodiscard]] Map& GetMap();
 
-    Player& GetPlayer();
-
-    MoveState CanMove(Direction dir);
-
-    //! Checks an object can move.
-    //! \param dir The direction to move.
-    //! \return the flag indicates that the player can move.
-    MoveState CanMove(size_t x, size_t y, Direction dir);
+    [[nodiscard]] Player& GetPlayer();
 
     //! Moves the player to the direction.
     //! \param dir The direction to move.
     //! \return the status of the player.
-    PlayerStatus MovePlayer(Direction dir);
+    [[nodiscard]] PlayerStatus MovePlayer(Direction dir);
+
+    void PushRock(size_t x, size_t y, Direction dir);
+
+    void PushUndead(size_t x, size_t y, Direction dir);
 
  private:
     Map m_map;
 
     Player* GamePlayer;
+
+    //! Checks an object can move.
+    //! \param dir The direction to move.
+    //! \return the flag indicates that the player can move.
+    [[nodiscard]] MoveState CanMove(size_t x, size_t y, Direction dir);
 
     static std::pair<std::size_t, std::size_t> Move(std::size_t x,
                                                     std::size_t y,

@@ -25,10 +25,22 @@ TEST_CASE("TEST - CanMoveTestMap")
 
     CHECK(game.GetMap().At(2, 2).HasType(ObjectType::PLAYER));
     CHECK(game.GetMap().At(2, 3).HasType(ObjectType::EMPTY));
-    CHECK(game.CanMove(Direction::UP) == MoveState::STOP);
-    CHECK(game.CanMove(Direction::LEFT) == MoveState::STOP);
-    CHECK(game.CanMove(Direction::DOWN) == MoveState::MOVE);
-    CHECK(game.CanMove(Direction::RIGHT) == MoveState::MOVE);
+
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetPosition().first == 2);
+    CHECK(game.GetPlayer().GetPosition().second == 2);
+
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetPosition().first == 2);
+    CHECK(game.GetPlayer().GetPosition().second == 3);
+
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetPosition().first == 2);
+    CHECK(game.GetPlayer().GetPosition().second == 2);
+
+    CHECK(game. MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetPosition().first == 3);
+    CHECK(game.GetPlayer().GetPosition().second == 2);
 }
 
 TEST_CASE("TEST - IsGameEndTest")
@@ -37,10 +49,8 @@ TEST_CASE("TEST - IsGameEndTest")
 
     CHECK(game.GetMap().At(1, 1).HasType(ObjectType::PLAYER));
     CHECK(game.GetPlayer().GetMoveCount() == 10);
-    CHECK(game.CanMove(Direction::UP) == MoveState::STOP);
     CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
     CHECK(game.GetPlayer().GetMoveCount() == 10);
-    CHECK(game.CanMove(Direction::RIGHT) == MoveState::MOVE);
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
     CHECK(game.GetPlayer().GetMoveCount() == 8);
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::WIN);
