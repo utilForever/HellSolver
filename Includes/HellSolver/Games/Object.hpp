@@ -47,6 +47,11 @@ class Object
     //! \return true if the object has the \p type.
     [[nodiscard]] bool HasType(ObjectType type) const;
 
+    template <typename ObjectType, typename... ObjectTypes>
+    [[nodiscard]] bool HasType(ObjectType type, ObjectTypes... args) const {
+        return HasType(type) || HasType(args...);
+    }
+
  private:
     Tile o_tile;
 };
