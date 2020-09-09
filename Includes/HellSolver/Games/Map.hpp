@@ -7,7 +7,6 @@
 #ifndef HELL_SOLVER_MAP_HPP
 #define HELL_SOLVER_MAP_HPP
 
-#include <HellSolver/Enums/GameEnums.hpp>
 #include <HellSolver/Games/Object.hpp>
 
 #include <string>
@@ -49,6 +48,8 @@ class Map
     [[nodiscard]] bool GetLurker() const;
 
     void SetLurker();
+
+    [[nodiscard]] bool IsLurkerAttack(Object& object) const;
 
     //! Loads the data of the map.
     //! \param filename The name of file to be loaded.

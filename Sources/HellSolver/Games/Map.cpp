@@ -54,6 +54,11 @@ void Map::SetLurker()
     m_lurker = !GetLurker();
 }
 
+bool Map::IsLurkerAttack(Object& object) const{
+    return (!GetLurker() && object.HasType(ObjectType::DOWN)) ||
+        (GetLurker() && object.HasType(ObjectType::UP));
+}
+
 void Map::Load(std::string_view filename)
 {
     std::ifstream mapFile(filename.data());
