@@ -49,7 +49,11 @@ class Map
 
     void SetLurker();
 
+    void CheckUndead();
+
     [[nodiscard]] bool IsLurkerAttack(Object& object) const;
+
+    [[nodiscard]] bool IsLurkerNextAttack(Object& object) const;
 
     //! Loads the data of the map.
     //! \param filename The name of file to be loaded.
@@ -64,7 +68,6 @@ class Map
  private:
     std::size_t m_width = 0;
     std::size_t m_height = 0;
-    bool m_key = false;
     bool m_lurker = true;
 
     std::vector<Object> m_board;

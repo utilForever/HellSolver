@@ -23,14 +23,13 @@ Map::Map(std::size_t width, std::size_t height, std::size_t count)
         m_initBoard.emplace_back(Tile{ ObjectType::EMPTY, ObjectType::EMPTY });
     }
 
-    m_key = false;
     m_lurker = true;
 };
 
 void Map::Reset()
 {
     m_board = m_initBoard;
-    m_key = false;
+
     m_lurker = true;
 }
 
@@ -54,9 +53,27 @@ void Map::SetLurker()
     m_lurker = !GetLurker();
 }
 
-bool Map::IsLurkerAttack(Object& object) const{
+void Map::CheckUndead()
+{
+    for (std::size_t i = 0; i < m_width * m_height; ++i)
+    {
+        if (m_board[i].HasType(ObjectType::UNDEAD) &&
+            IsLurkerAttack(m_board[i]))
+        {
+            m_board[i].Remove(ObjectType::UNDEAD);
+        }
+    }
+}
+
+bool Map::IsLurkerAttack(Object& object) const
+{
     return (!GetLurker() && object.HasType(ObjectType::DOWN)) ||
-        (GetLurker() && object.HasType(ObjectType::UP));
+           (GetLurker() && object.HasType(ObjectType::UP));
+}
+
+bool Map::IsLurkerNextAttack(Object& object) const{
+    return (GetLurker() && object.HasType(ObjectType::DOWN)) ||
+        (!GetLurker() && object.HasType(ObjectType::UP));
 }
 
 void Map::Load(std::string_view filename)
@@ -71,6 +88,7 @@ void Map::Load(std::string_view filename)
     for (size_t i = 0; i < m_width * m_height; ++i)
     {
         mapFile >> val;
+
         m_board.emplace_back(
             Tile{ static_cast<ObjectType>(val), ObjectType::EMPTY });
         m_initBoard.emplace_back(
