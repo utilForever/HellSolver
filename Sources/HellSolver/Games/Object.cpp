@@ -4,7 +4,7 @@
 // personal capacity and are not conveying any rights to any intellectual
 // property of any third parties.
 
-#include <HellSolver/Games/Map.hpp>
+#include <HellSolver/Games/Object.hpp>
 
 #include <utility>
 
@@ -45,6 +45,10 @@ void Object::Init(ObjectType type)
         type == ObjectType::SPIKE || type == ObjectType::ENDPOINT)
     {
         o_tile.second = type;
+    }
+    else
+    {
+        o_tile.second = ObjectType::EMPTY;
     }
 }
 
