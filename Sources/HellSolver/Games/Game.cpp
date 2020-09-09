@@ -37,6 +37,9 @@ PlayerStatus Game::MovePlayer(Direction dir)
 
     switch (result)
     {
+        case MoveState::STOP:
+            break;
+
         case MoveState::MOVE:
             position = GamePlayer->ProcessMove(dir);
             GamePlayer->DecreaseMoveCount();
@@ -45,27 +48,13 @@ PlayerStatus Game::MovePlayer(Direction dir)
 
         case MoveState::ROCK:
             PushRock(position.first, position.second, dir);
-            GamePlayer->DecreaseMoveCount();
-            m_map.SetLurker();
-            break;
 
         case MoveState::UNDEAD:
             PushUndead(position.first, position.second, dir);
+
+        default:
             GamePlayer->DecreaseMoveCount();
             m_map.SetLurker();
-            break;
-
-        case MoveState::STAND:
-            GamePlayer->DecreaseMoveCount();
-            m_map.SetLurker();
-            break;
-
-        case MoveState::ENDPOINT:
-            GamePlayer->DecreaseMoveCount();
-            m_map.SetLurker();
-            break;
-
-        case MoveState::STOP:
             break;
     }
 
@@ -79,9 +68,7 @@ PlayerStatus Game::MovePlayer(Direction dir)
     {
         m_map.At(position.first, position.second).Remove(ObjectType::LOCK);
     }
-    else if (block.HasType(ObjectType::SPIKE) ||
-             (!m_map.GetLurker() && block.HasType(ObjectType::DOWN)) ||
-             (m_map.GetLurker() && block.HasType(ObjectType::UP)))
+    else if (block.HasType(ObjectType::SPIKE) || m_map.IsLurkerAttack(block))
     {
         GamePlayer->DecreaseMoveCount();
     }
@@ -98,16 +85,12 @@ void Game::PushRock(size_t x, size_t y, Direction dir)
     Object nextRockPositionObject =
         m_map.At(nextRockPosition.first, nextRockPosition.second);
 
-    if (nextRockPositionObject.HasType(ObjectType::FIXED_TYPE) ||
-        nextRockPositionObject.HasType(ObjectType::WALL) ||
-        nextRockPositionObject.HasType(ObjectType::DEVIL) ||
-        nextRockPositionObject.HasType(ObjectType::LOCK) ||
-        nextRockPositionObject.HasType(ObjectType::UNDEAD) ||
-        nextRockPositionObject.HasType(ObjectType::ROCK))
+    if (nextRockPositionObject.HasType(ObjectType::WALL, ObjectType::DEVIL,
+                                       ObjectType::LOCK, ObjectType::UNDEAD,
+                                       ObjectType::ROCK))
     {
         return;
     }
-
     else
     {
         m_map.At(curRockPosition.first, curRockPosition.second)
@@ -126,12 +109,9 @@ void Game::PushUndead(size_t x, size_t y, Direction dir)
     Object nextUndeadPositionObject =
         m_map.At(nextUndeadPosition.first, nextUndeadPosition.second);
 
-    if (nextUndeadPositionObject.HasType(ObjectType::FIXED_TYPE) ||
-        nextUndeadPositionObject.HasType(ObjectType::WALL) ||
-        nextUndeadPositionObject.HasType(ObjectType::DEVIL) ||
-        nextUndeadPositionObject.HasType(ObjectType::LOCK) ||
-        nextUndeadPositionObject.HasType(ObjectType::UNDEAD) ||
-        nextUndeadPositionObject.HasType(ObjectType::ROCK))
+    if (nextUndeadPositionObject.HasType(ObjectType::WALL, ObjectType::DEVIL,
+                                         ObjectType::LOCK, ObjectType::UNDEAD,
+                                         ObjectType::ROCK))
     {
         m_map.At(curUndeadPosition.first, curUndeadPosition.second)
             .Remove(ObjectType::UNDEAD);
