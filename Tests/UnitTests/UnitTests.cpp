@@ -22,9 +22,6 @@ TEST_CASE("MAP 1 - SOLUTION")
     CHECK(game.GetMap().At(5, 2).HasType(ObjectType::ROCK));
     CHECK(game.GetMap().At(6, 6).HasType(ObjectType::ENDPOINT));
     CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
-
-    // std::cout << game.GetPlayer().GetPosition().first << " " <<
-    // game.GetPlayer().GetPosition().second << std::endl;
     CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
     CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
     CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);

@@ -13,6 +13,5 @@
 #include <HellSolver/Games/Object.hpp>
 #include <HellSolver/HellSolver.hpp>
 #include <HellSolver/Player/Player.hpp>
-#include <HellSolver/Test/Test.hpp>
 
 #endif  // HELL_SOLVER_HPP
