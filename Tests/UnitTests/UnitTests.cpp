@@ -104,6 +104,341 @@ TEST_CASE("MAP 2 - SOLUTION")
     CHECK(game.GetPlayer().GetMoveCount() == 0);
 }
 
+TEST_CASE("MAP 3 - SOLUTION")
+{
+    Game game(MAPS_DIR "3.txt");
+
+    CHECK(game.GetMap().GetWidth() == 10);
+    CHECK(game.GetMap().GetHeight() == 9);
+    CHECK(game.GetPlayer().GetMoveCount() == 32);
+    CHECK(game.GetMap().At(1, 7).HasType(ObjectType::ENDPOINT));
+    CHECK(game.GetMap().At(2, 7).HasType(ObjectType::LOCK));
+
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::WIN);
+
+    CHECK(game.GetPlayer().GetMoveCount() == 0);
+}
+
+TEST_CASE("MAP 4 - SOLUTION")
+{
+    Game game(MAPS_DIR "4.txt");
+
+    CHECK(game.GetMap().GetWidth() == 10);
+    CHECK(game.GetMap().GetHeight() == 7);
+    CHECK(game.GetPlayer().GetMoveCount() == 23);
+    CHECK(game.GetMap().At(3, 7).HasType(ObjectType::ENDPOINT));
+    CHECK(game.GetMap().At(2, 6).HasType(ObjectType::LOCK));
+
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::WIN);
+
+    CHECK(game.GetPlayer().GetMoveCount() == 0);
+}
+
+TEST_CASE("MAP 5 - SOLUTION")
+{
+    Game game(MAPS_DIR "5.txt");
+
+    CHECK(game.GetMap().GetWidth() == 8);
+    CHECK(game.GetMap().GetHeight() == 9);
+    CHECK(game.GetPlayer().GetMoveCount() == 23);
+    CHECK(game.GetMap().At(2, 5).HasType(ObjectType::ENDPOINT));
+    CHECK(game.GetMap().At(2, 4).HasType(ObjectType::LOCK));
+    CHECK(game.GetMap().At(5, 1).HasType(ObjectType::UNDEAD));
+
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.GetMap().At(6, 1).HasType(ObjectType::UNDEAD));
+
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 19);
+
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+
+    CHECK(game.GetPlayer().HasKey());
+
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::WIN);
+
+    CHECK(game.GetPlayer().GetMoveCount() == 0);
+}
+
+TEST_CASE("MAP 6 - SOLUTION")
+{
+    Game game(MAPS_DIR "6.txt");
+
+    CHECK(game.GetMap().GetWidth() == 9);
+    CHECK(game.GetMap().GetHeight() == 10);
+    CHECK(game.GetPlayer().GetMoveCount() == 43);
+    CHECK(game.GetMap().At(8, 6).HasType(ObjectType::ENDPOINT));
+
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 32);
+
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 24);
+
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 22);
+    CHECK(game.GetPlayer().HasKey());
+
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 16);
+
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 13);
+
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::WIN);
+
+    CHECK(game.GetPlayer().GetMoveCount() == 1);
+}
+
+TEST_CASE("MAP 7 - SOLUTION")
+{
+    Game game(MAPS_DIR "7.txt");
+
+    CHECK(game.GetMap().GetWidth() == 8);
+    CHECK(game.GetMap().GetHeight() == 9);
+    CHECK(game.GetPlayer().GetMoveCount() == 32);
+    CHECK(game.GetMap().At(1, 5).HasType(ObjectType::ENDPOINT));
+
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 29);
+
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 25);
+
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 21);
+
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 18);
+
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 14);
+
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().HasKey());
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 8);
+
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 4);
+
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::WIN);
+
+    CHECK(game.GetPlayer().GetMoveCount() == 0);
+}
+
+TEST_CASE("MAP 9 - SOLUTION")
+{
+    Game game(MAPS_DIR "9.txt");
+
+    CHECK(game.GetMap().GetWidth() == 11);
+    CHECK(game.GetMap().GetHeight() == 8);
+    CHECK(game.GetPlayer().GetMoveCount() == 33);
+    CHECK(game.GetMap().At(0, 5).HasType(ObjectType::ENDPOINT));
+
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 30);
+
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 26);
+
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 22);
+
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 15);
+
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 8);
+    CHECK(game.GetPlayer().HasKey());
+
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 5);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::WIN);
+
+    CHECK(game.GetPlayer().GetMoveCount() == 0);
+}
+
 TEST_CASE("TEST - CanMoveTestMap")
 {
     Game game(TEST_MAPS_DIR "CanMoveTestMap.txt");
