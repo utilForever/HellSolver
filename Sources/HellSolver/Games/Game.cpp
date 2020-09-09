@@ -48,11 +48,18 @@ PlayerStatus Game::MovePlayer(Direction dir)
 
         case MoveState::ROCK:
             PushRock(position.first, position.second, dir);
+            GamePlayer->DecreaseMoveCount();
+            m_map.SetLurker();
+            break;
 
         case MoveState::UNDEAD:
             PushUndead(position.first, position.second, dir);
+            GamePlayer->DecreaseMoveCount();
+            m_map.SetLurker();
+            break;
 
-        default:
+        case MoveState::STAND:
+        case MoveState::ENDPOINT:
             GamePlayer->DecreaseMoveCount();
             m_map.SetLurker();
             break;
@@ -72,6 +79,8 @@ PlayerStatus Game::MovePlayer(Direction dir)
     {
         GamePlayer->DecreaseMoveCount();
     }
+
+    m_map.CheckUndead();
 
     return GamePlayer->GetPlayerStatus(result == MoveState::ENDPOINT);
 }
@@ -121,7 +130,7 @@ void Game::PushUndead(size_t x, size_t y, Direction dir)
         m_map.At(curUndeadPosition.first, curUndeadPosition.second)
             .Remove(ObjectType::UNDEAD);
         m_map.At(nextUndeadPosition.first, nextUndeadPosition.second)
-            .Remove(ObjectType::UNDEAD);
+            .Add(ObjectType::UNDEAD);
     }
 }
 
