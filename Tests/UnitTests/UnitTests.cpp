@@ -7,6 +7,7 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
 
+#include <HellSolver/Agents/RandomAgent.hpp>
 #include <HellSolver/Games/Game.hpp>
 #include <iostream>
 
@@ -409,7 +410,6 @@ TEST_CASE("MAP 8 - SOLUTION")
     CHECK(game.GetPlayer().GetMoveCount() == 0);
 }
 
-
 TEST_CASE("MAP 9 - SOLUTION")
 {
     Game game(MAPS_DIR "9.txt");
@@ -633,4 +633,19 @@ TEST_CASE("TEST - UndeadCheckWithLurker")
     CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
 
     CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::WIN);
+}
+
+TEST_CASE("RandomAgent - Basic")
+{
+    Game game(MAPS_DIR "1.txt");
+
+    RandomAgent agent;
+
+    std::vector<Direction> actions = { Direction::UP, Direction::DOWN,
+                                       Direction::LEFT, Direction::RIGHT,
+                                       Direction::INVALID };
+
+    const Direction action = agent.GetAction(game);
+
+    CHECK_NE(std::find(begin(actions), end(actions), action), end(actions));
 }

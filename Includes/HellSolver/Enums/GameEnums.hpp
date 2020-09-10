@@ -53,7 +53,8 @@ enum class Direction
     UP,
     DOWN,
     LEFT,
-    RIGHT
+    RIGHT,
+    INVALID
 };
 
 constexpr bool IsFixedType(ObjectType type)
