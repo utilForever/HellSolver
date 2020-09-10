@@ -13,8 +13,7 @@ void AddGame(pybind11::module& m)
         .def(pybind11::init<std::string_view>())
         .def("Reset", &Game::Reset)
         .def("GetMap", static_cast<Map& (Game::*)()>(&Game::GetMap))
-        .def("GetPlayer",
-             static_cast<const Map& (Game::*)() const>(&Game::GetMap))
+        .def("GetPlayer", static_cast<Player& (Game::*)()>(&Game::GetPlayer))
         .def("MovePlayer", static_cast<PlayerStatus (Game::*)(Direction dir)>(
                                &Game::MovePlayer));
 }
