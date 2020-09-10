@@ -7,6 +7,8 @@
 #include <HellSolver/Player/Player.hpp>
 #include <iostream>
 
+#include <cassert>
+
 namespace hell_solver
 {
 Player::Player(std::size_t initX, std::size_t initY, std::size_t initMoveCount)
@@ -32,6 +34,10 @@ std::pair<std::size_t, std::size_t> Player::ProcessMove(Direction dir)
 
         case Direction::RIGHT:
             y++;
+            break;
+            
+        case Direction::INVALID:
+            assert(dir == Direction::INVALID);
             break;
     }
 
