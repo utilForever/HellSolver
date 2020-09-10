@@ -21,6 +21,7 @@ void AddMap(pybind11::module& m)
         .def("SetLurker", &Map::SetLurker)
         .def("CheckUndead", &Map::CheckUndead)
         .def("IsLurkerAttack", &Map::IsLurkerAttack)
+        .def("IsLurkerNextAttack", &Map::IsLurkerNextAttack)
         .def("Load", static_cast<void (Map::*)(std::string_view)>(&Map::Load))
         .def("At",
              static_cast<Object& (Map::*)(std::size_t, std::size_t) const>(
