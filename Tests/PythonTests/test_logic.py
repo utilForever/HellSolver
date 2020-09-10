@@ -11,6 +11,24 @@ def isGameEndTest():
     assert game.GetPlayer().GetMoveCount() == 8
     assert game.MovePlayer(pyHell.Direction.RIGHT) == pyHell.PlayerStatus.WIN
 
+def minusCount():
+
+    game = pyHell.Game("Resources/Maps/Test/CanMoveTestMap.txt")
+
+    assert game.GetMap().At(2, 3).HasType(pyHell.ObjectType.EMPTY)
+
+    assert game.MovePlayer(pyHell.Direction.RIGHT) == pyHell.PlayerStatus.PLAYING
+    assert game.MovePlayer(pyHell.Direction.LEFT) == pyHell.PlayerStatus.PLAYING
+    assert game.MovePlayer(pyHell.Direction.RIGHT) == pyHell.PlayerStatus.PLAYING
+    assert game.MovePlayer(pyHell.Direction.LEFT) == pyHell.PlayerStatus.PLAYING
+    assert game.MovePlayer(pyHell.Direction.RIGHT) == pyHell.PlayerStatus.PLAYING
+    assert game.MovePlayer(pyHell.Direction.LEFT) == pyHell.PlayerStatus.PLAYING
+    assert game.MovePlayer(pyHell.Direction.RIGHT) == pyHell.PlayerStatus.PLAYING
+    assert game.MovePlayer(pyHell.Direction.LEFT) == pyHell.PlayerStatus.PLAYING
+    assert game.MovePlayer(pyHell.Direction.RIGHT) == pyHell.PlayerStatus.PLAYING
+    assert game.MovePlayer(pyHell.Direction.LEFT) == pyHell.PlayerStatus.LOST
+
+
 def canMoveTestMap():
     game = pyHell.Game("Resources/Maps/Test/CanMoveTestMap.txt")
 

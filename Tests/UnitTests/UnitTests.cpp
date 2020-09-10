@@ -494,6 +494,24 @@ TEST_CASE("TEST - CanMoveTestMap")
     CHECK(game.GetPlayer().GetPosition().second == 2);
 }
 
+TEST_CASE("TEST - MinusCount")
+{
+    Game game(TEST_MAPS_DIR "CanMoveTestMap.txt");
+
+    CHECK(game.GetMap().At(2, 3).HasType(ObjectType::EMPTY));
+
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::LOST);
+}
+
 TEST_CASE("TEST - IsGameEndTest")
 {
     Game game(TEST_MAPS_DIR "IsGameEndTest.txt");
@@ -603,6 +621,7 @@ TEST_CASE("TEST - UndeadWithLurker")
     CHECK(game.GetMap().GetWidth() == 5);
     CHECK(game.GetMap().GetHeight() == 5);
 
+    CHECK(game.GetMap().At(1, 3).HasType(ObjectType::LURKER_TYPE));
     CHECK(game.GetMap().At(1, 2).HasType(ObjectType::UNDEAD));
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
 

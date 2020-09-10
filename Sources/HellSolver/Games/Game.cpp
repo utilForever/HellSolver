@@ -143,12 +143,6 @@ MoveState Game::CanMove(size_t x, size_t y, Direction dir)
         return MoveState::ENDPOINT;
     }
 
-    // If encountered block is ROCK,
-    if (blockType.HasType(ObjectType::WALL))
-    {
-        return MoveState::STOP;
-    }
-
     // If encountered block is SPECIAL block,
     if (blockType.HasType(ObjectType::EMPTY))
     {
