@@ -381,6 +381,34 @@ TEST_CASE("MAP 7 - SOLUTION")
     CHECK(game.GetPlayer().GetMoveCount() == 0);
 }
 
+TEST_CASE("MAP 8 - SOLUTION")
+{
+    Game game(MAPS_DIR "8.txt");
+
+    CHECK(game.GetMap().GetWidth() == 11);
+    CHECK(game.GetMap().GetHeight() == 14);
+    CHECK(game.GetPlayer().GetMoveCount() == 12);
+    CHECK(game.GetMap().At(2,5).HasType(ObjectType::ENDPOINT));
+
+    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.GetPlayer().GetMoveCount() == 2);
+
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::WIN);
+
+    CHECK(game.GetPlayer().GetMoveCount() == 0);
+}
+
+
 TEST_CASE("MAP 9 - SOLUTION")
 {
     Game game(MAPS_DIR "9.txt");
