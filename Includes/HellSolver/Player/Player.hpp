@@ -38,8 +38,7 @@ class Player
     //! pair.
     //! \param dir The direction to be moved.
     //! \return The moved coordinated represented by pair.
-    [[nodiscard]] std::pair<std::size_t, std::size_t> ProcessMove(
-        Direction dir);
+    [[nodiscard]] Position ProcessMove(Direction dir);
 
     //! Gets the status of the player.
     //! \param isEndPoint The boolean flag for checking the player is on end
@@ -60,7 +59,7 @@ class Player
 
     //! Gets the current position of the player.
     //! \return the current position of the player represented by pair.
-    [[nodiscard]] std::pair<std::size_t, std::size_t> GetPosition() const;
+    [[nodiscard]] Position GetPosition() const;
 
     //! Decrease player's move count by one.
     void DecreaseMoveCount();
