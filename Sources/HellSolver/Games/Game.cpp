@@ -141,7 +141,7 @@ MoveState Game::CanMove(size_t x, size_t y, Direction dir)
 
     Object blockType = m_map.At(_x, _y);
 
-    // If encountered block is ENDPOINT.
+    // If encountered block is ENDPOINT, without any other objects.
     if (blockType.HasType(ObjectType::ENDPOINT))
     {
         return MoveState::ENDPOINT;

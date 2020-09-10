@@ -67,6 +67,10 @@ bool Object::HasType(ObjectType type) const
     {
         return IsLurkerType(o_tile.second);
     }
+    if (type == ObjectType::ENDPOINT)
+    {
+        return o_tile.first == ObjectType::EMPTY;
+    }
     if (o_tile.first == type || o_tile.second == type)
     {
         return true;
