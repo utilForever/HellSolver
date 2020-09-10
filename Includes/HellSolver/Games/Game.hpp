@@ -35,10 +35,6 @@ class Game
     //! \return the map.
     [[nodiscard]] Map& GetMap();
 
-    //! Gets map.
-    //! \return the map.
-    [[nodiscard]] const Map& GetMap() const;
-
     //! Gets player.
     //! \return the player.
     [[nodiscard]] Player& GetPlayer();

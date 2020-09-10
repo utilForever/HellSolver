@@ -25,11 +25,6 @@ class Map
     //! Default constructor.
     Map() = default;
 
-    //! Constructs map with given \p width and \p height.
-    //! \param width The size of the width.
-    //! \param height The size of the height.
-    Map(std::size_t width, std::size_t height, std::size_t count);
-
     //! Resets map data.
     void Reset();
 

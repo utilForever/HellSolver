@@ -21,7 +21,6 @@ TEST_CASE("MAP 1 - SOLUTION")
     CHECK(game.GetMap().GetHeight() == 8);
 
     CHECK(game.GetMap().At(1, 1).HasType(ObjectType::WALL));
-    CHECK(game.GetMap().At(1, 6).HasType(ObjectType::PLAYER));
     CHECK(game.GetMap().At(2, 4).HasType(ObjectType::UNDEAD));
     CHECK(game.GetMap().At(5, 2).HasType(ObjectType::ROCK));
     CHECK(game.GetMap().At(6, 6).HasType(ObjectType::ENDPOINT));
@@ -54,6 +53,7 @@ TEST_CASE("MAP 1 - SOLUTION")
 
     game.Reset();
     CHECK(game.GetPlayer().GetMoveCount() == 23);
+    CHECK(game.MovePlayer(Direction::INVALID) == PlayerStatus::PLAYING);
 }
 
 TEST_CASE("MAP 2 - SOLUTION")
@@ -475,7 +475,6 @@ TEST_CASE("TEST - CanMoveTestMap")
 {
     Game game(TEST_MAPS_DIR "CanMoveTestMap.txt");
 
-    CHECK(game.GetMap().At(2, 2).HasType(ObjectType::PLAYER));
     CHECK(game.GetMap().At(2, 3).HasType(ObjectType::EMPTY));
 
     CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);

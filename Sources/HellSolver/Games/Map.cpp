@@ -10,22 +10,6 @@
 
 namespace hell_solver
 {
-Map::Map(std::size_t width, std::size_t height, std::size_t count)
-    : m_width(width), m_height(height), m_initCount(count)
-{
-    m_board.reserve(m_width * m_height);
-    m_initBoard.reserve(m_width * m_height);
-
-    for (size_t i = 0; i < m_width * m_height; ++i)
-    {
-        // TODO: Optimization
-        m_board.emplace_back(Tile{ ObjectType::EMPTY, ObjectType::EMPTY });
-        m_initBoard.emplace_back(Tile{ ObjectType::EMPTY, ObjectType::EMPTY });
-    }
-
-    m_lurker = true;
-};
-
 void Map::Reset()
 {
     m_board = m_initBoard;

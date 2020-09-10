@@ -11,7 +11,6 @@ void AddMap(pybind11::module& m)
 {
     pybind11::class_<Map>(m, "Map")
         .def(pybind11::init<>())
-        .def(pybind11::init<std::size_t, std::size_t, std::size_t>())
         .def("Reset", &Map::Reset)
         .def("GetWidth", &Map::GetWidth)
         .def("GetHeight", &Map::GetHeight)

@@ -27,7 +27,6 @@ void Object::Add(ObjectType type)
 void Object::Remove(ObjectType type)
 {
     if ((type == ObjectType::ROCK && o_tile.first == ObjectType::ROCK) ||
-        (type == ObjectType::PLAYER && o_tile.first == ObjectType::PLAYER) ||
         (type == ObjectType::UNDEAD && o_tile.first == ObjectType::UNDEAD) ||
         (type == ObjectType::LOCK && o_tile.first == ObjectType::LOCK))
     {

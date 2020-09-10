@@ -7,7 +7,6 @@ def test_map1():
     assert game.GetMap().GetHeight() == 8
 
     assert game.GetMap().At(1, 1).HasType(pyHell.ObjectType.WALL)
-    assert game.GetMap().At(1, 6).HasType(pyHell.ObjectType.PLAYER)
     assert game.GetMap().At(2, 4).HasType(pyHell.ObjectType.UNDEAD)
     assert game.GetMap().At(5, 2).HasType(pyHell.ObjectType.ROCK)
     assert game.GetMap().At(6, 6).HasType(pyHell.ObjectType.ENDPOINT)

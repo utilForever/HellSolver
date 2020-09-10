@@ -1,9 +1,8 @@
 import pyHell
 
 def isGameEndTest():
-    game = pyHell.Game("Resources/Map/Test/IsGameEndTest.txt")
+    game = pyHell.Game("Resources/Maps/Test/IsGameEndTest.txt")
 
-    assert game.GetMap().At(1, 1).HasType(pyHell.ObjectType.PLAYER)
     assert game.GetMap().At(1, 2).HasType(pyHell.ObjectType.SPIKE)
     assert game.GetPlayer().GetMoveCount() == 10
     assert game.MovePlayer(pyHell.Direction.UP) == pyHell.PlayerStatus.PLAYING
@@ -15,7 +14,6 @@ def isGameEndTest():
 def canMoveTestMap():
     game = pyHell.Game("Resources/Maps/Test/CanMoveTestMap.txt")
 
-    assert game.GetMap().At(2, 2).HasType(pyHell.ObjectType.PLAYER)
     assert game.GetMap().At(2, 3).HasType(pyHell.ObjectType.EMPTY)
 
     assert game.MovePlayer(pyHell.Direction.UP) == pyHell.PlayerStatus.PLAYING

@@ -21,11 +21,7 @@ void Game::Reset()
     m_map.Reset();
     Position StartPoint = m_map.GetStartPoint();
     GamePlayer->Reset(StartPoint.first, StartPoint.second,
-                            m_map.GetInitMoveCount());
-}
-
-const Map& Game::GetMap() const {
-    return m_map;
+                      m_map.GetInitMoveCount());
 }
 
 Map& Game::GetMap()
@@ -98,13 +94,9 @@ void Game::PushRock(size_t x, size_t y, Direction dir)
     Object nextRockPositionObject =
         m_map.At(nextRockPosition.first, nextRockPosition.second);
 
-    if (nextRockPositionObject.HasType(ObjectType::WALL, ObjectType::DEVIL,
-                                       ObjectType::LOCK, ObjectType::UNDEAD,
-                                       ObjectType::ROCK))
-    {
-        return;
-    }
-    else
+    if (!nextRockPositionObject.HasType(ObjectType::WALL, ObjectType::DEVIL,
+                                        ObjectType::LOCK, ObjectType::UNDEAD,
+                                        ObjectType::ROCK))
     {
         m_map.At(curRockPosition.first, curRockPosition.second)
             .Remove(ObjectType::ROCK);
@@ -151,16 +143,16 @@ MoveState Game::CanMove(size_t x, size_t y, Direction dir)
         return MoveState::ENDPOINT;
     }
 
+    // If encountered block is ROCK,
+    if (blockType.HasType(ObjectType::WALL))
+    {
+        return MoveState::STOP;
+    }
+
     // If encountered block is SPECIAL block,
     if (blockType.HasType(ObjectType::EMPTY))
     {
         return MoveState::MOVE;
-    }
-
-    // If encountered block is WALL, STOP.
-    if (blockType.HasType(ObjectType::WALL))
-    {
-        return MoveState::STOP;
     }
 
     // If encountered block is LOCK,
@@ -171,12 +163,6 @@ MoveState Game::CanMove(size_t x, size_t y, Direction dir)
             return MoveState::MOVE;
         }
         return MoveState::STAND;
-    }
-
-    // If encountered block is PLAYER,
-    if (blockType.HasType(ObjectType::PLAYER))
-    {
-        return MoveState::MOVE;
     }
 
     // If encountered block is UNDEAD,
