@@ -616,9 +616,9 @@ TEST_CASE("TEST - UndeadWithLurker")
 
 TEST_CASE("TEST - UndeadCheckWithLurker")
 {
-    Game game(TEST_MAPS_DIR "UndeadWithLurker.txt");
+    Game game(TEST_MAPS_DIR "UndeadCheckWithLurker.txt");
 
-    CHECK(game.GetPlayer().GetMoveCount() == 7);
+    CHECK(game.GetPlayer().GetMoveCount() == 6);
 
     CHECK(game.GetMap().At(1, 2).HasType(ObjectType::UNDEAD) == true);
     CHECK(game.GetMap().At(1, 3).HasType(ObjectType::UP) == true);
@@ -629,7 +629,6 @@ TEST_CASE("TEST - UndeadCheckWithLurker")
     CHECK(game.GetMap().IsLurkerAttack(game.GetMap().At(1, 3)) == false);
     CHECK(game.GetMap().At(1, 2).HasType(ObjectType::UNDEAD) == false);
     CHECK(game.GetMap().At(1, 3).HasType(ObjectType::UNDEAD) == true);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
 
     CHECK(game.GetMap().At(1, 3).HasType(ObjectType::UNDEAD) == false);
