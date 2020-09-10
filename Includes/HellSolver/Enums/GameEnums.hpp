@@ -57,22 +57,13 @@ enum class Direction
     INVALID
 };
 
-constexpr bool IsFixedType(ObjectType type)
-{
-    return (type > ObjectType::FIXED_TYPE && type < ObjectType::LURKER_TYPE);
-}
-
 constexpr bool IsLurkerType(ObjectType type)
 {
     return (type > ObjectType::LURKER_TYPE && type < ObjectType::MOVING_TYPE);
 }
 
-constexpr bool IsMovingType(ObjectType type)
-{
-    return type > ObjectType::MOVING_TYPE;
-}
-
 typedef std::pair<ObjectType, ObjectType> Tile;
+typedef std::pair<std::size_t, std::size_t> Position;
 
 }  // namespace hell_solver
 

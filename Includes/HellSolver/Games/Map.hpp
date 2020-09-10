@@ -45,19 +45,19 @@ class Map
 
     [[nodiscard]] std::size_t GetInitMoveCount() const;
 
+    void CheckUndead();
+
     [[nodiscard]] bool GetLurker() const;
 
     void SetLurker();
 
-    void CheckUndead();
+    //! Loads the data of the map.
+    //! \param filename The name of file to be loaded.
+    void Load(std::string_view filename);
 
     [[nodiscard]] bool IsLurkerAttack(Object& object) const;
 
     [[nodiscard]] bool IsLurkerNextAttack(Object& object) const;
-
-    //! Loads the data of the map.
-    //! \param filename The name of file to be loaded.
-    void Load(std::string_view filename);
 
     //! Assigns an object to the map.
     //! \param x The x position.
@@ -74,6 +74,7 @@ class Map
     std::vector<Object> m_initBoard;
     std::size_t m_initCount = 1;
     std::pair<std::size_t, std::size_t> m_startPoint;
+
 };
 }  // namespace hell_solver
 

@@ -35,6 +35,10 @@ class Game
     //! \return the map.
     [[nodiscard]] Map& GetMap();
 
+    //! Gets map.
+    //! \return the map.
+    [[nodiscard]] const Map& GetMap() const;
+
     //! Gets player.
     //! \return the player.
     [[nodiscard]] Player& GetPlayer();
@@ -43,16 +47,6 @@ class Game
     //! \param dir The direction to move.
     //! \return the status of the player.
     [[nodiscard]] PlayerStatus MovePlayer(Direction dir);
-
-    //! Push the rock.
-    //! \param x The current x coordinate of rock.
-    //! \param y The current y coordinate of rock.
-    void PushRock(size_t x, size_t y, Direction dir);
-
-    //! Push the undead.
-    //! \param x The current x coordinate of undead.
-    //! \param y The current y coordinate of undead.
-    void PushUndead(size_t x, size_t y, Direction dir);
 
  private:
     Map m_map;
@@ -72,6 +66,16 @@ class Game
     static std::pair<std::size_t, std::size_t> Move(std::size_t x,
                                                     std::size_t y,
                                                     Direction dir);
+
+    //! Push the rock.
+    //! \param x The current x coordinate of rock.
+    //! \param y The current y coordinate of rock.
+    void PushRock(size_t x, size_t y, Direction dir);
+
+    //! Push the undead.
+    //! \param x The current x coordinate of undead.
+    //! \param y The current y coordinate of undead.
+    void PushUndead(size_t x, size_t y, Direction dir);
 };
 }  // namespace hell_solver
 

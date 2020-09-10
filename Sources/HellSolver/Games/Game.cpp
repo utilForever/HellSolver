@@ -24,6 +24,10 @@ void Game::Reset()
                             m_map.GetInitMoveCount());
 }
 
+const Map& Game::GetMap() const {
+    return m_map;
+}
+
 Map& Game::GetMap()
 {
     return m_map;
