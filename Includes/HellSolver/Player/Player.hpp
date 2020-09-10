@@ -32,6 +32,8 @@ class Player
     //! \param moveCount The limitation of move count.
     Player(std::size_t initX, std::size_t initY, std::size_t moveCount);
 
+    void Reset(std::size_t initX, std::size_t initY, std::size_t moveCount);
+
     //! Processes move by given \p direction and returns moved coordinate by
     //! pair.
     //! \param dir The direction to be moved.

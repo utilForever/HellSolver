@@ -18,9 +18,9 @@ Game::Game(std::string_view filename)
 
 void Game::Reset()
 {
-    delete (GamePlayer);
+    m_map.Reset();
     Position StartPoint = m_map.GetStartPoint();
-    GamePlayer = new Player(StartPoint.first, StartPoint.second,
+    GamePlayer->Reset(StartPoint.first, StartPoint.second,
                             m_map.GetInitMoveCount());
 }
 

@@ -51,6 +51,9 @@ TEST_CASE("MAP 1 - SOLUTION")
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::WIN);
 
     CHECK(game.GetPlayer().GetMoveCount() == 0);
+
+    game.Reset();
+    CHECK(game.GetPlayer().GetMoveCount() == 23);
 }
 
 TEST_CASE("MAP 2 - SOLUTION")
