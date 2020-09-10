@@ -32,7 +32,7 @@ target_compile_options(${target}
 )
 target_compile_definitions(${target}
     PRIVATE
-    MAPS_DIR="${PROJECT_SOURCE_DIR}/Resources/Maps/"
+    MAPS_DIR="${PROJECT_SOURCE_DIR}/Resources/Maps/Level/"
 )
 target_compile_definitions(${target}
     PRIVATE

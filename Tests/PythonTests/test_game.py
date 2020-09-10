@@ -1,7 +1,7 @@
 import pyHell
 
 def test_map1():
-    game = pyHell.Game("Resources/Maps/1.txt")
+    game = pyHell.Game("Resources/Maps/Level/1.txt")
 
     assert game.GetMap().GetWidth() == 9
     assert game.GetMap().GetHeight() == 8
@@ -41,7 +41,7 @@ def test_map1():
     assert game.GetPlayer().GetMoveCount() == 23
 
 def test_map2():
-    game = pyHell.Game("Resources/Maps/2.txt")
+    game = pyHell.Game("Resources/Maps/Level/2.txt")
 
     assert game.GetMap().GetWidth() == 9
     assert game.GetMap().GetHeight() == 8
@@ -91,7 +91,7 @@ def test_map2():
     assert game.GetPlayer().GetMoveCount() == 0
 
 def test_map3():
-    game = pyHell.Game("Resources/Maps/3.txt")
+    game = pyHell.Game("Resources/Maps/Level/3.txt")
 
     assert game.GetMap().GetWidth() == 10
     assert game.GetMap().GetHeight() == 9
@@ -136,7 +136,7 @@ def test_map3():
     assert game.GetPlayer().GetMoveCount() == 0
 
 def test_map4():
-    game = pyHell.Game("Resources/Maps/4.txt")
+    game = pyHell.Game("Resources/Maps/Level/4.txt")
 
     assert game.GetMap().GetWidth() == 10
     assert game.GetMap().GetHeight() == 7
@@ -179,7 +179,7 @@ def test_map4():
     assert game.GetPlayer().GetMoveCount() == 0
 
 def test_map5():
-    game = pyHell.Game("Resources/Maps/5.txt")
+    game = pyHell.Game("Resources/Maps/Level/5.txt")
 
     assert game.GetMap().GetWidth() == 8
     assert game.GetMap().GetHeight() == 9
@@ -228,7 +228,7 @@ def test_map5():
     assert game.GetPlayer().GetMoveCount() == 0
 
 def test_map6():
-    game = pyHell.Game("Resources/Maps/6.txt")
+    game = pyHell.Game("Resources/Maps/Level/6.txt")
 
     assert game.GetMap().GetWidth() == 9
     assert game.GetMap().GetHeight() == 10
@@ -300,7 +300,7 @@ def test_map6():
     assert game.GetPlayer().GetMoveCount() == 1
 
 def test_map7():
-    game = pyHell.Game("Resources/Maps/7.txt")
+    game = pyHell.Game("Resources/Maps/Level/7.txt")
 
     assert game.GetMap().GetWidth() == 8
     assert game.GetMap().GetHeight() == 9
@@ -358,7 +358,7 @@ def test_map7():
     assert game.GetPlayer().GetMoveCount() == 0
 
 def test_map8():
-    game = pyHell.Game("Resources/Maps/8.txt")
+    game = pyHell.Game("Resources/Maps/Level/8.txt")
 
     assert game.GetMap().GetWidth() == 11
     assert game.GetMap().GetHeight() == 14
@@ -384,7 +384,7 @@ def test_map8():
     assert game.GetPlayer().GetMoveCount() == 0
 
 def test_map9():
-    game = pyHell.Game("Resources/Maps/9.txt")
+    game = pyHell.Game("Resources/Maps/Level/9.txt")
 
     assert game.GetMap().GetWidth() == 11
     assert game.GetMap().GetHeight() == 8
