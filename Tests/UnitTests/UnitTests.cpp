@@ -203,7 +203,7 @@ TEST_CASE("MAP 5 - SOLUTION")
     CHECK(game.GetMap().GetWidth() == 8);
     CHECK(game.GetMap().GetHeight() == 9);
     CHECK(game.GetPlayer().GetMoveCount() == 23);
-    CHECK(game.GetMap().At(2, 5).HasType(ObjectType::ENDPOINT));
+    CHECK(game.GetMap().At(1, 5).HasType(ObjectType::ENDPOINT));
     CHECK(game.GetMap().At(2, 4).HasType(ObjectType::LOCK));
     CHECK(game.GetMap().At(5, 1).HasType(ObjectType::UNDEAD));
 
@@ -388,7 +388,8 @@ TEST_CASE("MAP 8 - SOLUTION")
     CHECK(game.GetMap().GetWidth() == 11);
     CHECK(game.GetMap().GetHeight() == 14);
     CHECK(game.GetPlayer().GetMoveCount() == 12);
-    CHECK(game.GetMap().At(2,5).HasType(ObjectType::ENDPOINT));
+    CHECK(game.GetMap().At(2, 5).HasType(ObjectType::UNDEAD));
+    CHECK(game.GetMap().At(2, 5).GetTypes().second == ObjectType::ENDPOINT);
 
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
     CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);

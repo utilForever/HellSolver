@@ -69,7 +69,7 @@ bool Object::HasType(ObjectType type) const
     }
     if (type == ObjectType::ENDPOINT)
     {
-        return o_tile.first == ObjectType::EMPTY;
+        return (o_tile.first == ObjectType::EMPTY || o_tile.first == ObjectType::DEVIL) && o_tile.second == ObjectType::ENDPOINT;
     }
     if (o_tile.first == type || o_tile.second == type)
     {
