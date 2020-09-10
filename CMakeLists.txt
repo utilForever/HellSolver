@@ -18,8 +18,11 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Includes
 include_directories(Includes)
+include_directories(Extensions/HellPython/Includes)
 include_directories(Libraries)
 include_directories(Libraries/doctest/doctest)
+include_directories(Libraries/pybind11/include)
+include_directories(Libraries/random/include)
 
 # Compile options
 include(CMake/CompileOptions.cmake)
@@ -36,6 +39,8 @@ set(CMAKE_MACOSX_RPATH ON)
 add_subdirectory(Libraries/doctest)
 add_subdirectory(Sources/HellSolver)
 add_subdirectory(Tests/UnitTests)
+add_subdirectory(Libraries/pybind11)
+add_subdirectory(Extensions/HellPython)
 
 # Code coverage - Debug only
 # NOTE: Code coverage results with an optimized (non-Debug) build may be misleading
