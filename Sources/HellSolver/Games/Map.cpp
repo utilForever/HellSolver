@@ -55,9 +55,10 @@ bool Map::IsLurkerAttack(Object& object) const
            (GetLurker() && object.HasType(ObjectType::UP));
 }
 
-bool Map::IsLurkerNextAttack(Object& object) const{
+bool Map::IsLurkerNextAttack(Object& object) const
+{
     return (GetLurker() && object.HasType(ObjectType::DOWN)) ||
-        (!GetLurker() && object.HasType(ObjectType::UP));
+           (!GetLurker() && object.HasType(ObjectType::UP));
 }
 
 void Map::Load(std::string_view filename)

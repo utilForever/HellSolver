@@ -79,7 +79,7 @@ def lockTest():
     assert game.MovePlayer(pyHell.Direction.LEFT) == pyHell.PlayerStatus.PLAYING
     assert game.GetPlayer().GetMoveCount() == 5
     assert game.MovePlayer(pyHell.Direction.LEFT) == pyHell.PlayerStatus.PLAYING
-    assert game.GetPlayer().HasKey() == True
+    assert game.GetPlayer().HasKey() is True
     assert game.GetPlayer().GetMoveCount() == 4
     assert game.MovePlayer(pyHell.Direction.RIGHT) == pyHell.PlayerStatus.PLAYING
     assert game.GetPlayer().GetMoveCount() == 3
@@ -150,18 +150,18 @@ def undeadCheckWithLurker():
 
     assert game.GetPlayer().GetMoveCount() == 6
 
-    assert game.GetMap().At(1, 2).HasType(pyHell.ObjectType.UNDEAD) == True
-    assert game.GetMap().At(1, 3).HasType(pyHell.ObjectType.UP) == True
-    assert game.GetMap().IsLurkerAttack(game.GetMap().At(1, 3)) == True
-    assert game.GetMap().IsLurkerNextAttack(game.GetMap().At(1, 3)) == False
+    assert game.GetMap().At(1, 2).HasType(pyHell.ObjectType.UNDEAD) is True
+    assert game.GetMap().At(1, 3).HasType(pyHell.ObjectType.UP) is True
+    assert game.GetMap().IsLurkerAttack(game.GetMap().At(1, 3)) is True
+    assert game.GetMap().IsLurkerNextAttack(game.GetMap().At(1, 3)) is False
     assert game.MovePlayer(pyHell.Direction.RIGHT) == pyHell.PlayerStatus.PLAYING
 
-    assert game.GetMap().IsLurkerAttack(game.GetMap().At(1, 3)) == False
-    assert game.GetMap().At(1, 2).HasType(pyHell.ObjectType.UNDEAD) == False
-    assert game.GetMap().At(1, 3).HasType(pyHell.ObjectType.UNDEAD) == True
+    assert game.GetMap().IsLurkerAttack(game.GetMap().At(1, 3)) is False
+    assert game.GetMap().At(1, 2).HasType(pyHell.ObjectType.UNDEAD) is False
+    assert game.GetMap().At(1, 3).HasType(pyHell.ObjectType.UNDEAD) is True
     assert game.MovePlayer(pyHell.Direction.RIGHT) == pyHell.PlayerStatus.PLAYING
 
-    assert game.GetMap().At(1, 3).HasType(pyHell.ObjectType.UNDEAD) == False
+    assert game.GetMap().At(1, 3).HasType(pyHell.ObjectType.UNDEAD) is False
     assert game.MovePlayer(pyHell.Direction.DOWN) == pyHell.PlayerStatus.PLAYING
 
     assert game.MovePlayer(pyHell.Direction.DOWN) == pyHell.PlayerStatus.WIN

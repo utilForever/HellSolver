@@ -69,7 +69,6 @@ class Map
     std::vector<Object> m_initBoard;
     std::size_t m_initCount = 1;
     std::pair<std::size_t, std::size_t> m_startPoint;
-
 };
 }  // namespace hell_solver
 
