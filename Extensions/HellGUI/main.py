@@ -39,12 +39,6 @@ class pyHellWindow(pyglet.window.Window):
 if __name__ == "__main__":
     window = pyHellWindow()
 
-    action_dic ={"Direction.UP": pyHell.Direction.UP, "Direction.DOWN": pyHell.Direction.DOWN,
-                 "Direction.LEFT": pyHell.Direction.LEFT, "Direction.RIGHT": pyHell.Direction.RIGHT}
-    action_file = open("./action.txt.", 'r')
-    actions = action_file.read().splitlines()
-    action_file.close()
-
     time_step = 0
     game_over = False
 
