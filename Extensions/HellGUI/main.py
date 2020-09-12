@@ -10,7 +10,14 @@ level = 3
 
 game = pyHell.Game(f"../../Resources/Maps/Level/{level}.txt")
 (width, height) = (game.GetMap().GetWidth() * config.BLOCK_SIZE,
-               game.GetMap().GetHeight() * config.BLOCK_SIZE)
+                   game.GetMap().GetHeight() * config.BLOCK_SIZE)
+
+
+def CountDisplay(game):
+    pyglet.text.Label(f'{game.GetPlayer().GetMoveCount()}',
+                      font_size=36,
+                      x=100, y=100
+                      ).draw()
 
 
 class pyHellWindow(pyglet.window.Window):
@@ -22,6 +29,7 @@ class pyHellWindow(pyglet.window.Window):
         background = pyglet.sprite.Sprite(img=resources.background[level - 1])
         background.draw()
         render.render(game, level)
+        CountDisplay(game)
 
     def on_key_press(self, symbol, modifiers):
         if symbol == key.LEFT:
@@ -34,6 +42,8 @@ class pyHellWindow(pyglet.window.Window):
             result = game.MovePlayer(pyHell.Direction.RIGHT)
 
         render.render(game, level)
+        pyglet.text.Label(f'{game.GetPlayer().GetMoveCount()}', x=window.width // 2, y=window.height // 2).draw()
+        CountDisplay(game)
 
 
 if __name__ == "__main__":
