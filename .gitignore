@@ -32,3 +32,4 @@ cmake-build-debug
 *.pyc
 /.pytest_cache
 /Extensions/HellGUI/sprites/
+venv/
