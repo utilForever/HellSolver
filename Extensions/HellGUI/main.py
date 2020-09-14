@@ -6,7 +6,7 @@ import resources
 
 from pyglet.window import key
 
-level = 3
+level = 1
 
 game = pyHell.Game(f"../../Resources/Maps/Level/{level}.txt")
 (width, height) = (game.GetMap().GetWidth() * config.BLOCK_SIZE,
@@ -44,6 +44,8 @@ class pyHellWindow(pyglet.window.Window):
         render.render(game, level)
         pyglet.text.Label(f'{game.GetPlayer().GetMoveCount()}', x=window.width // 2, y=window.height // 2).draw()
         CountDisplay(game)
+
+        print(result);
 
 
 if __name__ == "__main__":

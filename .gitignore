@@ -24,6 +24,9 @@ build
 /.idea
 cmake-build-debug
 
+# PyCharm files
+Extensions/HellGUI/.idea/
+
 # vi files
 .clang_complete
 .syntastic_cpp_config
