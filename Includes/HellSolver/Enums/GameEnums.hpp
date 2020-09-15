@@ -61,6 +61,9 @@ enum class Direction
     INVALID
 };
 
+using Tile = std::pair<ObjectType, ObjectType>;
+using Position = std::pair<std::size_t, std::size_t>;
+
 //! Returns \p type is the lurker type.
 //! \param type The type to check that it is the lurker type.
 //! \return true if it is the lurker type, false otherwise.
@@ -68,9 +71,6 @@ constexpr bool IsLurkerType(ObjectType type)
 {
     return (type > ObjectType::LURKER_TYPE && type < ObjectType::MOVING_TYPE);
 }
-
-typedef std::pair<ObjectType, ObjectType> Tile;
-typedef std::pair<std::size_t, std::size_t> Position;
 
 }  // namespace HellSolver
 
