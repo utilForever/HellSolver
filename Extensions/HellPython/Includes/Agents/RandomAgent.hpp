@@ -4,11 +4,11 @@
 // personal capacity and are not conveying any rights to any intellectual
 // property of any third parties.
 
-#ifndef HELL_PYTHON_RANDOMAGENT_HPP
-#define HELL_PYTHON_RANDOMAGENT_HPP
+#ifndef HELL_PYTHON_RANDOM_AGENT_HPP
+#define HELL_PYTHON_RANDOM_AGENT_HPP
 
 #include <pybind11/pybind11.h>
 
 void AddRandomAgent(pybind11::module& m);
 
-#endif  // HELL_PYTHON_RANDOMAGENT_HPP
+#endif  // HELL_PYTHON_RANDOM_AGENT_HPP

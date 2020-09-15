@@ -4,8 +4,8 @@
 // personal capacity and are not conveying any rights to any intellectual
 // property of any third parties.
 
-#ifndef HELL_SOLVER_RANDOMAGENT_HPP
-#define HELL_SOLVER_RANDOMAGENT_HPP
+#ifndef HELL_SOLVER_RANDOM_AGENT_HPP
+#define HELL_SOLVER_RANDOM_AGENT_HPP
 
 #include <HellSolver/Agents/IAgent.hpp>
 
@@ -29,4 +29,4 @@ class RandomAgent final : public IAgent
 };
 }  // namespace HellSolver
 
-#endif  // HELL_SOLVER_RANDOMAGENT_HPP
+#endif  // HELL_SOLVER_RANDOM_AGENT_HPP
