@@ -54,9 +54,15 @@ class Map
     //! Processes a list of undead objects in a map.
     void ProcessUndeadObjects();
 
-    [[nodiscard]] bool IsLurkerAttack(Object& object) const;
+    //! Returns the lurker can attack \p object at this move.
+    //! \param object The object to be attacked by the lurker.
+    //! \return true if the lurker can attack at this move, false otherwise.
+    [[nodiscard]] bool CanLurkerAttackThisMove(Object& object) const;
 
-    [[nodiscard]] bool IsLurkerNextAttack(Object& object) const;
+    //! Returns the lurker can attack \p object at next move.
+    //! \param object The object to be attacked by the lurker.
+    //! \return true if the lurker can attack at next move, false otherwise.
+    [[nodiscard]] bool CanLurkerAttackNextMove(Object& object) const;
 
     //! Assigns an object to the map.
     //! \param x The x position.

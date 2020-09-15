@@ -640,11 +640,14 @@ TEST_CASE("TEST - UndeadCheckWithLurker")
 
     CHECK(game.GetMap().At(1, 2).HasType(ObjectType::UNDEAD) == true);
     CHECK(game.GetMap().At(1, 3).HasType(ObjectType::UP) == true);
-    CHECK(game.GetMap().IsLurkerAttack(game.GetMap().At(1, 3)) == true);
-    CHECK(game.GetMap().IsLurkerNextAttack(game.GetMap().At(1, 3)) == false);
+    CHECK(game.GetMap().CanLurkerAttackThisMove(game.GetMap().At(1, 3)) ==
+          true);
+    CHECK(game.GetMap().CanLurkerAttackNextMove(game.GetMap().At(1, 3)) ==
+          false);
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
 
-    CHECK(game.GetMap().IsLurkerAttack(game.GetMap().At(1, 3)) == false);
+    CHECK(game.GetMap().CanLurkerAttackThisMove(game.GetMap().At(1, 3)) ==
+          false);
     CHECK(game.GetMap().At(1, 2).HasType(ObjectType::UNDEAD) == false);
     CHECK(game.GetMap().At(1, 3).HasType(ObjectType::UNDEAD) == true);
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);

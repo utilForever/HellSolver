@@ -20,8 +20,8 @@ void AddMap(pybind11::module& m)
         .def("GetInitMoveCount", &Map::GetInitMoveCount)
         .def("FlipLurkerFlag", &Map::FlipLurkerFlag)
         .def("ProcessUndeadObjects", &Map::ProcessUndeadObjects)
-        .def("IsLurkerAttack", &Map::IsLurkerAttack)
-        .def("IsLurkerNextAttack", &Map::IsLurkerNextAttack)
+        .def("CanLurkerAttackThisMove", &Map::CanLurkerAttackThisMove)
+        .def("CanLurkerAttackNextMove", &Map::CanLurkerAttackNextMove)
         .def("Load", static_cast<void (Map::*)(std::string_view)>(&Map::Load))
         .def("At",
              static_cast<Object& (Map::*)(std::size_t, std::size_t) const>(
