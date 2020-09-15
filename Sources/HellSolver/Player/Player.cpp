@@ -46,7 +46,7 @@ Position Player::ProcessMove(Direction dir)
     return m_pos;
 }
 
-PlayerStatus Player::GetPlayerStatus(bool isEndPoint) const
+PlayerStatus Player::GetStatus(bool isEndPoint) const
 {
     if (isEndPoint)
     {
@@ -58,10 +58,7 @@ PlayerStatus Player::GetPlayerStatus(bool isEndPoint) const
         return PlayerStatus::LOST;
     }
 
-    else
-    {
-        return PlayerStatus::PLAYING;
-    }
+    return PlayerStatus::PLAYING;
 }
 
 std::size_t Player::GetMoveCount() const

@@ -18,9 +18,8 @@ void AddPlayer(pybind11::module& m)
                           &Player::Reset))
         .def("Processmove",
              static_cast<Position (Player::*)(Direction)>(&Player::ProcessMove))
-        .def("GetPlayerStatus",
-             static_cast<PlayerStatus (Player::*)(bool) const>(
-                 &Player::GetPlayerStatus))
+        .def("GetStatus", static_cast<PlayerStatus (Player::*)(bool) const>(
+                              &Player::GetStatus))
         .def("GetMoveCount", &Player::GetMoveCount)
         .def("HasKey", &Player::HasKey)
         .def("SetKey", &Player::SetKey)

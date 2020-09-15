@@ -42,7 +42,7 @@ class Player
     //! Gets the status of the player.
     //! \param isEndPoint The flag for checking the player is on end point.
     //! \return The status of the player.
-    [[nodiscard]] PlayerStatus GetPlayerStatus(bool isEndPoint) const;
+    [[nodiscard]] PlayerStatus GetStatus(bool isEndPoint) const;
 
     //! Gets the move count of the player.
     //! \return The move count of the player.
