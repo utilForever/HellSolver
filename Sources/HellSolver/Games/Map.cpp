@@ -12,7 +12,7 @@ namespace HellSolver
 {
 void Map::Load(std::string_view filename)
 {
-    std::ifstream mapFile(filename.data());
+    std::ifstream mapFile{ filename.data() };
 
     mapFile >> m_width >> m_height >> m_initMoveCount;
     mapFile >> m_startPos.first >> m_startPos.second;
@@ -35,7 +35,7 @@ void Map::Load(std::string_view filename)
         for (std::size_t i = 0; i < m_width * m_height; ++i)
         {
             mapFile >> val;
-            auto type = static_cast<ObjectType>(val);
+            const auto type = static_cast<ObjectType>(val);
 
             m_board[i].Init(type);
             m_initBoard[i].Init(type);
@@ -74,7 +74,7 @@ void Map::FlipLurkerFlag()
     m_lurkerFlag = !m_lurkerFlag;
 }
 
-void Map::CheckUndead()
+void Map::ProcessUndeadObjects()
 {
     for (std::size_t i = 0; i < m_width * m_height; ++i)
     {

@@ -84,7 +84,7 @@ PlayerStatus Game::MovePlayer(Direction dir)
         m_gamePlayer->DecreaseMoveCount();
     }
 
-    m_map.CheckUndead();
+    m_map.ProcessUndeadObjects();
 
     return m_gamePlayer->GetPlayerStatus(result == MoveState::ENDPOINT);
 }

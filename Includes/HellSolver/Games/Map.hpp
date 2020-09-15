@@ -51,7 +51,8 @@ class Map
     //! Flips the value of lurker flag.
     void FlipLurkerFlag();
 
-    void CheckUndead();
+    //! Processes a list of undead objects in a map.
+    void ProcessUndeadObjects();
 
     [[nodiscard]] bool IsLurkerAttack(Object& object) const;
 
