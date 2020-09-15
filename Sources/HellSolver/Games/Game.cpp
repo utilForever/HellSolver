@@ -12,16 +12,16 @@ Game::Game(std::string_view filename)
 {
     m_map.Load(filename);
     Position StartPoint = m_map.GetStartPoint();
-    GamePlayer = std::make_unique<Player>(StartPoint.first, StartPoint.second,
-                                          m_map.GetInitMoveCount());
+    m_gamePlayer = std::make_unique<Player>(StartPoint.first, StartPoint.second,
+                                            m_map.GetInitMoveCount());
 }
 
 void Game::Reset()
 {
     m_map.Reset();
     Position StartPoint = m_map.GetStartPoint();
-    GamePlayer->Reset(StartPoint.first, StartPoint.second,
-                      m_map.GetInitMoveCount());
+    m_gamePlayer->Reset(StartPoint.first, StartPoint.second,
+                        m_map.GetInitMoveCount());
 }
 
 Map& Game::GetMap()
@@ -31,7 +31,7 @@ Map& Game::GetMap()
 
 PlayerStatus Game::MovePlayer(Direction dir)
 {
-    Position position = GamePlayer->GetPosition();
+    Position position = m_gamePlayer->GetPosition();
 
     MoveState result = CanMove(position.first, position.second, dir);
 
@@ -41,28 +41,28 @@ PlayerStatus Game::MovePlayer(Direction dir)
             break;
 
         case MoveState::MOVE:
-            position = GamePlayer->ProcessMove(dir);
-            GamePlayer->DecreaseMoveCount();
+            position = m_gamePlayer->ProcessMove(dir);
+            m_gamePlayer->DecreaseMoveCount();
             m_map.SetLurker();
             break;
 
         case MoveState::ROCK:
             PushRock(position.first, position.second, dir);
-            GamePlayer->DecreaseMoveCount();
+            m_gamePlayer->DecreaseMoveCount();
             m_map.SetLurker();
             break;
 
         case MoveState::UNDEAD:
             PushUndead(position.first, position.second, dir);
-            GamePlayer->DecreaseMoveCount();
+            m_gamePlayer->DecreaseMoveCount();
             m_map.SetLurker();
             break;
 
         case MoveState::ENDPOINT:
-            position = GamePlayer->ProcessMove(dir);
+            position = m_gamePlayer->ProcessMove(dir);
 
         case MoveState::STAND:
-            GamePlayer->DecreaseMoveCount();
+            m_gamePlayer->DecreaseMoveCount();
             m_map.SetLurker();
             break;
     }
@@ -70,7 +70,7 @@ PlayerStatus Game::MovePlayer(Direction dir)
     Object block = m_map.At(position.first, position.second);
     if (block.HasType(ObjectType::KEY))
     {
-        GamePlayer->SetKey();
+        m_gamePlayer->SetKey();
         m_map.At(position.first, position.second).Remove(ObjectType::KEY);
     }
     else if (block.HasType(ObjectType::LOCK))
@@ -79,12 +79,12 @@ PlayerStatus Game::MovePlayer(Direction dir)
     }
     else if (block.HasType(ObjectType::SPIKE) || m_map.IsLurkerAttack(block))
     {
-        GamePlayer->DecreaseMoveCount();
+        m_gamePlayer->DecreaseMoveCount();
     }
 
     m_map.CheckUndead();
 
-    return GamePlayer->GetPlayerStatus(result == MoveState::ENDPOINT);
+    return m_gamePlayer->GetPlayerStatus(result == MoveState::ENDPOINT);
 }
 
 void Game::PushRock(size_t x, size_t y, Direction dir)
@@ -154,7 +154,7 @@ MoveState Game::CanMove(size_t x, size_t y, Direction dir)
     // If encountered block is LOCK,
     if (blockType.HasType(ObjectType::LOCK))
     {
-        if (GamePlayer->HasKey())
+        if (m_gamePlayer->HasKey())
         {
             return MoveState::MOVE;
         }
@@ -194,7 +194,7 @@ Position Game::Move(std::size_t x, std::size_t y, Direction dir)
 
 Player& Game::GetPlayer()
 {
-    return *GamePlayer;
+    return *m_gamePlayer;
 }
 
 }  // namespace HellSolver

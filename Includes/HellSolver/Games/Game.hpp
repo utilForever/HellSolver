@@ -45,8 +45,7 @@ class Game
 
  private:
     Map m_map;
-
-    std::unique_ptr<Player> GamePlayer;
+    std::unique_ptr<Player> m_gamePlayer;
 
     //! Checks an object can move.
     //! \param x The current x coordinate.

@@ -68,10 +68,10 @@ class Player
     void DecreaseMoveCount();
 
  private:
-    std::size_t x = 0;
-    std::size_t y = 0;
-    std::size_t moveCount = 0;
-    bool hasKey = false;
+    std::size_t m_x = 0;
+    std::size_t m_y = 0;
+    std::size_t m_moveCount = 0;
+    bool m_hasKey = false;
 };
 }  // namespace HellSolver
 
