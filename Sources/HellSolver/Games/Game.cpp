@@ -58,8 +58,10 @@ PlayerStatus Game::MovePlayer(Direction dir)
             m_map.SetLurker();
             break;
 
-        case MoveState::STAND:
         case MoveState::ENDPOINT:
+            position = GamePlayer->ProcessMove(dir);
+
+        case MoveState::STAND:
             GamePlayer->DecreaseMoveCount();
             m_map.SetLurker();
             break;
