@@ -87,7 +87,7 @@ PlayerStatus Game::MovePlayer(Direction dir)
     return m_gamePlayer->GetPlayerStatus(result == MoveState::ENDPOINT);
 }
 
-void Game::PushRock(size_t x, size_t y, Direction dir)
+void Game::PushRock(std::size_t x, std::size_t y, Direction dir)
 {
     Position curRockPosition = Move(x, y, dir);
     Position nextRockPosition =
@@ -107,7 +107,7 @@ void Game::PushRock(size_t x, size_t y, Direction dir)
     }
 }
 
-void Game::PushUndead(size_t x, size_t y, Direction dir)
+void Game::PushUndead(std::size_t x, std::size_t y, Direction dir)
 {
     Position curUndeadPosition = Move(x, y, dir);
     Position nextUndeadPosition =
@@ -132,7 +132,7 @@ void Game::PushUndead(size_t x, size_t y, Direction dir)
     }
 }
 
-MoveState Game::CanMove(size_t x, size_t y, Direction dir)
+MoveState Game::CanMove(std::size_t x, std::size_t y, Direction dir)
 {
     Position d_pair = Move(x, y, dir);
     std::size_t _x = d_pair.first, _y = d_pair.second;

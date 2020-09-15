@@ -18,7 +18,7 @@ void Map::Load(std::string_view filename)
     mapFile >> m_startPoint.first >> m_startPoint.second;
 
     int val = 0;
-    for (size_t i = 0; i < m_width * m_height; ++i)
+    for (std::size_t i = 0; i < m_width * m_height; ++i)
     {
         mapFile >> val;
 
@@ -32,7 +32,7 @@ void Map::Load(std::string_view filename)
 
     if (val)
     {
-        for (size_t i = 0; i < m_width * m_height; ++i)
+        for (std::size_t i = 0; i < m_width * m_height; ++i)
         {
             mapFile >> val;
             auto type = static_cast<ObjectType>(val);
