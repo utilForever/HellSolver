@@ -10,6 +10,7 @@
 #include <HellSolver/Games/Map.hpp>
 #include <HellSolver/Player/Player.hpp>
 
+#include <memory>
 #include <string_view>
 
 namespace hell_solver
@@ -47,7 +48,7 @@ class Game
  private:
     Map m_map;
 
-    Player* GamePlayer;
+    std::unique_ptr<Player> GamePlayer;
 
     //! Checks an object can move.
     //! \param dir The direction to move.

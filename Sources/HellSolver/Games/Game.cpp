@@ -12,8 +12,8 @@ Game::Game(std::string_view filename)
 {
     m_map.Load(filename);
     Position StartPoint = m_map.GetStartPoint();
-    GamePlayer = new Player(StartPoint.first, StartPoint.second,
-                            m_map.GetInitMoveCount());
+    GamePlayer = std::make_unique<Player>(StartPoint.first, StartPoint.second,
+                                          m_map.GetInitMoveCount());
 }
 
 void Game::Reset()
