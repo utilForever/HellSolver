@@ -10,7 +10,10 @@
 
 namespace HellSolver
 {
-Object::Object(Tile tile) : o_tile(std::move(tile)){};
+Object::Object(Tile tile) : o_tile(std::move(tile))
+{
+    // Do nothing
+}
 
 void Object::Add(ObjectType type)
 {
@@ -62,18 +65,24 @@ bool Object::HasType(ObjectType type) const
     {
         return o_tile.first == ObjectType::EMPTY;
     }
+
     if (type == ObjectType::LURKER_TYPE)
     {
         return IsLurkerType(o_tile.second);
     }
+
     if (type == ObjectType::ENDPOINT)
     {
-        return (o_tile.first == ObjectType::EMPTY || o_tile.first == ObjectType::DEVIL) && o_tile.second == ObjectType::ENDPOINT;
+        return (o_tile.first == ObjectType::EMPTY ||
+                o_tile.first == ObjectType::DEVIL) &&
+               o_tile.second == ObjectType::ENDPOINT;
     }
+
     if (o_tile.first == type || o_tile.second == type)
     {
         return true;
     }
+
     return false;
 }
 }  // namespace HellSolver

@@ -25,7 +25,11 @@ class Map
     //! Default constructor.
     Map() = default;
 
-    //! Resets map data.
+    //! Loads the data of the map.
+    //! \param filename The name of file to be loaded.
+    void Load(std::string_view filename);
+
+    //! Resets a map data.
     void Reset();
 
     //! Gets the width of the map.
@@ -36,19 +40,19 @@ class Map
     //! \return The height of the map.
     [[nodiscard]] std::size_t GetHeight() const;
 
+    //! Gets the start point of the map.
+    //! \return The start point of the map.
     [[nodiscard]] std::pair<std::size_t, std::size_t> GetStartPoint() const;
 
+    //! Gets the initial move count of the map.
+    //! \return The initial move count of the map.
     [[nodiscard]] std::size_t GetInitMoveCount() const;
-
-    void CheckUndead();
 
     [[nodiscard]] bool GetLurker() const;
 
     void SetLurker();
 
-    //! Loads the data of the map.
-    //! \param filename The name of file to be loaded.
-    void Load(std::string_view filename);
+    void CheckUndead();
 
     [[nodiscard]] bool IsLurkerAttack(Object& object) const;
 

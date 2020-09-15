@@ -14,8 +14,8 @@ namespace HellSolver
 //!
 //! \brief Object class.
 //!
-//! This class represents objects in one tile.
-//! One object represents one tile, tile can hold at most two object types.
+//! This class represents objects in a tile.
+//! An object represents a tile, a tile can hold at most two object types.
 //!
 class Object
 {
@@ -24,31 +24,37 @@ class Object
     Object() = default;
 
     //! Constructs an object.
-    //! \param types A pair of object types.
+    //! \param tile A pair of object types.
     explicit Object(Tile tile);
 
     //! Adds an object type.
+    //! \param type An object type to add.
     void Add(ObjectType type);
 
     //! Removes an object type.
-    //! \param types An object type to remove.
+    //! \param type An object type to remove.
     void Remove(ObjectType type);
 
-    //! Initializes an object type.
-    //! Used only when loading the map data.
-    //! \param types An object type to initialize.
+    //! Initializes an object type. Used only when loading the map data.
+    //! \param type An object type to initialize.
     void Init(ObjectType type);
 
-    //! Gets the type of object.
-    //! \return Pair of object type.
+    //! Gets the type of the tile.
+    //! \return A pair of object type.
     [[nodiscard]] Tile GetTypes() const;
 
-    //! Returns true if the object has the \p type.
-    //! \return true if the object has the \p type.
+    //! Returns the flag that the object has \p type.
+    //! \param type The type of the object to check.
+    //! \return true if the object has \p type, false otherwise.
     [[nodiscard]] bool HasType(ObjectType type) const;
 
+    //! Returns the flag that the object has \p type or \p args.
+    //! \param type The type of the object to check.
+    //! \param args The variadic arguments to check.
+    //! \return true if the object has \p type or \p args, false otherwise.
     template <typename ObjectType, typename... ObjectTypes>
-    [[nodiscard]] bool HasType(ObjectType type, ObjectTypes... args) const {
+    [[nodiscard]] bool HasType(ObjectType type, ObjectTypes... args) const
+    {
         return HasType(type) || HasType(args...);
     }
 

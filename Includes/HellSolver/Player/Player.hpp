@@ -8,6 +8,7 @@
 #define HELL_SOLVER_PLAYER_HPP
 
 #include <HellSolver/Enums/GameEnums.hpp>
+
 #include <utility>
 
 namespace HellSolver
@@ -15,7 +16,7 @@ namespace HellSolver
 //!
 //! \brief Player class.
 //!
-//! This class represents player of the game.
+//! This class represents a player of the game.
 //!
 class Player
 {
@@ -26,39 +27,41 @@ class Player
     //! Default destructor.
     ~Player() = default;
 
-    //! Constructs player with given \p position and \p moveCount.
-    //! \param initX The X coordinate for initializing.
-    //! \param initY The Y coordinate for initializing.
-    //! \param moveCount The limitation of move count.
+    //! Constructs a player with given \p initX, \p initY and \p moveCount.
+    //! \param initX The initial coordinate of X.
+    //! \param initY The initial coordinate of Y.
+    //! \param moveCount The initial move count.
     Player(std::size_t initX, std::size_t initY, std::size_t moveCount);
 
+    //! Resets a player.
+    //! \param initX The initial coordinate of X.
+    //! \param initY The initial coordinate of Y.
+    //! \param moveCount The initial move count.
     void Reset(std::size_t initX, std::size_t initY, std::size_t moveCount);
 
-    //! Processes move by given \p direction and returns moved coordinate by
-    //! pair.
-    //! \param dir The direction to be moved.
-    //! \return The moved coordinated represented by pair.
+    //! Processes move by given \p dir and returns moved coordinate by pair.
+    //! \param dir The direction to move.
+    //! \return The moved coordinate represented by pair.
     [[nodiscard]] Position ProcessMove(Direction dir);
 
     //! Gets the status of the player.
-    //! \param isEndPoint The boolean flag for checking the player is on end
-    //! point.
+    //! \param isEndPoint The flag for checking the player is on end point.
     //! \return The status of the player.
     [[nodiscard]] PlayerStatus GetPlayerStatus(bool isEndPoint) const;
 
-    //! Gets the current available move count of the player.
+    //! Gets the move count of the player.
     //! \return The move count of the player.
     [[nodiscard]] std::size_t GetMoveCount() const;
 
-    //! Returns the boolean flag which represents the player has key.
-    //! \return The boolean flag which represents the player has key.
+    //! Returns the flag which represents the player has key.
+    //! \return The flag which represents the player has key.
     [[nodiscard]] bool HasKey() const;
 
     //! Sets the boolean flag when player gets a key.
     void SetKey();
 
     //! Gets the current position of the player.
-    //! \return the current position of the player represented by pair.
+    //! \return the current position of the player.
     [[nodiscard]] Position GetPosition() const;
 
     //! Decrease player's move count by one.

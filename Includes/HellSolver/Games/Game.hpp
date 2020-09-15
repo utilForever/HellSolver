@@ -15,8 +15,6 @@
 
 namespace HellSolver
 {
-using Position = std::pair<std::size_t, std::size_t>;
-
 //!
 //! \brief Game class.
 //!
@@ -29,15 +27,15 @@ class Game
     //! \param filename The file name to load a map.
     explicit Game(std::string_view filename);
 
-    //! Resets game.
+    //! Resets a game.
     void Reset();
 
-    //! Gets map.
-    //! \return the map.
+    //! Gets a map object.
+    //! \return A reference to map object.
     [[nodiscard]] Map& GetMap();
 
-    //! Gets player.
-    //! \return the player.
+    //! Gets a player.
+    //! \return A reference to player object.
     [[nodiscard]] Player& GetPlayer();
 
     //! Moves the player to the direction.
@@ -51,11 +49,13 @@ class Game
     std::unique_ptr<Player> GamePlayer;
 
     //! Checks an object can move.
+    //! \param x The current x coordinate.
+    //! \param y The current y coordinate.
     //! \param dir The direction to move.
-    //! \return the flag indicates that the player can move.
+    //! \return true if an object can move, false otherwise.
     [[nodiscard]] MoveState CanMove(size_t x, size_t y, Direction dir);
 
-    //! Move current coordinates to \p direction.
+    //! Moves current coordinates to \p direction.
     //! \param x The current x coordinate.
     //! \param y The current y coordinate.
     //! \param dir The direction to move.
@@ -64,14 +64,16 @@ class Game
                                                     std::size_t y,
                                                     Direction dir);
 
-    //! Push the rock.
-    //! \param x The current x coordinate of rock.
-    //! \param y The current y coordinate of rock.
+    //! Pushes the rock.
+    //! \param x The current x coordinate of the rock.
+    //! \param y The current y coordinate of the rock.
+    //! \param dir The direction to push.
     void PushRock(size_t x, size_t y, Direction dir);
 
-    //! Push the undead.
-    //! \param x The current x coordinate of undead.
-    //! \param y The current y coordinate of undead.
+    //! Pushes the undead.
+    //! \param x The current x coordinate of the undead.
+    //! \param y The current y coordinate of the undead.
+    //! \param dir The direction to push.
     void PushUndead(size_t x, size_t y, Direction dir);
 };
 }  // namespace HellSolver

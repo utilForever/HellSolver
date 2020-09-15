@@ -5,9 +5,8 @@
 // property of any third parties.
 
 #include <HellSolver/Player/Player.hpp>
-#include <iostream>
 
-#include <cassert>
+#include <iostream>
 
 namespace HellSolver
 {
@@ -16,7 +15,9 @@ Player::Player(std::size_t initX, std::size_t initY, std::size_t initMoveCount)
 {
 }
 
-void Player::Reset(std::size_t initX, std::size_t initY, std::size_t initMoveCount){
+void Player::Reset(std::size_t initX, std::size_t initY,
+                   std::size_t initMoveCount)
+{
     x = initX;
     y = initY;
     moveCount = initMoveCount;
@@ -41,7 +42,7 @@ std::pair<std::size_t, std::size_t> Player::ProcessMove(Direction dir)
         case Direction::RIGHT:
             y++;
             break;
-            
+
         case Direction::INVALID:
             break;
     }
