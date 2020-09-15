@@ -24,9 +24,6 @@ class Player
     //! Default constructor.
     Player() = default;
 
-    //! Default destructor.
-    ~Player() = default;
-
     //! Constructs a player with given \p pos and \p moveCount.
     //! \param pos The position to initialize.
     //! \param moveCount The move count to initialize.
