@@ -14,8 +14,8 @@ void Map::Load(std::string_view filename)
 {
     std::ifstream mapFile(filename.data());
 
-    mapFile >> m_width >> m_height >> m_initCount;
-    mapFile >> m_startPoint.first >> m_startPoint.second;
+    mapFile >> m_width >> m_height >> m_initMoveCount;
+    mapFile >> m_startPos.first >> m_startPos.second;
 
     int val = 0;
     for (std::size_t i = 0; i < m_width * m_height; ++i)
@@ -59,14 +59,14 @@ std::size_t Map::GetHeight() const
     return m_height;
 }
 
-Position Map::GetStartPoint() const
+Position Map::GetStartPos() const
 {
-    return m_startPoint;
+    return m_startPos;
 }
 
 std::size_t Map::GetInitMoveCount() const
 {
-    return m_initCount;
+    return m_initMoveCount;
 }
 
 bool Map::GetLurker() const

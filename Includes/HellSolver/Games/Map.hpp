@@ -40,9 +40,9 @@ class Map
     //! \return The height of the map.
     [[nodiscard]] std::size_t GetHeight() const;
 
-    //! Gets the start point of the map.
-    //! \return The start point of the map.
-    [[nodiscard]] Position GetStartPoint() const;
+    //! Gets the start position of the map.
+    //! \return The start position of the map.
+    [[nodiscard]] Position GetStartPos() const;
 
     //! Gets the initial move count of the map.
     //! \return The initial move count of the map.
@@ -67,12 +67,14 @@ class Map
  private:
     std::size_t m_width = 0;
     std::size_t m_height = 0;
-    bool m_lurker = true;
 
-    std::vector<Object> m_board;
     std::vector<Object> m_initBoard;
-    std::size_t m_initCount = 1;
-    Position m_startPoint;
+    std::vector<Object> m_board;
+
+    Position m_startPos;
+    std::size_t m_initMoveCount = 1;
+
+    bool m_lurker = true;
 };
 }  // namespace HellSolver
 

@@ -12,7 +12,7 @@ Game::Game(std::string_view filename)
 {
     m_map.Load(filename);
 
-    Position startPos = m_map.GetStartPoint();
+    Position startPos = m_map.GetStartPos();
     m_gamePlayer = std::make_unique<Player>(startPos, m_map.GetInitMoveCount());
 }
 
@@ -20,7 +20,7 @@ void Game::Reset()
 {
     m_map.Reset();
 
-    const Position startPos = m_map.GetStartPoint();
+    const Position startPos = m_map.GetStartPos();
     m_gamePlayer->Reset(startPos, m_map.GetInitMoveCount());
 }
 
