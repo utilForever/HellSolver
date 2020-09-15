@@ -57,9 +57,7 @@ class Game
     //! \param y The current y coordinate.
     //! \param dir The direction to move.
     //! \return The moved coordinate.
-    static std::pair<std::size_t, std::size_t> Move(std::size_t x,
-                                                    std::size_t y,
-                                                    Direction dir);
+    static Position Move(std::size_t x, std::size_t y, Direction dir);
 
     //! Pushes the rock.
     //! \param x The current x coordinate of the rock.

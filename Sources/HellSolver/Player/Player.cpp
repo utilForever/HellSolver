@@ -23,7 +23,7 @@ void Player::Reset(std::size_t initX, std::size_t initY,
     m_moveCount = initMoveCount;
 }
 
-std::pair<std::size_t, std::size_t> Player::ProcessMove(Direction dir)
+Position Player::ProcessMove(Direction dir)
 {
     switch (dir)
     {
@@ -83,7 +83,7 @@ void Player::SetKey()
     m_hasKey = true;
 }
 
-std::pair<std::size_t, std::size_t> Player::GetPosition() const
+Position Player::GetPosition() const
 {
     return { m_x, m_y };
 }

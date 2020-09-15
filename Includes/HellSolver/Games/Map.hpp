@@ -42,7 +42,7 @@ class Map
 
     //! Gets the start point of the map.
     //! \return The start point of the map.
-    [[nodiscard]] std::pair<std::size_t, std::size_t> GetStartPoint() const;
+    [[nodiscard]] Position GetStartPoint() const;
 
     //! Gets the initial move count of the map.
     //! \return The initial move count of the map.
@@ -72,7 +72,7 @@ class Map
     std::vector<Object> m_board;
     std::vector<Object> m_initBoard;
     std::size_t m_initCount = 1;
-    std::pair<std::size_t, std::size_t> m_startPoint;
+    Position m_startPoint;
 };
 }  // namespace HellSolver
 

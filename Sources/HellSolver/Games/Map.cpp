@@ -59,7 +59,7 @@ std::size_t Map::GetHeight() const
     return m_height;
 }
 
-std::pair<std::size_t, std::size_t> Map::GetStartPoint() const
+Position Map::GetStartPoint() const
 {
     return m_startPoint;
 }
