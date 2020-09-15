@@ -46,26 +46,26 @@ PlayerStatus Game::MovePlayer(Direction dir)
         case MoveState::MOVE:
             pos = m_gamePlayer->ProcessMove(dir);
             m_gamePlayer->DecreaseMoveCount();
-            m_map.SetLurker();
+            m_map.FlipLurkerFlag();
             break;
         case MoveState::ROCK:
             PushRock(pos, dir);
             m_gamePlayer->DecreaseMoveCount();
-            m_map.SetLurker();
+            m_map.FlipLurkerFlag();
             break;
         case MoveState::UNDEAD:
             PushUndead(pos, dir);
             m_gamePlayer->DecreaseMoveCount();
-            m_map.SetLurker();
+            m_map.FlipLurkerFlag();
             break;
         case MoveState::ENDPOINT:
             pos = m_gamePlayer->ProcessMove(dir);
             m_gamePlayer->DecreaseMoveCount();
-            m_map.SetLurker();
+            m_map.FlipLurkerFlag();
             break;
         case MoveState::STAND:
             m_gamePlayer->DecreaseMoveCount();
-            m_map.SetLurker();
+            m_map.FlipLurkerFlag();
             break;
     }
 

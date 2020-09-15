@@ -46,7 +46,7 @@ void Map::Load(std::string_view filename)
 void Map::Reset()
 {
     m_board = m_initBoard;
-    m_lurker = true;
+    m_lurkerFlag = true;
 }
 
 std::size_t Map::GetWidth() const
@@ -69,9 +69,9 @@ std::size_t Map::GetInitMoveCount() const
     return m_initMoveCount;
 }
 
-void Map::SetLurker()
+void Map::FlipLurkerFlag()
 {
-    m_lurker = !m_lurker;
+    m_lurkerFlag = !m_lurkerFlag;
 }
 
 void Map::CheckUndead()
@@ -88,14 +88,14 @@ void Map::CheckUndead()
 
 bool Map::IsLurkerAttack(Object& object) const
 {
-    return (!m_lurker && object.HasType(ObjectType::DOWN)) ||
-           (m_lurker && object.HasType(ObjectType::UP));
+    return (!m_lurkerFlag && object.HasType(ObjectType::DOWN)) ||
+           (m_lurkerFlag && object.HasType(ObjectType::UP));
 }
 
 bool Map::IsLurkerNextAttack(Object& object) const
 {
-    return (m_lurker && object.HasType(ObjectType::DOWN)) ||
-           (!m_lurker && object.HasType(ObjectType::UP));
+    return (m_lurkerFlag && object.HasType(ObjectType::DOWN)) ||
+           (!m_lurkerFlag && object.HasType(ObjectType::UP));
 }
 
 Object& Map::At(std::size_t x, std::size_t y) const

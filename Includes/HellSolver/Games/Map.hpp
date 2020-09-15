@@ -48,7 +48,8 @@ class Map
     //! \return The initial move count of the map.
     [[nodiscard]] std::size_t GetInitMoveCount() const;
 
-    void SetLurker();
+    //! Flips the value of lurker flag.
+    void FlipLurkerFlag();
 
     void CheckUndead();
 
@@ -72,7 +73,7 @@ class Map
     Position m_startPos;
     std::size_t m_initMoveCount = 1;
 
-    bool m_lurker = true;
+    bool m_lurkerFlag = true;
 };
 }  // namespace HellSolver
 
