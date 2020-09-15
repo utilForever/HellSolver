@@ -87,7 +87,7 @@ PlayerStatus Game::MovePlayer(Direction dir)
 
     m_map.ProcessUndeadObjects();
 
-    return m_gamePlayer->GetPlayerStatus(result == MoveState::ENDPOINT);
+    return m_gamePlayer->GetStatus(result == MoveState::ENDPOINT);
 }
 
 MoveState Game::CanMove(Position pos, Direction dir) const
