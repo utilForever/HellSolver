@@ -36,7 +36,7 @@ class Game
 
     //! Gets a player.
     //! \return A reference to player object.
-    [[nodiscard]] Player& GetPlayer();
+    [[nodiscard]] Player& GetPlayer() const;
 
     //! Moves the player to the direction.
     //! \param dir The direction to move.
@@ -48,7 +48,7 @@ class Game
     //! \param pos The current position.
     //! \param dir The direction to move.
     //! \return true if an object can move, false otherwise.
-    [[nodiscard]] MoveState CanMove(Position pos, Direction dir);
+    [[nodiscard]] MoveState CanMove(Position pos, Direction dir) const;
 
     //! Moves current position to \p direction.
     //! \param pos The current position.
@@ -59,12 +59,12 @@ class Game
     //! Pushes the rock.
     //! \param pos The current position of the rock.
     //! \param dir The direction to push.
-    void PushRock(Position pos, Direction dir);
+    void PushRock(Position pos, Direction dir) const;
 
     //! Pushes the undead.
     //! \param pos The current position of the undead.
     //! \param dir The direction to push.
-    void PushUndead(Position pos, Direction dir);
+    void PushUndead(Position pos, Direction dir) const;
 
     Map m_map;
     std::unique_ptr<Player> m_gamePlayer;

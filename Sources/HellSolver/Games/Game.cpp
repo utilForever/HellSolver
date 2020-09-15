@@ -29,7 +29,7 @@ Map& Game::GetMap()
     return m_map;
 }
 
-Player& Game::GetPlayer()
+Player& Game::GetPlayer() const
 {
     return *m_gamePlayer;
 }
@@ -37,35 +37,32 @@ Player& Game::GetPlayer()
 PlayerStatus Game::MovePlayer(Direction dir)
 {
     Position pos = m_gamePlayer->GetPosition();
-
-    MoveState result = CanMove(pos, dir);
+    const MoveState result = CanMove(pos, dir);
 
     switch (result)
     {
         case MoveState::STOP:
             break;
-
         case MoveState::MOVE:
             pos = m_gamePlayer->ProcessMove(dir);
             m_gamePlayer->DecreaseMoveCount();
             m_map.SetLurker();
             break;
-
         case MoveState::ROCK:
             PushRock(pos, dir);
             m_gamePlayer->DecreaseMoveCount();
             m_map.SetLurker();
             break;
-
         case MoveState::UNDEAD:
             PushUndead(pos, dir);
             m_gamePlayer->DecreaseMoveCount();
             m_map.SetLurker();
             break;
-
         case MoveState::ENDPOINT:
             pos = m_gamePlayer->ProcessMove(dir);
-
+            m_gamePlayer->DecreaseMoveCount();
+            m_map.SetLurker();
+            break;
         case MoveState::STAND:
             m_gamePlayer->DecreaseMoveCount();
             m_map.SetLurker();
@@ -92,12 +89,11 @@ PlayerStatus Game::MovePlayer(Direction dir)
     return m_gamePlayer->GetPlayerStatus(result == MoveState::ENDPOINT);
 }
 
-MoveState Game::CanMove(Position pos, Direction dir)
+MoveState Game::CanMove(Position pos, Direction dir) const
 {
-    Position d_pair = Move(pos, dir);
-    std::size_t _x = d_pair.first, _y = d_pair.second;
-
-    Object blockType = m_map.At(_x, _y);
+    const Position nextPos = Move(pos, dir);
+    const std::size_t nextX = nextPos.first, nextY = nextPos.second;
+    const Object blockType = m_map.At(nextX, nextY);
 
     // If encountered block is ENDPOINT, without any other objects.
     if (blockType.HasType(ObjectType::ENDPOINT))
@@ -118,6 +114,7 @@ MoveState Game::CanMove(Position pos, Direction dir)
         {
             return MoveState::MOVE;
         }
+
         return MoveState::STAND;
     }
 
@@ -141,56 +138,62 @@ Position Game::Move(Position pos, Direction dir)
     std::size_t dx = pos.first, dy = pos.second;
 
     if (dir == Direction::UP)
+    {
         dx -= 1;
+    }
     else if (dir == Direction::DOWN)
+    {
         dx += 1;
+    }
     else if (dir == Direction::LEFT)
+    {
         dy -= 1;
+    }
     else if (dir == Direction::RIGHT)
+    {
         dy += 1;
+    }
 
-    return std::make_pair(dx, dy);
+    return { dx, dy };
 }
 
-void Game::PushRock(Position pos, Direction dir)
+void Game::PushRock(Position pos, Direction dir) const
 {
-    Position curRockPosition = Move(pos, dir);
-    Position nextRockPosition = Move(pos, dir);
+    const Position curRockPos = Move(pos, dir);
+    const Position nextRockPos = Move(pos, dir);
 
-    Object nextRockPositionObject =
-        m_map.At(nextRockPosition.first, nextRockPosition.second);
+    const Object nextRockPosObject =
+        m_map.At(nextRockPos.first, nextRockPos.second);
 
-    if (!nextRockPositionObject.HasType(ObjectType::WALL, ObjectType::DEVIL,
-                                        ObjectType::LOCK, ObjectType::UNDEAD,
-                                        ObjectType::ROCK))
+    if (!nextRockPosObject.HasType(ObjectType::WALL, ObjectType::DEVIL,
+                                   ObjectType::LOCK, ObjectType::UNDEAD,
+                                   ObjectType::ROCK))
     {
-        m_map.At(curRockPosition.first, curRockPosition.second)
-            .Remove(ObjectType::ROCK);
-        m_map.At(nextRockPosition.first, nextRockPosition.second)
-            .Add(ObjectType::ROCK);
+        m_map.At(curRockPos.first, curRockPos.second).Remove(ObjectType::ROCK);
+        m_map.At(nextRockPos.first, nextRockPos.second).Add(ObjectType::ROCK);
     }
 }
 
-void Game::PushUndead(Position pos, Direction dir)
+void Game::PushUndead(Position pos, Direction dir) const
 {
-    Position curUndeadPosition = Move(pos, dir);
-    Position nextUndeadPosition = Move(pos, dir);
+    const Position curUndeadPos = Move(pos, dir);
+    const Position nextUndeadPos = Move(pos, dir);
 
-    Object nextUndeadPositionObject =
-        m_map.At(nextUndeadPosition.first, nextUndeadPosition.second);
+    const Object nextUndeadPosObject =
+        m_map.At(nextUndeadPos.first, nextUndeadPos.second);
 
-    if (nextUndeadPositionObject.HasType(ObjectType::WALL, ObjectType::DEVIL,
-                                         ObjectType::LOCK, ObjectType::UNDEAD,
-                                         ObjectType::ROCK))
+    if (nextUndeadPosObject.HasType(ObjectType::WALL, ObjectType::DEVIL,
+                                    ObjectType::LOCK, ObjectType::UNDEAD,
+                                    ObjectType::ROCK))
     {
-        m_map.At(curUndeadPosition.first, curUndeadPosition.second)
+        m_map.At(curUndeadPos.first, curUndeadPos.second)
             .Remove(ObjectType::UNDEAD);
     }
     else
     {
-        m_map.At(curUndeadPosition.first, curUndeadPosition.second)
+        m_map.At(curUndeadPos.first, curUndeadPos.second)
             .Remove(ObjectType::UNDEAD);
-        m_map.At(nextUndeadPosition.first, nextUndeadPosition.second)
+        m_map.At(nextUndeadPos.first, nextUndeadPos.second)
             .Add(ObjectType::UNDEAD);
     }
 }
