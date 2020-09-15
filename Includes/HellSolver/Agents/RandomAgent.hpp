@@ -19,8 +19,23 @@ namespace HellSolver
 class RandomAgent final : public IAgent
 {
  public:
+    //! Default constructor.
+    RandomAgent() = default;
+
+    //! Deleted copy constructor.
+    RandomAgent(const RandomAgent&) = delete;
+
+    //! Deleted move constructor.
+    RandomAgent(RandomAgent&&) noexcept = delete;
+
     //! Default virtual destructor.
-    virtual ~RandomAgent() = default;
+    ~RandomAgent() override = default;
+
+    //! Deleted copy assignment operator.
+    RandomAgent& operator=(const RandomAgent&) = delete;
+
+    //! Deleted move assignment operator.
+    RandomAgent& operator=(RandomAgent&&) noexcept = delete;
 
     //! Gets an action of agent.
     //! \param state The current game state.
