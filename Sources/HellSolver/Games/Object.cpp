@@ -54,7 +54,7 @@ void Object::Init(ObjectType type)
     }
 }
 
-Tile Object::GetTypes() const
+Tile Object::GetTile() const
 {
     return m_tile;
 }

@@ -393,7 +393,7 @@ TEST_CASE("MAP 8 - SOLUTION")
     CHECK(game.GetMap().GetHeight() == 14);
     CHECK(game.GetPlayer().GetMoveCount() == 12);
     CHECK(game.GetMap().At(2, 5).HasType(ObjectType::UNDEAD));
-    CHECK(game.GetMap().At(2, 5).GetTypes().second == ObjectType::ENDPOINT);
+    CHECK(game.GetMap().At(2, 5).GetTile().second == ObjectType::ENDPOINT);
 
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
     CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);

@@ -39,9 +39,9 @@ class Object
     //! \param type An object type to initialize.
     void Init(ObjectType type);
 
-    //! Gets the type of the tile.
-    //! \return A pair of object type.
-    [[nodiscard]] Tile GetTypes() const;
+    //! Gets the tile of the object.
+    //! \return The tile of the object.
+    [[nodiscard]] Tile GetTile() const;
 
     //! Returns the flag that the object has \p type.
     //! \param type The type of the object to check.
