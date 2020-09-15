@@ -24,9 +24,6 @@ build
 /.idea
 cmake-build-debug
 
-# PyCharm files
-Extensions/HellGUI/.idea/
-
 # vi files
 .clang_complete
 .syntastic_cpp_config
@@ -34,5 +31,4 @@ Extensions/HellGUI/.idea/
 # Python files
 *.pyc
 /.pytest_cache
-/Extensions/HellGUI/sprites/
 venv/
