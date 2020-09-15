@@ -48,8 +48,6 @@ class Map
     //! \return The initial move count of the map.
     [[nodiscard]] std::size_t GetInitMoveCount() const;
 
-    [[nodiscard]] bool GetLurker() const;
-
     void SetLurker();
 
     void CheckUndead();

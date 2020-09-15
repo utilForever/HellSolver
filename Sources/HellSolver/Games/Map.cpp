@@ -69,14 +69,9 @@ std::size_t Map::GetInitMoveCount() const
     return m_initMoveCount;
 }
 
-bool Map::GetLurker() const
-{
-    return m_lurker;
-}
-
 void Map::SetLurker()
 {
-    m_lurker = !GetLurker();
+    m_lurker = !m_lurker;
 }
 
 void Map::CheckUndead()
@@ -93,14 +88,14 @@ void Map::CheckUndead()
 
 bool Map::IsLurkerAttack(Object& object) const
 {
-    return (!GetLurker() && object.HasType(ObjectType::DOWN)) ||
-           (GetLurker() && object.HasType(ObjectType::UP));
+    return (!m_lurker && object.HasType(ObjectType::DOWN)) ||
+           (m_lurker && object.HasType(ObjectType::UP));
 }
 
 bool Map::IsLurkerNextAttack(Object& object) const
 {
-    return (GetLurker() && object.HasType(ObjectType::DOWN)) ||
-           (!GetLurker() && object.HasType(ObjectType::UP));
+    return (m_lurker && object.HasType(ObjectType::DOWN)) ||
+           (!m_lurker && object.HasType(ObjectType::UP));
 }
 
 Object& Map::At(std::size_t x, std::size_t y) const
