@@ -59,7 +59,7 @@ class Object
     }
 
  private:
-    Tile o_tile;
+    Tile m_tile;
 };
 }  // namespace HellSolver
 
