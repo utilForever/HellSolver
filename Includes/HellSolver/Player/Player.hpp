@@ -27,17 +27,15 @@ class Player
     //! Default destructor.
     ~Player() = default;
 
-    //! Constructs a player with given \p initX, \p initY and \p moveCount.
-    //! \param initX The initial coordinate of X.
-    //! \param initY The initial coordinate of Y.
-    //! \param moveCount The initial move count.
-    Player(std::size_t initX, std::size_t initY, std::size_t moveCount);
+    //! Constructs a player with given \p pos and \p moveCount.
+    //! \param pos The position to initialize.
+    //! \param moveCount The move count to initialize.
+    Player(Position pos, std::size_t moveCount);
 
     //! Resets a player.
-    //! \param initX The initial coordinate of X.
-    //! \param initY The initial coordinate of Y.
-    //! \param moveCount The initial move count.
-    void Reset(std::size_t initX, std::size_t initY, std::size_t moveCount);
+    //! \param pos The position to reset.
+    //! \param moveCount The move count to reset.
+    void Reset(Position pos, std::size_t moveCount);
 
     //! Processes move by given \p dir and returns moved coordinate by pair.
     //! \param dir The direction to move.
@@ -68,8 +66,7 @@ class Player
     void DecreaseMoveCount();
 
  private:
-    std::size_t m_x = 0;
-    std::size_t m_y = 0;
+    Position m_pos{ 0, 0 };
     std::size_t m_moveCount = 0;
     bool m_hasKey = false;
 };

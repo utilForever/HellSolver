@@ -13,10 +13,9 @@ void AddPlayer(pybind11::module& m)
 {
     pybind11::class_<Player>(m, "Player")
         .def(pybind11::init<>())
-        .def(pybind11::init<std::size_t, std::size_t, std::size_t>())
-        .def("Reset",
-             static_cast<void (Player::*)(std::size_t, std::size_t,
-                                          std::size_t)>(&Player::Reset))
+        .def(pybind11::init<Position, std::size_t>())
+        .def("Reset", static_cast<void (Player::*)(Position, std::size_t)>(
+                          &Player::Reset))
         .def("Processmove",
              static_cast<Position (Player::*)(Direction)>(&Player::ProcessMove))
         .def("GetPlayerStatus",

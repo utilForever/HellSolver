@@ -7,20 +7,20 @@
 #include <HellSolver/Player/Player.hpp>
 
 #include <iostream>
+#include <utility>
 
 namespace HellSolver
 {
-Player::Player(std::size_t initX, std::size_t initY, std::size_t initMoveCount)
-    : m_x(initX), m_y(initY), m_moveCount(initMoveCount)
+Player::Player(Position pos, std::size_t moveCount)
+    : m_pos(std::move(pos)), m_moveCount(moveCount)
 {
+    // Do nothing
 }
 
-void Player::Reset(std::size_t initX, std::size_t initY,
-                   std::size_t initMoveCount)
+void Player::Reset(Position pos, std::size_t moveCount)
 {
-    m_x = initX;
-    m_y = initY;
-    m_moveCount = initMoveCount;
+    m_pos = pos;
+    m_moveCount = moveCount;
 }
 
 Position Player::ProcessMove(Direction dir)
@@ -28,26 +28,22 @@ Position Player::ProcessMove(Direction dir)
     switch (dir)
     {
         case Direction::UP:
-            m_x--;
+            m_pos.first--;
             break;
-
         case Direction::DOWN:
-            m_x++;
+            m_pos.first++;
             break;
-
         case Direction::LEFT:
-            m_y--;
+            m_pos.second--;
             break;
-
         case Direction::RIGHT:
-            m_y++;
+            m_pos.second++;
             break;
-
         case Direction::INVALID:
             break;
     }
 
-    return { m_x, m_y };
+    return m_pos;
 }
 
 PlayerStatus Player::GetPlayerStatus(bool isEndPoint) const
@@ -57,7 +53,7 @@ PlayerStatus Player::GetPlayerStatus(bool isEndPoint) const
         return PlayerStatus::WIN;
     }
 
-    else if (!m_moveCount)
+    if (!m_moveCount)
     {
         return PlayerStatus::LOST;
     }
@@ -85,12 +81,11 @@ void Player::SetKey()
 
 Position Player::GetPosition() const
 {
-    return { m_x, m_y };
+    return m_pos;
 }
 
 void Player::DecreaseMoveCount()
 {
     m_moveCount--;
 }
-
 }  // namespace HellSolver

@@ -45,31 +45,26 @@ class Game
 
  private:
     //! Checks an object can move.
-    //! \param x The current x coordinate.
-    //! \param y The current y coordinate.
+    //! \param pos The current position.
     //! \param dir The direction to move.
     //! \return true if an object can move, false otherwise.
-    [[nodiscard]] MoveState CanMove(std::size_t x, std::size_t y,
-                                    Direction dir);
+    [[nodiscard]] MoveState CanMove(Position pos, Direction dir);
 
-    //! Moves current coordinates to \p direction.
-    //! \param x The current x coordinate.
-    //! \param y The current y coordinate.
+    //! Moves current position to \p direction.
+    //! \param pos The current position.
     //! \param dir The direction to move.
     //! \return The moved coordinate.
-    static Position Move(std::size_t x, std::size_t y, Direction dir);
+    static Position Move(Position pos, Direction dir);
 
     //! Pushes the rock.
-    //! \param x The current x coordinate of the rock.
-    //! \param y The current y coordinate of the rock.
+    //! \param pos The current position of the rock.
     //! \param dir The direction to push.
-    void PushRock(std::size_t x, std::size_t y, Direction dir);
+    void PushRock(Position pos, Direction dir);
 
     //! Pushes the undead.
-    //! \param x The current x coordinate of the undead.
-    //! \param y The current y coordinate of the undead.
+    //! \param pos The current position of the undead.
     //! \param dir The direction to push.
-    void PushUndead(std::size_t x, std::size_t y, Direction dir);
+    void PushUndead(Position pos, Direction dir);
 
     Map m_map;
     std::unique_ptr<Player> m_gamePlayer;
