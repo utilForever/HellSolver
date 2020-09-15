@@ -7,7 +7,7 @@
 #include <Games/Map.hpp>
 #include <HellSolver/Games/Map.hpp>
 
-using namespace hell_solver;
+using namespace HellSolver;
 
 void AddMap(pybind11::module& m)
 {

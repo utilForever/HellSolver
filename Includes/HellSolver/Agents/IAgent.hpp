@@ -9,7 +9,7 @@
 
 #include <HellSolver/Games/Game.hpp>
 
-namespace hell_solver
+namespace HellSolver
 {
 //!
 //! \brief IAgent class.
@@ -27,6 +27,6 @@ class IAgent
     //! \return An action of agent.
     virtual Direction GetAction(const Game& state) = 0;
 };
-}  // namespace hell_solver
+}  // namespace HellSolver
 
 #endif  // HELL_SOLVER_IAGENT_HPP

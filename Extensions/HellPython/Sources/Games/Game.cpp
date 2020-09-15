@@ -9,7 +9,7 @@
 
 #include <pybind11/stl.h>
 
-using namespace hell_solver;
+using namespace HellSolver;
 
 void AddGame(pybind11::module& m)
 {

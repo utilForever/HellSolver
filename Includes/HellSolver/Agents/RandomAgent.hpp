@@ -9,7 +9,7 @@
 
 #include <HellSolver/Agents/IAgent.hpp>
 
-namespace hell_solver
+namespace HellSolver
 {
 //!
 //! \brief RandomAgent class.
@@ -27,6 +27,6 @@ class RandomAgent final : public IAgent
     //! \return An action of agent.
     Direction GetAction(const Game& state) override;
 };
-}  // namespace hell_solver
+}  // namespace HellSolver
 
 #endif  // HELL_SOLVER_RANDOMAGENT_HPP

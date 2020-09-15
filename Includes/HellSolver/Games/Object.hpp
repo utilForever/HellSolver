@@ -9,7 +9,7 @@
 
 #include <HellSolver/Enums/GameEnums.hpp>
 
-namespace hell_solver
+namespace HellSolver
 {
 //!
 //! \brief Object class.
@@ -55,6 +55,6 @@ class Object
  private:
     Tile o_tile;
 };
-}  // namespace hell_solver
+}  // namespace HellSolver
 
 #endif  // HELL_SOLVER_OBJECT_HPP

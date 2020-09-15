@@ -12,7 +12,7 @@
 #include <string>
 #include <vector>
 
-namespace hell_solver
+namespace HellSolver
 {
 //!
 //! \brief Map class.
@@ -70,6 +70,6 @@ class Map
     std::size_t m_initCount = 1;
     std::pair<std::size_t, std::size_t> m_startPoint;
 };
-}  // namespace hell_solver
+}  // namespace HellSolver
 
 #endif  // HELL_SOLVER_MAP_HPP

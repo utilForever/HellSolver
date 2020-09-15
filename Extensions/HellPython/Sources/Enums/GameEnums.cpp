@@ -7,7 +7,7 @@
 #include <Enums/GameEnums.hpp>
 #include <HellSolver/Enums/GameEnums.hpp>
 
-using namespace hell_solver;
+using namespace HellSolver;
 
 void AddGameEnums(pybind11::module& m)
 {

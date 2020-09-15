@@ -6,7 +6,7 @@
 
 #include <HellSolver/Games/Game.hpp>
 
-namespace hell_solver
+namespace HellSolver
 {
 Game::Game(std::string_view filename)
 {
@@ -197,4 +197,4 @@ Player& Game::GetPlayer()
     return *GamePlayer;
 }
 
-}  // namespace hell_solver
+}  // namespace HellSolver

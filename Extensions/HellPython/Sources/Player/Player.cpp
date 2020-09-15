@@ -7,7 +7,7 @@
 #include <HellSolver/Player/Player.hpp>
 #include <Player/Player.hpp>
 
-using namespace hell_solver;
+using namespace HellSolver;
 
 void AddPlayer(pybind11::module& m)
 {

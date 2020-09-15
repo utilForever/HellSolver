@@ -8,7 +8,7 @@
 
 #include <utility>
 
-namespace hell_solver
+namespace HellSolver
 {
 Object::Object(Tile tile) : o_tile(std::move(tile)){};
 
@@ -76,4 +76,4 @@ bool Object::HasType(ObjectType type) const
     }
     return false;
 }
-}  // namespace hell_solver
+}  // namespace HellSolver

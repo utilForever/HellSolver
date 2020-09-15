@@ -9,7 +9,7 @@
 
 #include <utility>
 
-namespace hell_solver
+namespace HellSolver
 {
 enum class ObjectType
 {
@@ -65,6 +65,6 @@ constexpr bool IsLurkerType(ObjectType type)
 typedef std::pair<ObjectType, ObjectType> Tile;
 typedef std::pair<std::size_t, std::size_t> Position;
 
-}  // namespace hell_solver
+}  // namespace HellSolver
 
 #endif  // HELL_SOLVER_GAME_ENUMS_HPP

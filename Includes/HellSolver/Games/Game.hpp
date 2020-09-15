@@ -13,7 +13,7 @@
 #include <memory>
 #include <string_view>
 
-namespace hell_solver
+namespace HellSolver
 {
 using Position = std::pair<std::size_t, std::size_t>;
 
@@ -74,6 +74,6 @@ class Game
     //! \param y The current y coordinate of undead.
     void PushUndead(size_t x, size_t y, Direction dir);
 };
-}  // namespace hell_solver
+}  // namespace HellSolver
 
 #endif  // HELL_SOLVER_GAME_HPP

@@ -11,7 +11,7 @@
 #include <HellSolver/Games/Game.hpp>
 #include <iostream>
 
-using namespace hell_solver;
+using namespace HellSolver;
 
 TEST_CASE("MAP 1 - SOLUTION")
 {

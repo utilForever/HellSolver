@@ -9,7 +9,7 @@
 
 #include <cassert>
 
-namespace hell_solver
+namespace HellSolver
 {
 Player::Player(std::size_t initX, std::size_t initY, std::size_t initMoveCount)
     : x(initX), y(initY), moveCount(initMoveCount)
@@ -92,4 +92,4 @@ void Player::DecreaseMoveCount()
     moveCount--;
 }
 
-}  // namespace hell_solver
+}  // namespace HellSolver

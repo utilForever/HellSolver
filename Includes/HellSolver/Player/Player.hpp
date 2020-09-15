@@ -10,7 +10,7 @@
 #include <HellSolver/Enums/GameEnums.hpp>
 #include <utility>
 
-namespace hell_solver
+namespace HellSolver
 {
 //!
 //! \brief Player class.
@@ -70,6 +70,6 @@ class Player
     std::size_t moveCount = 0;
     bool hasKey = false;
 };
-}  // namespace hell_solver
+}  // namespace HellSolver
 
 #endif  // HELL_SOLVER_PLAYER_HPP

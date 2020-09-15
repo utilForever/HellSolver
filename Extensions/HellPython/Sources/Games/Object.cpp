@@ -7,7 +7,7 @@
 #include <Games/Object.hpp>
 #include <HellSolver/Games/Object.hpp>
 
-using namespace hell_solver;
+using namespace HellSolver;
 
 void AddObject(pybind11::module& m)
 {

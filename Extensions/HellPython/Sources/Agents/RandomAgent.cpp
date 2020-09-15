@@ -7,7 +7,7 @@
 #include <Agents/RandomAgent.hpp>
 #include <HellSolver/Agents/RandomAgent.hpp>
 
-using namespace hell_solver;
+using namespace HellSolver;
 
 void AddRandomAgent(pybind11::module& m)
 {
