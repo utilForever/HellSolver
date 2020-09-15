@@ -4,16 +4,13 @@
 // personal capacity and are not conveying any rights to any intellectual
 // property of any third parties.
 
-#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-#include "doctest.h"
+#include "doctest_proxy.hpp"
 
-#include <HellSolver/Agents/RandomAgent.hpp>
 #include <HellSolver/Games/Game.hpp>
-#include <iostream>
 
 using namespace HellSolver;
 
-TEST_CASE("MAP 1 - SOLUTION")
+TEST_CASE("[Map] - 1")
 {
     Game game(MAPS_DIR "1.txt");
 
@@ -56,7 +53,7 @@ TEST_CASE("MAP 1 - SOLUTION")
     CHECK(game.MovePlayer(Direction::INVALID) == PlayerStatus::PLAYING);
 }
 
-TEST_CASE("MAP 2 - SOLUTION")
+TEST_CASE("[Map] - 2")
 {
     Game game(MAPS_DIR "2.txt");
 
@@ -108,7 +105,7 @@ TEST_CASE("MAP 2 - SOLUTION")
     CHECK(game.GetPlayer().GetMoveCount() == 0);
 }
 
-TEST_CASE("MAP 3 - SOLUTION")
+TEST_CASE("[Map] - 3")
 {
     Game game(MAPS_DIR "3.txt");
 
@@ -155,7 +152,7 @@ TEST_CASE("MAP 3 - SOLUTION")
     CHECK(game.GetPlayer().GetMoveCount() == 0);
 }
 
-TEST_CASE("MAP 4 - SOLUTION")
+TEST_CASE("[Map] - 4")
 {
     Game game(MAPS_DIR "4.txt");
 
@@ -200,7 +197,7 @@ TEST_CASE("MAP 4 - SOLUTION")
     CHECK(game.GetPlayer().GetMoveCount() == 0);
 }
 
-TEST_CASE("MAP 5 - SOLUTION")
+TEST_CASE("[Map] - 5")
 {
     Game game(MAPS_DIR "5.txt");
 
@@ -251,7 +248,7 @@ TEST_CASE("MAP 5 - SOLUTION")
     CHECK(game.GetPlayer().GetMoveCount() == 0);
 }
 
-TEST_CASE("MAP 6 - SOLUTION")
+TEST_CASE("[Map] - 6")
 {
     Game game(MAPS_DIR "6.txt");
 
@@ -325,7 +322,7 @@ TEST_CASE("MAP 6 - SOLUTION")
     CHECK(game.GetPlayer().GetMoveCount() == 1);
 }
 
-TEST_CASE("MAP 7 - SOLUTION")
+TEST_CASE("[Map] - 7")
 {
     Game game(MAPS_DIR "7.txt");
 
@@ -385,7 +382,7 @@ TEST_CASE("MAP 7 - SOLUTION")
     CHECK(game.GetPlayer().GetMoveCount() == 0);
 }
 
-TEST_CASE("MAP 8 - SOLUTION")
+TEST_CASE("[Map] - 8")
 {
     Game game(MAPS_DIR "8.txt");
 
@@ -413,7 +410,7 @@ TEST_CASE("MAP 8 - SOLUTION")
     CHECK(game.GetPlayer().GetMoveCount() == 0);
 }
 
-TEST_CASE("MAP 9 - SOLUTION")
+TEST_CASE("[Map] - 9")
 {
     Game game(MAPS_DIR "9.txt");
 
@@ -469,206 +466,4 @@ TEST_CASE("MAP 9 - SOLUTION")
     CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::WIN);
 
     CHECK(game.GetPlayer().GetMoveCount() == 0);
-}
-
-TEST_CASE("TEST - CanMoveTestMap")
-{
-    Game game(TEST_MAPS_DIR "CanMoveTestMap.txt");
-
-    CHECK(game.GetMap().At(2, 3).HasType(ObjectType::EMPTY));
-
-    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
-    CHECK(game.GetPlayer().GetPosition().first == 2);
-    CHECK(game.GetPlayer().GetPosition().second == 2);
-
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.GetPlayer().GetPosition().first == 2);
-    CHECK(game.GetPlayer().GetPosition().second == 3);
-
-    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
-    CHECK(game.GetPlayer().GetPosition().first == 2);
-    CHECK(game.GetPlayer().GetPosition().second == 2);
-
-    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
-    CHECK(game.GetPlayer().GetPosition().first == 3);
-    CHECK(game.GetPlayer().GetPosition().second == 2);
-}
-
-TEST_CASE("TEST - MinusCount")
-{
-    Game game(TEST_MAPS_DIR "CanMoveTestMap.txt");
-
-    CHECK(game.GetMap().At(2, 3).HasType(ObjectType::EMPTY));
-
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::LOST);
-}
-
-TEST_CASE("TEST - IsGameEndTest")
-{
-    Game game(TEST_MAPS_DIR "IsGameEndTest.txt");
-
-    CHECK(game.GetMap().At(1, 1).HasType(ObjectType::PLAYER));
-    CHECK(game.GetMap().At(1, 2).HasType(ObjectType::SPIKE));
-    CHECK(game.GetPlayer().GetMoveCount() == 10);
-    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
-    CHECK(game.GetPlayer().GetMoveCount() == 10);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.GetPlayer().GetMoveCount() == 8);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::WIN);
-}
-
-TEST_CASE("TEST - LurkerTest")
-{
-    Game game(TEST_MAPS_DIR "LurkerTest.txt");
-
-    CHECK(game.GetMap().At(1, 8).HasType(ObjectType::ENDPOINT));
-    CHECK(game.GetMap().At(1, 1).HasType(ObjectType::PLAYER));
-    CHECK(game.GetPlayer().GetMoveCount() == 9);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.GetPlayer().GetMoveCount() == 8);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.GetPlayer().GetMoveCount() == 6);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.GetPlayer().GetMoveCount() == 4);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.GetPlayer().GetMoveCount() == 3);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.GetPlayer().GetMoveCount() == 2);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.GetPlayer().GetMoveCount() == 1);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::WIN);
-}
-
-TEST_CASE("TEST - LockTest")
-{
-    Game game(TEST_MAPS_DIR "LockTest.txt");
-
-    CHECK(game.GetMap().At(1, 1).HasType(ObjectType::KEY));
-    CHECK(game.GetPlayer().GetMoveCount() == 8);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.GetPlayer().GetMoveCount() == 7);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.GetPlayer().GetMoveCount() == 6);
-    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
-    CHECK(game.GetPlayer().GetMoveCount() == 5);
-    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
-    CHECK(game.GetPlayer().HasKey() == true);
-    CHECK(game.GetPlayer().GetMoveCount() == 4);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.GetPlayer().GetMoveCount() == 3);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.GetPlayer().GetMoveCount() == 2);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.GetPlayer().GetMoveCount() == 1);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::WIN);
-    CHECK(game.GetPlayer().GetMoveCount() == 0);
-}
-
-TEST_CASE("TEST - UndeadMakeDead")
-{
-    Game game(TEST_MAPS_DIR "UndeadMakeDead.txt");
-
-    CHECK(game.GetMap().At(1, 1).HasType(ObjectType::PLAYER));
-    CHECK(game.GetPlayer().GetMoveCount() == 4);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.GetPlayer().GetMoveCount() == 2);
-    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::WIN);
-    CHECK(game.GetPlayer().GetMoveCount() == 0);
-}
-
-TEST_CASE("TEST - DancingRock")
-{
-    Game game(TEST_MAPS_DIR "DancingRock.txt");
-
-    CHECK(game.GetMap().At(1, 1).HasType(ObjectType::PLAYER));
-    CHECK(game.GetPlayer().GetMoveCount() == 4);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.GetPlayer().GetMoveCount() == 2);
-    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
-    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::WIN);
-    CHECK(game.GetPlayer().GetMoveCount() == 0);
-    CHECK(game.GetMap().At(1, 3).HasType(ObjectType::ROCK));
-}
-
-TEST_CASE("TEST - SlidingUndead")
-{
-    Game game(TEST_MAPS_DIR "SlidingUndead.txt");
-
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
-    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::WIN);
-}
-
-TEST_CASE("TEST - UndeadWithLurker")
-{
-    Game game(TEST_MAPS_DIR "UndeadWithLurker.txt");
-
-    CHECK(game.GetMap().GetWidth() == 5);
-    CHECK(game.GetMap().GetHeight() == 5);
-
-    CHECK(game.GetMap().At(1, 3).HasType(ObjectType::LURKER_TYPE));
-    CHECK(game.GetMap().At(1, 2).HasType(ObjectType::UNDEAD));
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-
-    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
-    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::WIN);
-}
-
-TEST_CASE("TEST - UndeadCheckWithLurker")
-{
-    Game game(TEST_MAPS_DIR "UndeadCheckWithLurker.txt");
-
-    CHECK(game.GetPlayer().GetMoveCount() == 6);
-
-    CHECK(game.GetMap().At(1, 2).HasType(ObjectType::UNDEAD) == true);
-    CHECK(game.GetMap().At(1, 3).HasType(ObjectType::UP) == true);
-    CHECK(game.GetMap().CanLurkerAttackThisMove(game.GetMap().At(1, 3)) ==
-          true);
-    CHECK(game.GetMap().CanLurkerAttackNextMove(game.GetMap().At(1, 3)) ==
-          false);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-
-    CHECK(game.GetMap().CanLurkerAttackThisMove(game.GetMap().At(1, 3)) ==
-          false);
-    CHECK(game.GetMap().At(1, 2).HasType(ObjectType::UNDEAD) == false);
-    CHECK(game.GetMap().At(1, 3).HasType(ObjectType::UNDEAD) == true);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-
-    CHECK(game.GetMap().At(1, 3).HasType(ObjectType::UNDEAD) == false);
-    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
-
-    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::WIN);
-}
-
-TEST_CASE("RandomAgent - Basic")
-{
-    Game game(MAPS_DIR "1.txt");
-
-    RandomAgent agent;
-
-    std::vector<Direction> actions = { Direction::UP, Direction::DOWN,
-                                       Direction::LEFT, Direction::RIGHT,
-                                       Direction::INVALID };
-
-    const Direction action = agent.GetAction(game);
-
-    CHECK_NE(std::find(begin(actions), end(actions), action), end(actions));
 }
