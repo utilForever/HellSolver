@@ -7,8 +7,8 @@ def test_map1():
     assert game.GetMap().GetHeight() == 8
 
     assert game.GetMap().At(1, 1).HasType(pyHell.ObjectType.WALL)
-    assert game.GetMap().At(2, 4).HasType(pyHell.ObjectType.UNDEAD)
-    assert game.GetMap().At(5, 2).HasType(pyHell.ObjectType.ROCK)
+    assert game.GetMap().At(4, 2).HasType(pyHell.ObjectType.UNDEAD)
+    assert game.GetMap().At(2, 5).HasType(pyHell.ObjectType.ROCK)
     assert game.GetMap().At(6, 6).HasType(pyHell.ObjectType.ENDPOINT)
 
     assert game.MovePlayer(pyHell.Direction.DOWN) == pyHell.PlayerStatus.PLAYING
@@ -47,8 +47,8 @@ def test_map2():
     assert game.GetMap().GetHeight() == 8
 
     assert game.GetMap().At(2, 2).HasType(pyHell.ObjectType.UNDEAD)
-    assert game.GetMap().At(2, 4).HasType(pyHell.ObjectType.SPIKE)
-    assert game.GetMap().At(6, 5).HasType(pyHell.ObjectType.ENDPOINT)
+    assert game.GetMap().At(4, 2).HasType(pyHell.ObjectType.SPIKE)
+    assert game.GetMap().At(5, 6).HasType(pyHell.ObjectType.ENDPOINT)
     assert game.GetPlayer().GetMoveCount() == 24
 
     assert game.MovePlayer(pyHell.Direction.UP) == pyHell.PlayerStatus.PLAYING
@@ -59,10 +59,10 @@ def test_map2():
     assert game.MovePlayer(pyHell.Direction.UP) == pyHell.PlayerStatus.PLAYING
     assert game.GetPlayer().GetMoveCount() == 18
 
-    assert game.GetMap().At(1, 2).HasType(pyHell.ObjectType.UNDEAD)
+    assert game.GetMap().At(2, 1).HasType(pyHell.ObjectType.UNDEAD)
 
     assert game.MovePlayer(pyHell.Direction.UP) == pyHell.PlayerStatus.PLAYING
-    assert game.GetMap().At(1, 2).HasType(pyHell.ObjectType.UNDEAD)
+    assert game.GetMap().At(2, 1).HasType(pyHell.ObjectType.UNDEAD)
     assert game.GetPlayer().GetMoveCount() == 17
 
     assert game.MovePlayer(pyHell.Direction.UP) == pyHell.PlayerStatus.PLAYING
@@ -76,7 +76,7 @@ def test_map2():
     assert game.MovePlayer(pyHell.Direction.RIGHT) == pyHell.PlayerStatus.PLAYING
     assert game.MovePlayer(pyHell.Direction.DOWN) == pyHell.PlayerStatus.PLAYING
 
-    assert game.GetMap().At(2, 5).HasType(pyHell.ObjectType.SPIKE)
+    assert game.GetMap().At(5, 2).HasType(pyHell.ObjectType.SPIKE)
     assert game.GetPlayer().GetMoveCount() == 10
 
     assert game.MovePlayer(pyHell.Direction.RIGHT) == pyHell.PlayerStatus.PLAYING
@@ -96,8 +96,8 @@ def test_map3():
     assert game.GetMap().GetWidth() == 10
     assert game.GetMap().GetHeight() == 9
     assert game.GetPlayer().GetMoveCount() == 32
-    assert game.GetMap().At(1, 7).HasType(pyHell.ObjectType.ENDPOINT)
-    assert game.GetMap().At(2, 7).HasType(pyHell.ObjectType.LOCK)
+    assert game.GetMap().At(7, 1).HasType(pyHell.ObjectType.ENDPOINT)
+    assert game.GetMap().At(7, 2).HasType(pyHell.ObjectType.LOCK)
 
     assert game.MovePlayer(pyHell.Direction.LEFT) == pyHell.PlayerStatus.PLAYING
     assert game.MovePlayer(pyHell.Direction.LEFT) == pyHell.PlayerStatus.PLAYING
@@ -141,8 +141,8 @@ def test_map4():
     assert game.GetMap().GetWidth() == 10
     assert game.GetMap().GetHeight() == 7
     assert game.GetPlayer().GetMoveCount() == 23
-    assert game.GetMap().At(3, 7).HasType(pyHell.ObjectType.ENDPOINT)
-    assert game.GetMap().At(2, 6).HasType(pyHell.ObjectType.LOCK)
+    assert game.GetMap().At(7, 3).HasType(pyHell.ObjectType.ENDPOINT)
+    assert game.GetMap().At(6, 2).HasType(pyHell.ObjectType.LOCK)
 
     assert game.MovePlayer(pyHell.Direction.DOWN) == pyHell.PlayerStatus.PLAYING
     assert game.MovePlayer(pyHell.Direction.DOWN) == pyHell.PlayerStatus.PLAYING
@@ -184,13 +184,13 @@ def test_map5():
     assert game.GetMap().GetWidth() == 8
     assert game.GetMap().GetHeight() == 9
     assert game.GetPlayer().GetMoveCount() == 23
-    assert game.GetMap().At(1, 5).HasType(pyHell.ObjectType.ENDPOINT)
-    assert game.GetMap().At(2, 4).HasType(pyHell.ObjectType.LOCK)
-    assert game.GetMap().At(5, 1).HasType(pyHell.ObjectType.UNDEAD)
+    assert game.GetMap().At(5, 1).HasType(pyHell.ObjectType.ENDPOINT)
+    assert game.GetMap().At(4, 2).HasType(pyHell.ObjectType.LOCK)
+    assert game.GetMap().At(1, 5).HasType(pyHell.ObjectType.UNDEAD)
 
     assert game.MovePlayer(pyHell.Direction.DOWN) == pyHell.PlayerStatus.PLAYING
     assert game.MovePlayer(pyHell.Direction.DOWN) == pyHell.PlayerStatus.PLAYING
-    assert game.GetMap().At(6, 1).HasType(pyHell.ObjectType.UNDEAD)
+    assert game.GetMap().At(1, 6).HasType(pyHell.ObjectType.UNDEAD)
 
     assert game.MovePlayer(pyHell.Direction.DOWN) == pyHell.PlayerStatus.PLAYING
     assert game.MovePlayer(pyHell.Direction.DOWN) == pyHell.PlayerStatus.PLAYING
@@ -233,7 +233,7 @@ def test_map6():
     assert game.GetMap().GetWidth() == 9
     assert game.GetMap().GetHeight() == 10
     assert game.GetPlayer().GetMoveCount() == 43
-    assert game.GetMap().At(8, 6).HasType(pyHell.ObjectType.ENDPOINT)
+    assert game.GetMap().At(6, 8).HasType(pyHell.ObjectType.ENDPOINT)
 
     assert game.MovePlayer(pyHell.Direction.LEFT) == pyHell.PlayerStatus.PLAYING
     assert game.MovePlayer(pyHell.Direction.DOWN) == pyHell.PlayerStatus.PLAYING
@@ -305,7 +305,7 @@ def test_map7():
     assert game.GetMap().GetWidth() == 8
     assert game.GetMap().GetHeight() == 9
     assert game.GetPlayer().GetMoveCount() == 32
-    assert game.GetMap().At(1, 5).HasType(pyHell.ObjectType.ENDPOINT)
+    assert game.GetMap().At(5, 1).HasType(pyHell.ObjectType.ENDPOINT)
 
     assert game.MovePlayer(pyHell.Direction.UP) == pyHell.PlayerStatus.PLAYING
     assert game.MovePlayer(pyHell.Direction.UP) == pyHell.PlayerStatus.PLAYING
@@ -363,8 +363,8 @@ def test_map8():
     assert game.GetMap().GetWidth() == 11
     assert game.GetMap().GetHeight() == 14
     assert game.GetPlayer().GetMoveCount() == 12
-    assert game.GetMap().At(2, 5).HasType(pyHell.ObjectType.UNDEAD)
-    assert game.GetMap().At(2, 5).GetTypes()[1] == pyHell.ObjectType.ENDPOINT
+    assert game.GetMap().At(5, 2).HasType(pyHell.ObjectType.UNDEAD)
+    assert game.GetMap().At(5, 2).GetTypes()[1] == pyHell.ObjectType.ENDPOINT
 
     assert game.MovePlayer(pyHell.Direction.RIGHT) == pyHell.PlayerStatus.PLAYING
     assert game.MovePlayer(pyHell.Direction.UP) == pyHell.PlayerStatus.PLAYING
@@ -389,7 +389,7 @@ def test_map9():
     assert game.GetMap().GetWidth() == 11
     assert game.GetMap().GetHeight() == 8
     assert game.GetPlayer().GetMoveCount() == 33
-    assert game.GetMap().At(0, 5).HasType(pyHell.ObjectType.ENDPOINT)
+    assert game.GetMap().At(5, 0).HasType(pyHell.ObjectType.ENDPOINT)
 
     assert game.MovePlayer(pyHell.Direction.RIGHT) == pyHell.PlayerStatus.PLAYING
     assert game.MovePlayer(pyHell.Direction.UP) == pyHell.PlayerStatus.PLAYING

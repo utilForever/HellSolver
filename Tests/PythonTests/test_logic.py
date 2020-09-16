@@ -3,7 +3,7 @@ import pyHell
 def isGameEndTest():
     game = pyHell.Game("Resources/Maps/Test/IsGameEndTest.txt")
 
-    assert game.GetMap().At(1, 2).HasType(pyHell.ObjectType.SPIKE)
+    assert game.GetMap().At(2, 1).HasType(pyHell.ObjectType.SPIKE)
     assert game.GetPlayer().GetMoveCount() == 10
     assert game.MovePlayer(pyHell.Direction.UP) == pyHell.PlayerStatus.PLAYING
     assert game.GetPlayer().GetMoveCount() == 10
@@ -15,7 +15,7 @@ def minusCount():
 
     game = pyHell.Game("Resources/Maps/Test/CanMoveTestMap.txt")
 
-    assert game.GetMap().At(2, 3).HasType(pyHell.ObjectType.EMPTY)
+    assert game.GetMap().At(3, 2).HasType(pyHell.ObjectType.EMPTY)
 
     assert game.MovePlayer(pyHell.Direction.RIGHT) == pyHell.PlayerStatus.PLAYING
     assert game.MovePlayer(pyHell.Direction.LEFT) == pyHell.PlayerStatus.PLAYING
@@ -32,24 +32,24 @@ def minusCount():
 def canMoveTestMap():
     game = pyHell.Game("Resources/Maps/Test/CanMoveTestMap.txt")
 
-    assert game.GetMap().At(2, 3).HasType(pyHell.ObjectType.EMPTY)
+    assert game.GetMap().At(3, 2).HasType(pyHell.ObjectType.EMPTY)
 
     assert game.MovePlayer(pyHell.Direction.UP) == pyHell.PlayerStatus.PLAYING
     assert game.GetPlayer().GetPosition() == (2, 2)
 
     assert game.MovePlayer(pyHell.Direction.RIGHT) == pyHell.PlayerStatus.PLAYING
-    assert game.GetPlayer().GetPosition() == (2, 3)
+    assert game.GetPlayer().GetPosition() == (3, 2)
 
     assert game.MovePlayer(pyHell.Direction.LEFT) == pyHell.PlayerStatus.PLAYING
     assert game.GetPlayer().GetPosition() == (2, 2)
 
     assert game.MovePlayer(pyHell.Direction.DOWN) == pyHell.PlayerStatus.PLAYING
-    assert game.GetPlayer().GetPosition() == (3, 2)
+    assert game.GetPlayer().GetPosition() == (2, 3)
 
 def lurkerTest():
     game = pyHell.Game("Resources/Maps/Test/LurkerTest.txt")
 
-    assert game.GetMap().At(1, 8).HasType(pyHell.ObjectType.ENDPOINT)
+    assert game.GetMap().At(8, 1).HasType(pyHell.ObjectType.ENDPOINT)
     assert game.GetMap().At(1, 1).HasType(pyHell.ObjectType.PLAYER)
     assert game.GetPlayer().GetMoveCount() == 9
     assert game.MovePlayer(pyHell.Direction.RIGHT) == pyHell.PlayerStatus.PLAYING
@@ -135,7 +135,7 @@ def undeadWithLurker():
     assert game.GetMap().GetWidth() == 5
     assert game.GetMap().GetHeight() == 5
 
-    assert game.GetMap().At(1, 2).HasType(pyHell.ObjectType.UNDEAD)
+    assert game.GetMap().At(2, 1).HasType(pyHell.ObjectType.UNDEAD)
     assert game.MovePlayer(pyHell.Direction.RIGHT) == pyHell.PlayerStatus.PLAYING
 
     assert game.MovePlayer(pyHell.Direction.RIGHT) == pyHell.PlayerStatus.PLAYING
@@ -150,18 +150,18 @@ def undeadCheckWithLurker():
 
     assert game.GetPlayer().GetMoveCount() == 6
 
-    assert game.GetMap().At(1, 2).HasType(pyHell.ObjectType.UNDEAD) is True
-    assert game.GetMap().At(1, 3).HasType(pyHell.ObjectType.UP) is True
+    assert game.GetMap().At(2, 1).HasType(pyHell.ObjectType.UNDEAD) is True
+    assert game.GetMap().At(3, 1).HasType(pyHell.ObjectType.UP) is True
     assert game.GetMap().IsLurkerAttack(game.GetMap().At(1, 3)) is True
     assert game.GetMap().IsLurkerNextAttack(game.GetMap().At(1, 3)) is False
     assert game.MovePlayer(pyHell.Direction.RIGHT) == pyHell.PlayerStatus.PLAYING
 
     assert game.GetMap().IsLurkerAttack(game.GetMap().At(1, 3)) is False
-    assert game.GetMap().At(1, 2).HasType(pyHell.ObjectType.UNDEAD) is False
-    assert game.GetMap().At(1, 3).HasType(pyHell.ObjectType.UNDEAD) is True
+    assert game.GetMap().At(2, 1).HasType(pyHell.ObjectType.UNDEAD) is False
+    assert game.GetMap().At(3, 1).HasType(pyHell.ObjectType.UNDEAD) is True
     assert game.MovePlayer(pyHell.Direction.RIGHT) == pyHell.PlayerStatus.PLAYING
 
-    assert game.GetMap().At(1, 3).HasType(pyHell.ObjectType.UNDEAD) is False
+    assert game.GetMap().At(3, 1).HasType(pyHell.ObjectType.UNDEAD) is False
     assert game.MovePlayer(pyHell.Direction.DOWN) == pyHell.PlayerStatus.PLAYING
 
     assert game.MovePlayer(pyHell.Direction.DOWN) == pyHell.PlayerStatus.WIN
