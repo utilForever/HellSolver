@@ -7,12 +7,11 @@
 #include <HellSolver/Player/Player.hpp>
 
 #include <iostream>
-#include <utility>
 
 namespace HellSolver
 {
 Player::Player(Position pos, std::size_t moveCount)
-    : m_pos(std::move(pos)), m_moveCount(moveCount)
+    : m_pos(pos), m_moveCount(moveCount)
 {
     // Do nothing
 }
@@ -28,16 +27,16 @@ Position Player::ProcessMove(Direction dir)
     switch (dir)
     {
         case Direction::UP:
-            m_pos.first--;
+            m_pos.y -= 1;
             break;
         case Direction::DOWN:
-            m_pos.first++;
+            m_pos.y += 1;
             break;
         case Direction::LEFT:
-            m_pos.second--;
+            m_pos.x -= 1;
             break;
         case Direction::RIGHT:
-            m_pos.second++;
+            m_pos.x += 1;
             break;
         case Direction::INVALID:
             break;

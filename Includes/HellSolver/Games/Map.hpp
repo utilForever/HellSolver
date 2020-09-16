@@ -8,6 +8,7 @@
 #define HELL_SOLVER_MAP_HPP
 
 #include <HellSolver/Games/Object.hpp>
+#include <HellSolver/Games/Position.hpp>
 
 #include <string>
 #include <vector>

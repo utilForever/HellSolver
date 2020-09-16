@@ -13,6 +13,7 @@
 #include <HellSolver/Games/Game.hpp>
 #include <HellSolver/Games/Map.hpp>
 #include <HellSolver/Games/Object.hpp>
+#include <HellSolver/Games/Position.hpp>
 #include <HellSolver/HellSolver.hpp>
 #include <HellSolver/Player/Player.hpp>
 

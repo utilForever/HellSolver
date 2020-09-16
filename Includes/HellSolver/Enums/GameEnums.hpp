@@ -62,7 +62,6 @@ enum class Direction
 };
 
 using Tile = std::pair<ObjectType, ObjectType>;
-using Position = std::pair<std::size_t, std::size_t>;
 
 //! Returns \p type is the lurker type.
 //! \param type The type to check that it is the lurker type.

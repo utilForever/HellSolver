@@ -69,15 +69,15 @@ PlayerStatus Game::MovePlayer(Direction dir)
             break;
     }
 
-    Object block = m_map.At(pos.first, pos.second);
+    Object block = m_map.At(pos.x, pos.y);
     if (block.HasType(ObjectType::KEY))
     {
         m_gamePlayer->SetKey();
-        m_map.At(pos.first, pos.second).Remove(ObjectType::KEY);
+        m_map.At(pos.x, pos.y).Remove(ObjectType::KEY);
     }
     else if (block.HasType(ObjectType::LOCK))
     {
-        m_map.At(pos.first, pos.second).Remove(ObjectType::LOCK);
+        m_map.At(pos.x, pos.y).Remove(ObjectType::LOCK);
     }
     else if (block.HasType(ObjectType::SPIKE) ||
              m_map.CanLurkerAttackThisMove(block))
@@ -93,7 +93,7 @@ PlayerStatus Game::MovePlayer(Direction dir)
 MoveState Game::CanMove(Position pos, Direction dir) const
 {
     const Position nextPos = Move(pos, dir);
-    const std::size_t nextX = nextPos.first, nextY = nextPos.second;
+    const std::size_t nextX = nextPos.x, nextY = nextPos.y;
     const Object blockType = m_map.At(nextX, nextY);
 
     // If encountered block is ENDPOINT, without any other objects.
@@ -136,23 +136,23 @@ MoveState Game::CanMove(Position pos, Direction dir) const
 
 Position Game::Move(Position pos, Direction dir)
 {
-    std::size_t dx = pos.first, dy = pos.second;
+    std::size_t dx = pos.x, dy = pos.y;
 
     if (dir == Direction::UP)
     {
-        dx -= 1;
+        dy -= 1;
     }
     else if (dir == Direction::DOWN)
     {
-        dx += 1;
+        dy += 1;
     }
     else if (dir == Direction::LEFT)
     {
-        dy -= 1;
+        dx -= 1;
     }
     else if (dir == Direction::RIGHT)
     {
-        dy += 1;
+        dx += 1;
     }
 
     return { dx, dy };
@@ -163,15 +163,14 @@ void Game::PushRock(Position pos, Direction dir) const
     const Position curRockPos = Move(pos, dir);
     const Position nextRockPos = Move(pos, dir);
 
-    const Object nextRockPosObject =
-        m_map.At(nextRockPos.first, nextRockPos.second);
+    const Object nextRockPosObject = m_map.At(nextRockPos.x, nextRockPos.y);
 
     if (!nextRockPosObject.HasType(ObjectType::WALL, ObjectType::DEVIL,
                                    ObjectType::LOCK, ObjectType::UNDEAD,
                                    ObjectType::ROCK))
     {
-        m_map.At(curRockPos.first, curRockPos.second).Remove(ObjectType::ROCK);
-        m_map.At(nextRockPos.first, nextRockPos.second).Add(ObjectType::ROCK);
+        m_map.At(curRockPos.x, curRockPos.y).Remove(ObjectType::ROCK);
+        m_map.At(nextRockPos.x, nextRockPos.y).Add(ObjectType::ROCK);
     }
 }
 
@@ -181,21 +180,18 @@ void Game::PushUndead(Position pos, Direction dir) const
     const Position nextUndeadPos = Move(pos, dir);
 
     const Object nextUndeadPosObject =
-        m_map.At(nextUndeadPos.first, nextUndeadPos.second);
+        m_map.At(nextUndeadPos.x, nextUndeadPos.y);
 
     if (nextUndeadPosObject.HasType(ObjectType::WALL, ObjectType::DEVIL,
                                     ObjectType::LOCK, ObjectType::UNDEAD,
                                     ObjectType::ROCK))
     {
-        m_map.At(curUndeadPos.first, curUndeadPos.second)
-            .Remove(ObjectType::UNDEAD);
+        m_map.At(curUndeadPos.x, curUndeadPos.y).Remove(ObjectType::UNDEAD);
     }
     else
     {
-        m_map.At(curUndeadPos.first, curUndeadPos.second)
-            .Remove(ObjectType::UNDEAD);
-        m_map.At(nextUndeadPos.first, nextUndeadPos.second)
-            .Add(ObjectType::UNDEAD);
+        m_map.At(curUndeadPos.x, curUndeadPos.y).Remove(ObjectType::UNDEAD);
+        m_map.At(nextUndeadPos.x, nextUndeadPos.y).Add(ObjectType::UNDEAD);
     }
 }
 }  // namespace HellSolver

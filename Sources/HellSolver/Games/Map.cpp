@@ -15,7 +15,7 @@ void Map::Load(std::string_view filename)
     std::ifstream mapFile{ filename.data() };
 
     mapFile >> m_width >> m_height >> m_initMoveCount;
-    mapFile >> m_startPos.first >> m_startPos.second;
+    mapFile >> m_startPos.x >> m_startPos.y;
 
     int val = 0;
     for (std::size_t i = 0; i < m_width * m_height; ++i)
@@ -100,6 +100,6 @@ bool Map::CanLurkerAttackNextMove(Object& object) const
 
 Object& Map::At(std::size_t x, std::size_t y) const
 {
-    return const_cast<Object&>(m_board.at(x * m_width + y));
+    return const_cast<Object&>(m_board.at(y * m_width + x));
 }
 }  // namespace HellSolver
