@@ -18,8 +18,8 @@ TEST_CASE("[Map] - 1")
     CHECK(game.GetMap().GetHeight() == 8);
 
     CHECK(game.GetMap().At(1, 1).HasType(ObjectType::WALL));
-    CHECK(game.GetMap().At(2, 4).HasType(ObjectType::UNDEAD));
-    CHECK(game.GetMap().At(5, 2).HasType(ObjectType::ROCK));
+    CHECK(game.GetMap().At(4, 2).HasType(ObjectType::UNDEAD));
+    CHECK(game.GetMap().At(2, 5).HasType(ObjectType::ROCK));
     CHECK(game.GetMap().At(6, 6).HasType(ObjectType::ENDPOINT));
 
     CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
@@ -61,8 +61,8 @@ TEST_CASE("[Map] - 2")
     CHECK(game.GetMap().GetHeight() == 8);
 
     CHECK(game.GetMap().At(2, 2).HasType(ObjectType::UNDEAD));
-    CHECK(game.GetMap().At(2, 4).HasType(ObjectType::SPIKE));
-    CHECK(game.GetMap().At(6, 5).HasType(ObjectType::ENDPOINT));
+    CHECK(game.GetMap().At(4, 2).HasType(ObjectType::SPIKE));
+    CHECK(game.GetMap().At(5, 6).HasType(ObjectType::ENDPOINT));
     CHECK(game.GetPlayer().GetMoveCount() == 24);
 
     CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
@@ -73,10 +73,10 @@ TEST_CASE("[Map] - 2")
     CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
     CHECK(game.GetPlayer().GetMoveCount() == 18);
 
-    CHECK(game.GetMap().At(1, 2).HasType(ObjectType::UNDEAD));
+    CHECK(game.GetMap().At(2, 1).HasType(ObjectType::UNDEAD));
 
     CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
-    CHECK(game.GetMap().At(1, 2).HasType(ObjectType::UNDEAD));
+    CHECK(game.GetMap().At(2, 1).HasType(ObjectType::UNDEAD));
     CHECK(game.GetPlayer().GetMoveCount() == 17);
 
     CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
@@ -90,7 +90,7 @@ TEST_CASE("[Map] - 2")
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
     CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
 
-    CHECK(game.GetMap().At(2, 5).HasType(ObjectType::SPIKE));
+    CHECK(game.GetMap().At(5, 2).HasType(ObjectType::SPIKE));
     CHECK(game.GetPlayer().GetMoveCount() == 10);
 
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
@@ -112,8 +112,8 @@ TEST_CASE("[Map] - 3")
     CHECK(game.GetMap().GetWidth() == 10);
     CHECK(game.GetMap().GetHeight() == 9);
     CHECK(game.GetPlayer().GetMoveCount() == 32);
-    CHECK(game.GetMap().At(1, 7).HasType(ObjectType::ENDPOINT));
-    CHECK(game.GetMap().At(2, 7).HasType(ObjectType::LOCK));
+    CHECK(game.GetMap().At(7, 1).HasType(ObjectType::ENDPOINT));
+    CHECK(game.GetMap().At(7, 2).HasType(ObjectType::LOCK));
 
     CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
     CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
@@ -159,8 +159,8 @@ TEST_CASE("[Map] - 4")
     CHECK(game.GetMap().GetWidth() == 10);
     CHECK(game.GetMap().GetHeight() == 7);
     CHECK(game.GetPlayer().GetMoveCount() == 23);
-    CHECK(game.GetMap().At(3, 7).HasType(ObjectType::ENDPOINT));
-    CHECK(game.GetMap().At(2, 6).HasType(ObjectType::LOCK));
+    CHECK(game.GetMap().At(7, 3).HasType(ObjectType::ENDPOINT));
+    CHECK(game.GetMap().At(6, 2).HasType(ObjectType::LOCK));
 
     CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
     CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
@@ -204,13 +204,13 @@ TEST_CASE("[Map] - 5")
     CHECK(game.GetMap().GetWidth() == 8);
     CHECK(game.GetMap().GetHeight() == 9);
     CHECK(game.GetPlayer().GetMoveCount() == 23);
-    CHECK(game.GetMap().At(1, 5).HasType(ObjectType::ENDPOINT));
-    CHECK(game.GetMap().At(2, 4).HasType(ObjectType::LOCK));
-    CHECK(game.GetMap().At(5, 1).HasType(ObjectType::UNDEAD));
+    CHECK(game.GetMap().At(5, 1).HasType(ObjectType::ENDPOINT));
+    CHECK(game.GetMap().At(4, 2).HasType(ObjectType::LOCK));
+    CHECK(game.GetMap().At(1, 5).HasType(ObjectType::UNDEAD));
 
     CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
     CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
-    CHECK(game.GetMap().At(6, 1).HasType(ObjectType::UNDEAD));
+    CHECK(game.GetMap().At(1, 6).HasType(ObjectType::UNDEAD));
 
     CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
     CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
@@ -255,7 +255,7 @@ TEST_CASE("[Map] - 6")
     CHECK(game.GetMap().GetWidth() == 9);
     CHECK(game.GetMap().GetHeight() == 10);
     CHECK(game.GetPlayer().GetMoveCount() == 43);
-    CHECK(game.GetMap().At(8, 6).HasType(ObjectType::ENDPOINT));
+    CHECK(game.GetMap().At(6, 8).HasType(ObjectType::ENDPOINT));
 
     CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
     CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
@@ -329,7 +329,7 @@ TEST_CASE("[Map] - 7")
     CHECK(game.GetMap().GetWidth() == 8);
     CHECK(game.GetMap().GetHeight() == 9);
     CHECK(game.GetPlayer().GetMoveCount() == 32);
-    CHECK(game.GetMap().At(1, 5).HasType(ObjectType::ENDPOINT));
+    CHECK(game.GetMap().At(5, 1).HasType(ObjectType::ENDPOINT));
 
     CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
     CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
@@ -389,8 +389,8 @@ TEST_CASE("[Map] - 8")
     CHECK(game.GetMap().GetWidth() == 11);
     CHECK(game.GetMap().GetHeight() == 14);
     CHECK(game.GetPlayer().GetMoveCount() == 12);
-    CHECK(game.GetMap().At(2, 5).HasType(ObjectType::UNDEAD));
-    CHECK(game.GetMap().At(2, 5).GetTile().second == ObjectType::ENDPOINT);
+    CHECK(game.GetMap().At(5, 2).HasType(ObjectType::UNDEAD));
+    CHECK(game.GetMap().At(5, 2).GetTile().second == ObjectType::ENDPOINT);
 
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
     CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
@@ -417,7 +417,7 @@ TEST_CASE("[Map] - 9")
     CHECK(game.GetMap().GetWidth() == 11);
     CHECK(game.GetMap().GetHeight() == 8);
     CHECK(game.GetPlayer().GetMoveCount() == 33);
-    CHECK(game.GetMap().At(0, 5).HasType(ObjectType::ENDPOINT));
+    CHECK(game.GetMap().At(5, 0).HasType(ObjectType::ENDPOINT));
 
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
     CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
