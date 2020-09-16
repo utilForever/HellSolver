@@ -4,8 +4,8 @@
 // personal capacity and are not conveying any rights to any intellectual
 // property of any third parties.
 
-#include <Games/Object.hpp>
-#include <HellSolver/Games/Object.hpp>
+#include <HellSolver/Models/Object.hpp>
+#include <Models/Object.hpp>
 
 using namespace HellSolver;
 

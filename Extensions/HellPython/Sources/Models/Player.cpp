@@ -4,8 +4,8 @@
 // personal capacity and are not conveying any rights to any intellectual
 // property of any third parties.
 
-#include <HellSolver/Player/Player.hpp>
-#include <Player/Player.hpp>
+#include <HellSolver/Models/Player.hpp>
+#include <Models/Player.hpp>
 
 using namespace HellSolver;
 
@@ -16,7 +16,7 @@ void AddPlayer(pybind11::module& m)
         .def(pybind11::init<Position, std::size_t>())
         .def("Reset", static_cast<void (Player::*)(Position, std::size_t)>(
                           &Player::Reset))
-        .def("Processmove",
+        .def("ProcessMove",
              static_cast<Position (Player::*)(Direction)>(&Player::ProcessMove))
         .def("GetStatus", static_cast<PlayerStatus (Player::*)(bool) const>(
                               &Player::GetStatus))

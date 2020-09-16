@@ -4,8 +4,8 @@
 // personal capacity and are not conveying any rights to any intellectual
 // property of any third parties.
 
-#include <Games/Map.hpp>
-#include <HellSolver/Games/Map.hpp>
+#include <HellSolver/Models/Map.hpp>
+#include <Models/Map.hpp>
 
 using namespace HellSolver;
 

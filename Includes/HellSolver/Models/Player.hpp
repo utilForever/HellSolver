@@ -8,9 +8,7 @@
 #define HELL_SOLVER_PLAYER_HPP
 
 #include <HellSolver/Enums/GameEnums.hpp>
-#include <HellSolver/Games/Position.hpp>
-
-#include <utility>
+#include <HellSolver/Models/Position.hpp>
 
 namespace HellSolver
 {

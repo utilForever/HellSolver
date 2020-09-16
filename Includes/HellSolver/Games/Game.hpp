@@ -7,11 +7,10 @@
 #ifndef HELL_SOLVER_GAME_HPP
 #define HELL_SOLVER_GAME_HPP
 
-#include <HellSolver/Games/Map.hpp>
-#include <HellSolver/Player/Player.hpp>
+#include <HellSolver/Models/Map.hpp>
+#include <HellSolver/Models/Player.hpp>
 
 #include <memory>
-#include <string_view>
 
 namespace HellSolver
 {

@@ -4,7 +4,7 @@
 // personal capacity and are not conveying any rights to any intellectual
 // property of any third parties.
 
-#include <HellSolver/Games/Map.hpp>
+#include <HellSolver/Models/Map.hpp>
 
 #include <fstream>
 

@@ -4,9 +4,7 @@
 // personal capacity and are not conveying any rights to any intellectual
 // property of any third parties.
 
-#include <HellSolver/Player/Player.hpp>
-
-#include <iostream>
+#include <HellSolver/Models/Player.hpp>
 
 namespace HellSolver
 {

@@ -4,8 +4,8 @@
 // personal capacity and are not conveying any rights to any intellectual
 // property of any third parties.
 
-#include <Games/Position.hpp>
-#include <HellSolver/Games/Position.hpp>
+#include <Models/Position.hpp>
+#include <HellSolver/Models/Position.hpp>
 
 #include <pybind11/stl.h>
 

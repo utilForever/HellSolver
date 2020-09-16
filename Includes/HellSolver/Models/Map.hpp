@@ -7,8 +7,8 @@
 #ifndef HELL_SOLVER_MAP_HPP
 #define HELL_SOLVER_MAP_HPP
 
-#include <HellSolver/Games/Object.hpp>
-#include <HellSolver/Games/Position.hpp>
+#include <HellSolver/Models/Object.hpp>
+#include <HellSolver/Models/Position.hpp>
 
 #include <string>
 #include <vector>
@@ -78,7 +78,7 @@ class Map
     std::vector<Object> m_initBoard;
     std::vector<Object> m_board;
 
-    Position m_startPos;
+    Position m_startPos{ 0, 0 };
     std::size_t m_initMoveCount = 1;
 
     bool m_lurkerFlag = true;

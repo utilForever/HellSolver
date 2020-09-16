@@ -8,10 +8,10 @@
 #include <Agents/RandomAgent.hpp>
 #include <Enums/GameEnums.hpp>
 #include <Games/Game.hpp>
-#include <Games/Map.hpp>
-#include <Games/Object.hpp>
-#include <Games/Position.hpp>
-#include <Player/Player.hpp>
+#include <Models/Map.hpp>
+#include <Models/Object.hpp>
+#include <Models/Player.hpp>
+#include <Models/Position.hpp>
 
 #include <pybind11/pybind11.h>
 
@@ -20,11 +20,14 @@ PYBIND11_MODULE(pyHell, m)
     m.doc() =
         R"pbdoc(Helltaker simulator with some reinforcement learning)pbdoc";
 
-    AddGame(m);
     AddIAgent(m);
     AddRandomAgent(m);
+
     AddGameEnums(m);
     AddGameEnumsUtils(m);
+
+    AddGame(m);
+
     AddMap(m);
     AddObject(m);
     AddPosition(m);
