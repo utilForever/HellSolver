@@ -8,6 +8,8 @@
 
 #include <HellSolver/Agents/RandomAgent.hpp>
 
+#include <algorithm>
+
 using namespace HellSolver;
 
 TEST_CASE("[RandomAgent] - Basic")
