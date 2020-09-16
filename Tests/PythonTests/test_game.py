@@ -364,7 +364,7 @@ def test_map8():
     assert game.GetMap().GetHeight() == 14
     assert game.GetPlayer().GetMoveCount() == 12
     assert game.GetMap().At(5, 2).HasType(pyHell.ObjectType.UNDEAD)
-    assert game.GetMap().At(5, 2).GetTypes()[1] == pyHell.ObjectType.ENDPOINT
+    assert game.GetMap().At(5, 2).GetTile()[1] == pyHell.ObjectType.ENDPOINT
 
     assert game.MovePlayer(pyHell.Direction.RIGHT) == pyHell.PlayerStatus.PLAYING
     assert game.MovePlayer(pyHell.Direction.UP) == pyHell.PlayerStatus.PLAYING
