@@ -7,7 +7,14 @@
 #ifndef HELL_SOLVER_HPP
 #define HELL_SOLVER_HPP
 
+#include <HellSolver/Agents/IAgent.hpp>
+#include <HellSolver/Agents/RandomAgent.hpp>
+#include <HellSolver/Enums/GameEnums.hpp>
+#include <HellSolver/Games/Game.hpp>
 #include <HellSolver/HellSolver.hpp>
-#include <HellSolver/Test.hpp>
+#include <HellSolver/Models/Map.hpp>
+#include <HellSolver/Models/Object.hpp>
+#include <HellSolver/Models/Player.hpp>
+#include <HellSolver/Models/Position.hpp>
 
 #endif  // HELL_SOLVER_HPP

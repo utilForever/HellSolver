@@ -18,8 +18,11 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Includes
 include_directories(Includes)
+include_directories(Extensions/HellPython/Includes)
 include_directories(Libraries)
 include_directories(Libraries/doctest/doctest)
+include_directories(Libraries/pybind11/include)
+include_directories(Libraries/random/include)
 
 # Compile options
 include(CMake/CompileOptions.cmake)
@@ -44,3 +47,9 @@ if (CMAKE_BUILD_TYPE MATCHES Debug AND CMAKE_COMPILER_IS_GNUCXX AND BUILD_COVERA
     include(CodeCoverage)
     setup_target_for_coverage(${PROJECT_NAME}_coverage UnitTests coverage)
 endif()
+
+add_subdirectory(Libraries/pybind11)
+if (BUILD_FROM_PIP)
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${DEFAULT_CMAKE_LIBRARY_OUTPUT_DIRECTORY})
+endif()
+add_subdirectory(Extensions/HellPython)
