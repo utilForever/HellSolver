@@ -161,7 +161,7 @@ Position Game::Move(Position pos, Direction dir)
 void Game::PushRock(Position pos, Direction dir) const
 {
     const Position curRockPos = Move(pos, dir);
-    const Position nextRockPos = Move(pos, dir);
+    const Position nextRockPos = Move(curRockPos, dir);
 
     const Object nextRockPosObject = m_map.At(nextRockPos.x, nextRockPos.y);
 
@@ -177,7 +177,7 @@ void Game::PushRock(Position pos, Direction dir) const
 void Game::PushUndead(Position pos, Direction dir) const
 {
     const Position curUndeadPos = Move(pos, dir);
-    const Position nextUndeadPos = Move(pos, dir);
+    const Position nextUndeadPos = Move(curUndeadPos, dir);
 
     const Object nextUndeadPosObject =
         m_map.At(nextUndeadPos.x, nextUndeadPos.y);
