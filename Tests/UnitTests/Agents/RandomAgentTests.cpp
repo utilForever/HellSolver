@@ -22,5 +22,8 @@ TEST_CASE("[RandomAgent] - Basic")
 
     const Direction action = agent.GetAction(game);
 
-    CHECK_NE(std::find(begin(actions), end(actions), action), end(actions));
+    const auto iter1 =
+        std::find(std::begin(actions), std::end(actions), action);
+    const auto iter2 = std::end(actions);
+    CHECK_NE(iter1, iter2);
 }
