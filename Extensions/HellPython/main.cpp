@@ -10,6 +10,7 @@
 #include <Games/Game.hpp>
 #include <Games/Map.hpp>
 #include <Games/Object.hpp>
+#include <Games/Position.hpp>
 #include <Player/Player.hpp>
 
 #include <pybind11/pybind11.h>
@@ -26,5 +27,6 @@ PYBIND11_MODULE(pyHell, m)
     AddGameEnumsUtils(m);
     AddMap(m);
     AddObject(m);
+    AddPosition(m);
     AddPlayer(m);
 }
