@@ -165,15 +165,3 @@ def undeadCheckWithLurker():
     assert game.MovePlayer(pyHell.Direction.DOWN) == pyHell.PlayerStatus.PLAYING
 
     assert game.MovePlayer(pyHell.Direction.DOWN) == pyHell.PlayerStatus.WIN
-
-
-if __name__ == "__main__":
-    isGameEndTest()
-    canMoveTestMap()
-    lurkerTest()
-    lockTest()
-    undeadMakeDead()
-    dancingRock()
-    slidingUndead()
-    undeadWithLurker()
-    undeadCheckWithLurker()

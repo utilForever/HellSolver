@@ -438,14 +438,3 @@ def test_map9():
     assert game.MovePlayer(pyHell.Direction.UP) == pyHell.PlayerStatus.WIN
 
     assert game.GetPlayer().GetMoveCount() == 0
-
-if __name__ == "__main__":
-    test_map1()
-    test_map2()
-    test_map3()
-    test_map4()
-    test_map5()
-    test_map6()
-    test_map7()
-    test_map8()
-    test_map9()
