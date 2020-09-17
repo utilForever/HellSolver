@@ -79,8 +79,7 @@ PlayerStatus Game::MovePlayer(Direction dir)
     {
         m_map.At(pos.x, pos.y).Remove(ObjectType::LOCK);
     }
-    else if (block.HasType(ObjectType::SPIKE) ||
-             m_map.CanLurkerAttackThisMove(block))
+    else if (block.HasType(ObjectType::SPIKE) || m_map.CanLurkerAttack(block))
     {
         m_gamePlayer->DecreaseMoveCount();
     }

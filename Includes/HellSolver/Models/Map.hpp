@@ -58,7 +58,7 @@ class Map
     //! Returns the lurker can attack \p object at this move.
     //! \param object The object to be attacked by the lurker.
     //! \return true if the lurker can attack at this move, false otherwise.
-    [[nodiscard]] bool CanLurkerAttackThisMove(Object& object) const;
+    [[nodiscard]] bool CanLurkerAttack(Object& object) const;
 
     //! Assigns an object to the map.
     //! \param x The x position.

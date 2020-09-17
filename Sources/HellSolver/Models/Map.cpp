@@ -79,14 +79,14 @@ void Map::ProcessUndeadObjects()
     for (std::size_t i = 0; i < m_width * m_height; ++i)
     {
         if (m_board[i].HasType(ObjectType::UNDEAD) &&
-            CanLurkerAttackThisMove(m_board[i]))
+            CanLurkerAttack(m_board[i]))
         {
             m_board[i].Remove(ObjectType::UNDEAD);
         }
     }
 }
 
-bool Map::CanLurkerAttackThisMove(Object& object) const
+bool Map::CanLurkerAttack(Object& object) const
 {
     return (!m_lurkerFlag && object.HasType(ObjectType::DOWN)) ||
            (m_lurkerFlag && object.HasType(ObjectType::UP));
