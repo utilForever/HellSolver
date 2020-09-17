@@ -183,7 +183,7 @@ void Game::PushUndead(Position pos, Direction dir) const
 
     if (nextUndeadPosObject.HasType(ObjectType::WALL, ObjectType::DEVIL,
                                     ObjectType::LOCK, ObjectType::UNDEAD,
-                                    ObjectType::ROCK))
+                                    ObjectType::ROCK, ObjectType::SPIKE))
     {
         m_map.At(curUndeadPos.x, curUndeadPos.y).Remove(ObjectType::UNDEAD);
     }
