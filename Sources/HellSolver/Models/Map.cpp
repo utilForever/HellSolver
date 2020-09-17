@@ -28,18 +28,13 @@ void Map::Load(std::string_view filename)
             Tile{ static_cast<ObjectType>(val), ObjectType::EMPTY });
     }
 
-    mapFile >> val;
-
-    if (val)
+    for (std::size_t i = 0; i < m_width * m_height; ++i)
     {
-        for (std::size_t i = 0; i < m_width * m_height; ++i)
-        {
-            mapFile >> val;
-            const auto type = static_cast<ObjectType>(val);
+        mapFile >> val;
+        const auto type = static_cast<ObjectType>(val);
 
-            m_board[i].Init(type);
-            m_initBoard[i].Init(type);
-        }
+        m_board[i].Init(type);
+        m_initBoard[i].Init(type);
     }
 }
 
