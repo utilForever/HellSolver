@@ -54,11 +54,6 @@ void Object::Init(ObjectType type)
     }
 }
 
-Tile Object::GetTile() const
-{
-    return m_tile;
-}
-
 bool Object::HasType(ObjectType type) const
 {
     if (type == ObjectType::EMPTY)
