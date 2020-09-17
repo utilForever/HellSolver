@@ -4,11 +4,16 @@
 // personal capacity and are not conveying any rights to any intellectual
 // property of any third parties.
 
-#include <Agents/IAgent.hpp>
-#include <HellSolver/Agents/IAgent.hpp>
+#include <Models/Position.hpp>
+#include <HellSolver/Models/Position.hpp>
+
+#include <pybind11/stl.h>
 
 using namespace HellSolver;
 
-void AddIAgent(pybind11::module& m){
-    pybind11::class_<IAgent>(m, "IAgent");
+void AddPosition(pybind11::module& m)
+{
+    pybind11::class_<Position>(m, "Position")
+        .def_readwrite("x", &Position::x)
+        .def_readwrite("y", &Position::y);
 }

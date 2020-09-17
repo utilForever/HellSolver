@@ -1,13 +1,15 @@
-//
-// Created by flow on 2020-09-10.
-//
+// Copyright (c) 2020 HellSolver Team
+// Chris Ohk, Juhan Cha, Woosung Joung, Yongwook Choi
+// We are making my contributions/submissions to this project solely in our
+// personal capacity and are not conveying any rights to any intellectual
+// property of any third parties.
 
-#ifndef HELL_SOLVER_RANDOMAGENT_HPP
-#define HELL_SOLVER_RANDOMAGENT_HPP
+#ifndef HELL_SOLVER_RANDOM_AGENT_HPP
+#define HELL_SOLVER_RANDOM_AGENT_HPP
 
 #include <HellSolver/Agents/IAgent.hpp>
 
-namespace hell_solver
+namespace HellSolver
 {
 //!
 //! \brief RandomAgent class.
@@ -17,14 +19,29 @@ namespace hell_solver
 class RandomAgent final : public IAgent
 {
  public:
+    //! Default constructor.
+    RandomAgent() = default;
+
+    //! Deleted copy constructor.
+    RandomAgent(const RandomAgent&) = delete;
+
+    //! Deleted move constructor.
+    RandomAgent(RandomAgent&&) noexcept = delete;
+
     //! Default virtual destructor.
-    virtual ~RandomAgent() = default;
+    ~RandomAgent() override = default;
+
+    //! Deleted copy assignment operator.
+    RandomAgent& operator=(const RandomAgent&) = delete;
+
+    //! Deleted move assignment operator.
+    RandomAgent& operator=(RandomAgent&&) noexcept = delete;
 
     //! Gets an action of agent.
     //! \param state The current game state.
     //! \return An action of agent.
     Direction GetAction(const Game& state) override;
 };
-}  // namespace hell_solver
+}  // namespace HellSolver
 
-#endif  // HELL_SOLVER_RANDOMAGENT_HPP
+#endif  // HELL_SOLVER_RANDOM_AGENT_HPP

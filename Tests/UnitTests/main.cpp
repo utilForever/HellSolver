@@ -4,11 +4,15 @@
 // personal capacity and are not conveying any rights to any intellectual
 // property of any third parties.
 
-#ifndef HELL_PYTHON_IAGENT_HPP
-#define HELL_PYTHON_IAGENT_HPP
+#define DOCTEST_CONFIG_IMPLEMENT
+#include <doctest.h>
 
-#include <pybind11/pybind11.h>
+int main()
+{
+    doctest::Context context;
 
-void AddIAgent(pybind11::module& m);
+    // Run queries, or run tests unless --no-run is specified
+    const int res = context.run();
 
-#endif  // HELL_PYTHON_IAGENT_HPP
+    return res;
+}

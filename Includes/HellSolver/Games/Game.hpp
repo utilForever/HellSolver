@@ -7,15 +7,13 @@
 #ifndef HELL_SOLVER_GAME_HPP
 #define HELL_SOLVER_GAME_HPP
 
-#include <HellSolver/Games/Map.hpp>
-#include <HellSolver/Player/Player.hpp>
+#include <HellSolver/Models/Map.hpp>
+#include <HellSolver/Models/Player.hpp>
 
-#include <string_view>
+#include <memory>
 
-namespace hell_solver
+namespace HellSolver
 {
-using Position = std::pair<std::size_t, std::size_t>;
-
 //!
 //! \brief Game class.
 //!
@@ -28,16 +26,16 @@ class Game
     //! \param filename The file name to load a map.
     explicit Game(std::string_view filename);
 
-    //! Resets game.
+    //! Resets a game.
     void Reset();
 
-    //! Gets map.
-    //! \return the map.
+    //! Gets a map object.
+    //! \return A reference to map object.
     [[nodiscard]] Map& GetMap();
 
-    //! Gets player.
-    //! \return the player.
-    [[nodiscard]] Player& GetPlayer();
+    //! Gets a player.
+    //! \return A reference to player object.
+    [[nodiscard]] Player& GetPlayer() const;
 
     //! Moves the player to the direction.
     //! \param dir The direction to move.
@@ -45,34 +43,31 @@ class Game
     [[nodiscard]] PlayerStatus MovePlayer(Direction dir);
 
  private:
-    Map m_map;
-
-    Player* GamePlayer;
-
     //! Checks an object can move.
+    //! \param pos The current position.
     //! \param dir The direction to move.
-    //! \return the flag indicates that the player can move.
-    [[nodiscard]] MoveState CanMove(size_t x, size_t y, Direction dir);
+    //! \return true if an object can move, false otherwise.
+    [[nodiscard]] MoveState CanMove(Position pos, Direction dir) const;
 
-    //! Move current coordinates to \p direction.
-    //! \param x The current x coordinate.
-    //! \param y The current y coordinate.
+    //! Moves current position to \p direction.
+    //! \param pos The current position.
     //! \param dir The direction to move.
     //! \return The moved coordinate.
-    static std::pair<std::size_t, std::size_t> Move(std::size_t x,
-                                                    std::size_t y,
-                                                    Direction dir);
+    static Position Move(Position pos, Direction dir);
 
-    //! Push the rock.
-    //! \param x The current x coordinate of rock.
-    //! \param y The current y coordinate of rock.
-    void PushRock(size_t x, size_t y, Direction dir);
+    //! Pushes the rock.
+    //! \param pos The current position of the rock.
+    //! \param dir The direction to push.
+    void PushRock(Position pos, Direction dir) const;
 
-    //! Push the undead.
-    //! \param x The current x coordinate of undead.
-    //! \param y The current y coordinate of undead.
-    void PushUndead(size_t x, size_t y, Direction dir);
+    //! Pushes the undead.
+    //! \param pos The current position of the undead.
+    //! \param dir The direction to push.
+    void PushUndead(Position pos, Direction dir) const;
+
+    Map m_map;
+    std::unique_ptr<Player> m_gamePlayer;
 };
-}  // namespace hell_solver
+}  // namespace HellSolver
 
 #endif  // HELL_SOLVER_GAME_HPP

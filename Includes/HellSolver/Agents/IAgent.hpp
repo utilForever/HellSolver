@@ -1,13 +1,15 @@
-//
-// Created by flow on 2020-09-10.
-//
+// Copyright (c) 2020 HellSolver Team
+// Chris Ohk, Juhan Cha, Woosung Joung, Yongwook Choi
+// We are making my contributions/submissions to this project solely in our
+// personal capacity and are not conveying any rights to any intellectual
+// property of any third parties.
 
 #ifndef HELL_SOLVER_IAGENT_HPP
 #define HELL_SOLVER_IAGENT_HPP
 
 #include <HellSolver/Games/Game.hpp>
 
-namespace hell_solver
+namespace HellSolver
 {
 //!
 //! \brief IAgent class.
@@ -25,6 +27,6 @@ class IAgent
     //! \return An action of agent.
     virtual Direction GetAction(const Game& state) = 0;
 };
-}  // namespace hell_solver
+}  // namespace HellSolver
 
 #endif  // HELL_SOLVER_IAGENT_HPP

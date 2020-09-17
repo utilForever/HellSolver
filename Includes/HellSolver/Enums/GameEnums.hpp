@@ -9,8 +9,9 @@
 
 #include <utility>
 
-namespace hell_solver
+namespace HellSolver
 {
+//! \brief An enumerator for identifying the object.
 enum class ObjectType
 {
     FIXED_TYPE,   // 0 first
@@ -30,6 +31,7 @@ enum class ObjectType
     ENDPOINT      // 14 second
 };
 
+//! \brief An enumerator for identifying the move state.
 enum class MoveState
 {
     MOVE,
@@ -40,6 +42,7 @@ enum class MoveState
     ENDPOINT
 };
 
+//! \brief An enumerator for identifying the status of the player.
 enum class PlayerStatus
 {
     PLAYING,
@@ -48,6 +51,7 @@ enum class PlayerStatus
     INVALID
 };
 
+//! \brief An enumerator for identifying the direction.
 enum class Direction
 {
     UP,
@@ -57,14 +61,16 @@ enum class Direction
     INVALID
 };
 
+using Tile = std::pair<ObjectType, ObjectType>;
+
+//! Returns \p type is the lurker type.
+//! \param type The type to check that it is the lurker type.
+//! \return true if it is the lurker type, false otherwise.
 constexpr bool IsLurkerType(ObjectType type)
 {
     return (type > ObjectType::LURKER_TYPE && type < ObjectType::MOVING_TYPE);
 }
 
-typedef std::pair<ObjectType, ObjectType> Tile;
-typedef std::pair<std::size_t, std::size_t> Position;
-
-}  // namespace hell_solver
+}  // namespace HellSolver
 
 #endif  // HELL_SOLVER_GAME_ENUMS_HPP

@@ -1,12 +1,14 @@
-//
-// Created by flow on 2020-09-10.
-//
+// Copyright (c) 2020 HellSolver Team
+// Chris Ohk, Juhan Cha, Woosung Joung, Yongwook Choi
+// We are making my contributions/submissions to this project solely in our
+// personal capacity and are not conveying any rights to any intellectual
+// property of any third parties.
 
 #include <HellSolver/Agents/RandomAgent.hpp>
 
 #include <effolkronium/random.hpp>
 
-namespace hell_solver
+namespace HellSolver
 {
 Direction RandomAgent::GetAction([[maybe_unused]] const Game& state)
 {
@@ -15,4 +17,4 @@ Direction RandomAgent::GetAction([[maybe_unused]] const Game& state)
     return static_cast<Direction>(
         Random::get(0, static_cast<int>(Direction::RIGHT)));
 }
-}  // namespace hell_solver
+}  // namespace HellSolver

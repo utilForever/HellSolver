@@ -4,11 +4,11 @@
 // personal capacity and are not conveying any rights to any intellectual
 // property of any third parties.
 
-#ifndef HELL_PYTHON_IAGENT_HPP
-#define HELL_PYTHON_IAGENT_HPP
+#ifndef HELL_PYTHON_OBJECT_HPP
+#define HELL_PYTHON_OBJECT_HPP
 
 #include <pybind11/pybind11.h>
 
-void AddIAgent(pybind11::module& m);
+void AddObject(pybind11::module& m);
 
-#endif  // HELL_PYTHON_IAGENT_HPP
+#endif  // HELL_PYTHON_OBJECT_HPP

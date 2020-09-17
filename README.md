@@ -75,7 +75,7 @@ You can contact me via e-mail (utilForever at gmail.com). I am always happy to a
 
 The class is licensed under the [MIT License](http://opensource.org/licenses/MIT):
 
-Copyright &copy; 2020 PokeMaster Team
+Copyright &copy; 2020 HellSolver Team
 
   * [Chris Ohk](http://www.github.com/utilForever)
   * [Juhan Cha](https://github.com/hanchaa)
