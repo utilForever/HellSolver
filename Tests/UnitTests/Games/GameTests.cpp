@@ -181,8 +181,6 @@ TEST_CASE("[Game] - UndeadCheckWithLurker")
     CHECK(game.GetMap().At(3, 1).HasType(ObjectType::UP) == true);
     CHECK(game.GetMap().CanLurkerAttackThisMove(game.GetMap().At(3, 1)) ==
           true);
-    CHECK(game.GetMap().CanLurkerAttackNextMove(game.GetMap().At(3, 1)) ==
-          false);
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
 
     CHECK(game.GetMap().CanLurkerAttackThisMove(game.GetMap().At(3, 1)) ==

@@ -92,12 +92,6 @@ bool Map::CanLurkerAttackThisMove(Object& object) const
            (m_lurkerFlag && object.HasType(ObjectType::UP));
 }
 
-bool Map::CanLurkerAttackNextMove(Object& object) const
-{
-    return (m_lurkerFlag && object.HasType(ObjectType::DOWN)) ||
-           (!m_lurkerFlag && object.HasType(ObjectType::UP));
-}
-
 Object& Map::At(std::size_t x, std::size_t y) const
 {
     return const_cast<Object&>(m_board.at(y * m_width + x));
