@@ -197,18 +197,17 @@ TEST_CASE("[Game] - UndeadCheckWithLurker")
 TEST_CASE("[Game] - UndeadCheckWithSpike") {
     Game game(MAPS_DIR "3.txt");
 
-    PlayerStatus res;
-    res = game.MovePlayer(Direction::LEFT);
-    res = game.MovePlayer(Direction::DOWN);
-    res = game.MovePlayer(Direction::DOWN);
-    res = game.MovePlayer(Direction::DOWN);
-    res = game.MovePlayer(Direction::DOWN);
-    res = game.MovePlayer(Direction::LEFT);
-    res = game.MovePlayer(Direction::LEFT);
-    res = game.MovePlayer(Direction::LEFT);
-    res = game.MovePlayer(Direction::LEFT);
-    res = game.MovePlayer(Direction::UP);
-    res = game.MovePlayer(Direction::UP);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
     CHECK(game.GetMap().At(5, 4).HasType(ObjectType::UNDEAD) == false);
     CHECK(game.GetMap().At(5, 5).HasType(ObjectType::UNDEAD) == false);
     CHECK(game.GetPlayer().GetMoveCount() == 18);
