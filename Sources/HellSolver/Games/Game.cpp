@@ -95,15 +95,15 @@ MoveState Game::CanMove(Position pos, Direction dir) const
     const std::size_t nextX = nextPos.x, nextY = nextPos.y;
     const Object blockType = m_map.At(nextX, nextY);
 
-    // If encountered block is ENDPOINT, without any other objects.
-    if (blockType.HasType(ObjectType::ENDPOINT))
-    {
-        return MoveState::ENDPOINT;
-    }
-
     // If encountered block is SPECIAL block,
     if (blockType.HasType(ObjectType::EMPTY))
     {
+        // If encountered block is ENDPOINT, without any other objects.
+        if (blockType.HasType(ObjectType::ENDPOINT))
+        {
+            return MoveState::ENDPOINT;
+        }
+
         return MoveState::MOVE;
     }
 

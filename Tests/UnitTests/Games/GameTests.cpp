@@ -69,15 +69,13 @@ TEST_CASE("[Game] - Lurker")
 {
     Game game(TEST_MAPS_DIR "LurkerTest.txt");
 
-    CHECK(game.GetMap().At(8, 1).HasType(ObjectType::ENDPOINT));
+    CHECK(game.GetMap().At(7, 1).HasType(ObjectType::ENDPOINT));
     CHECK(game.GetMap().At(1, 1).HasType(ObjectType::PLAYER));
-    CHECK(game.GetPlayer().GetMoveCount() == 9);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
     CHECK(game.GetPlayer().GetMoveCount() == 8);
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.GetPlayer().GetMoveCount() == 6);
+    CHECK(game.GetPlayer().GetMoveCount() == 7);
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.GetPlayer().GetMoveCount() == 4);
+    CHECK(game.GetPlayer().GetMoveCount() == 5);
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
     CHECK(game.GetPlayer().GetMoveCount() == 3);
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
