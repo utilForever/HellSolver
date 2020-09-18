@@ -36,3 +36,6 @@ Extensions/HellGUI/.idea/
 /.pytest_cache
 /Extensions/HellGUI/sprites/
 venv/
+
+# etc
+desktop.ini
