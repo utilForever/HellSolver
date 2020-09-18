@@ -9,11 +9,11 @@ def render(game: pyHell.Game, level: int):
     game_map = game.GetMap()
 
     def drawer(img, x, y):
-        return pyglet.sprite.Sprite(img=img, x=y * 100 + offset[level - 1][0],
-                                    y=game_map.GetWidth() * 100 - x * 100 + offset[level - 1][1])
+        return pyglet.sprite.Sprite(img=img, x=x * 100 + offset[level - 1][0],
+                                    y=game_map.GetWidth() * 100 - y * 100 + offset[level - 1][1])
 
-    for _x in range(game_map.GetHeight()):
-        for _y in range(game_map.GetWidth()):
+    for _x in range(game_map.GetWidth()):
+        for _y in range(game_map.GetHeight()):
             if game_map.At(_x, _y).HasType(pyHell.ObjectType.SPIKE):
                 spike = drawer(resources.spike_image, _x, _y)
                 spike.draw()
@@ -47,5 +47,5 @@ def render(game: pyHell.Game, level: int):
                 lock = drawer(resources.lock_image, _x, _y)
                 lock.draw()
 
-    player = drawer(resources.character_image, game.GetPlayer().GetPosition()[0], game.GetPlayer().GetPosition()[1])
+    player = drawer(resources.character_image, game.GetPlayer().GetPosition().x, game.GetPlayer().GetPosition().y)
     player.draw()
