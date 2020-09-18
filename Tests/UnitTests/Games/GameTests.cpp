@@ -69,15 +69,13 @@ TEST_CASE("[Game] - Lurker")
 {
     Game game(TEST_MAPS_DIR "LurkerTest.txt");
 
-    CHECK(game.GetMap().At(8, 1).HasType(ObjectType::ENDPOINT));
+    CHECK(game.GetMap().At(7, 1).HasType(ObjectType::ENDPOINT));
     CHECK(game.GetMap().At(1, 1).HasType(ObjectType::PLAYER));
-    CHECK(game.GetPlayer().GetMoveCount() == 9);
-    CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
     CHECK(game.GetPlayer().GetMoveCount() == 8);
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.GetPlayer().GetMoveCount() == 6);
+    CHECK(game.GetPlayer().GetMoveCount() == 7);
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
-    CHECK(game.GetPlayer().GetMoveCount() == 4);
+    CHECK(game.GetPlayer().GetMoveCount() == 5);
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
     CHECK(game.GetPlayer().GetMoveCount() == 3);
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
@@ -179,13 +177,11 @@ TEST_CASE("[Game] - UndeadCheckWithLurker")
 
     CHECK(game.GetMap().At(2, 1).HasType(ObjectType::UNDEAD) == true);
     CHECK(game.GetMap().At(3, 1).HasType(ObjectType::UP) == true);
-    CHECK(game.GetMap().CanLurkerAttackThisMove(game.GetMap().At(3, 1)) ==
+    CHECK(game.GetMap().CanLurkerAttack(game.GetMap().At(3, 1)) ==
           true);
-    CHECK(game.GetMap().CanLurkerAttackNextMove(game.GetMap().At(3, 1)) ==
-          false);
     CHECK(game.MovePlayer(Direction::RIGHT) == PlayerStatus::PLAYING);
 
-    CHECK(game.GetMap().CanLurkerAttackThisMove(game.GetMap().At(3, 1)) ==
+    CHECK(game.GetMap().CanLurkerAttack(game.GetMap().At(3, 1)) ==
           false);
     CHECK(game.GetMap().At(2, 1).HasType(ObjectType::UNDEAD) == false);
     CHECK(game.GetMap().At(3, 1).HasType(ObjectType::UNDEAD) == true);
@@ -195,4 +191,24 @@ TEST_CASE("[Game] - UndeadCheckWithLurker")
     CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
 
     CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::WIN);
+}
+
+
+TEST_CASE("[Game] - UndeadCheckWithSpike") {
+    Game game(MAPS_DIR "3.txt");
+
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::DOWN) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::LEFT) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.MovePlayer(Direction::UP) == PlayerStatus::PLAYING);
+    CHECK(game.GetMap().At(5, 4).HasType(ObjectType::UNDEAD) == false);
+    CHECK(game.GetMap().At(5, 5).HasType(ObjectType::UNDEAD) == false);
+    CHECK(game.GetPlayer().GetMoveCount() == 18);
 }

@@ -79,8 +79,7 @@ PlayerStatus Game::MovePlayer(Direction dir)
     {
         m_map.At(pos.x, pos.y).Remove(ObjectType::LOCK);
     }
-    else if (block.HasType(ObjectType::SPIKE) ||
-             m_map.CanLurkerAttackThisMove(block))
+    else if (block.HasType(ObjectType::SPIKE) || m_map.CanLurkerAttack(block))
     {
         m_gamePlayer->DecreaseMoveCount();
     }
@@ -96,15 +95,15 @@ MoveState Game::CanMove(Position pos, Direction dir) const
     const std::size_t nextX = nextPos.x, nextY = nextPos.y;
     const Object blockType = m_map.At(nextX, nextY);
 
-    // If encountered block is ENDPOINT, without any other objects.
-    if (blockType.HasType(ObjectType::ENDPOINT))
-    {
-        return MoveState::ENDPOINT;
-    }
-
     // If encountered block is SPECIAL block,
     if (blockType.HasType(ObjectType::EMPTY))
     {
+        // If encountered block is ENDPOINT, without any other objects.
+        if (blockType.HasType(ObjectType::ENDPOINT))
+        {
+            return MoveState::ENDPOINT;
+        }
+
         return MoveState::MOVE;
     }
 
@@ -184,7 +183,7 @@ void Game::PushUndead(Position pos, Direction dir) const
 
     if (nextUndeadPosObject.HasType(ObjectType::WALL, ObjectType::DEVIL,
                                     ObjectType::LOCK, ObjectType::UNDEAD,
-                                    ObjectType::ROCK))
+                                    ObjectType::ROCK, ObjectType::SPIKE))
     {
         m_map.At(curUndeadPos.x, curUndeadPos.y).Remove(ObjectType::UNDEAD);
     }

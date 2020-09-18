@@ -54,11 +54,6 @@ void Object::Init(ObjectType type)
     }
 }
 
-Tile Object::GetTile() const
-{
-    return m_tile;
-}
-
 bool Object::HasType(ObjectType type) const
 {
     if (type == ObjectType::EMPTY)
@@ -73,9 +68,7 @@ bool Object::HasType(ObjectType type) const
 
     if (type == ObjectType::ENDPOINT)
     {
-        return (m_tile.first == ObjectType::EMPTY ||
-                m_tile.first == ObjectType::DEVIL) &&
-               m_tile.second == ObjectType::ENDPOINT;
+        return m_tile.second == ObjectType::ENDPOINT;
     }
 
     if (m_tile.first == type || m_tile.second == type)

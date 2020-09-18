@@ -18,7 +18,6 @@ void AddObject(pybind11::module& m)
         .def("Remove",
              static_cast<void (Object::*)(ObjectType)>(&Object::Remove))
         .def("Init", static_cast<void (Object::*)(ObjectType)>(&Object::Init))
-        .def("GetTile", &Object::GetTile)
         .def("HasType",
              static_cast<bool (Object::*)(ObjectType) const>(&Object::HasType));
 }

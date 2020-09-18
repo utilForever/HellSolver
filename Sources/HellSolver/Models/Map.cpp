@@ -28,18 +28,13 @@ void Map::Load(std::string_view filename)
             Tile{ static_cast<ObjectType>(val), ObjectType::EMPTY });
     }
 
-    mapFile >> val;
-
-    if (val)
+    for (std::size_t i = 0; i < m_width * m_height; ++i)
     {
-        for (std::size_t i = 0; i < m_width * m_height; ++i)
-        {
-            mapFile >> val;
-            const auto type = static_cast<ObjectType>(val);
+        mapFile >> val;
+        const auto type = static_cast<ObjectType>(val);
 
-            m_board[i].Init(type);
-            m_initBoard[i].Init(type);
-        }
+        m_board[i].Init(type);
+        m_initBoard[i].Init(type);
     }
 }
 
@@ -79,23 +74,17 @@ void Map::ProcessUndeadObjects()
     for (std::size_t i = 0; i < m_width * m_height; ++i)
     {
         if (m_board[i].HasType(ObjectType::UNDEAD) &&
-            CanLurkerAttackThisMove(m_board[i]))
+            CanLurkerAttack(m_board[i]))
         {
             m_board[i].Remove(ObjectType::UNDEAD);
         }
     }
 }
 
-bool Map::CanLurkerAttackThisMove(Object& object) const
+bool Map::CanLurkerAttack(Object& object) const
 {
     return (!m_lurkerFlag && object.HasType(ObjectType::DOWN)) ||
            (m_lurkerFlag && object.HasType(ObjectType::UP));
-}
-
-bool Map::CanLurkerAttackNextMove(Object& object) const
-{
-    return (m_lurkerFlag && object.HasType(ObjectType::DOWN)) ||
-           (!m_lurkerFlag && object.HasType(ObjectType::UP));
 }
 
 Object& Map::At(std::size_t x, std::size_t y) const
