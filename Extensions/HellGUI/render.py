@@ -2,15 +2,15 @@ import pyHell
 import pyglet
 import resources
 
-offset = [(510, -60), (510, -60), (460, -120)]
+offset = [(425, -40), (425, -40), (380, -90)]
 
 
 def render(game: pyHell.Game, level: int):
     game_map = game.GetMap()
 
     def drawer(img, x, y):
-        return pyglet.sprite.Sprite(img=img, x=x * 100 + offset[level - 1][0],
-                                    y=game_map.GetWidth() * 100 - y * 100 + offset[level - 1][1])
+        return pyglet.sprite.Sprite(img=img, x=x * 83 + offset[level - 1][0],
+                                    y=game_map.GetWidth() * 83 - y * 83 + offset[level - 1][1])
 
     for _x in range(game_map.GetWidth()):
         for _y in range(game_map.GetHeight()):

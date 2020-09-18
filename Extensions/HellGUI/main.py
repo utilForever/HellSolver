@@ -5,11 +5,11 @@ import resources
 
 from pyglet.window import key
 
-level = 1
+level = 3
 
 game = pyHell.Game(f"../../Resources/Maps/Level/{level}.txt")
 
-window = pyglet.window.Window(caption="HellSolver", width=1920, height=1080)
+window = pyglet.window.Window(caption="HellSolver", width=1600, height=900)
 
 
 @window.event
