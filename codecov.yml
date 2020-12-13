@@ -22,6 +22,7 @@ ignore:
 - "Datas/**/*"
 - "Documents/**/*"
 - "Extensions/**/*"
+- "Includes/**/*"
 - "Libraries/**/*"
 - "Medias/**/*"
 - "Resources/**/*"
