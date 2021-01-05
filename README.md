@@ -2,7 +2,7 @@
 
 <img src="./Medias/Logos/Logo.png" width=256 height=256 />
 
-[![License](https://img.shields.io/badge/Licence-MIT-blue.svg)](https://github.com/utilForever/HellSolver/blob/master/LICENSE) [![Build Status](https://travis-ci.com/utilForever/HellSolver.svg?branch=master)](https://travis-ci.com/utilForever/HellSolver) [![Build status](https://ci.appveyor.com/api/projects/status/h1tivpv0jbwvssli/branch/master?svg=true)](https://ci.appveyor.com/project/utilForever/hellsolver/branch/master) [![Build Status](https://utilforever.visualstudio.com/HellSolver/_apis/build/status/utilForever.HellSolver?branchName=master)](https://utilforever.visualstudio.com/HellSolver/_build/latest?definitionId=17&branchName=master)
+[![License](https://img.shields.io/badge/Licence-MIT-blue.svg)](https://github.com/utilForever/HellSolver/blob/master/LICENSE) ![Windows](https://github.com/utilForever/HellSolver/workflows/Windows/badge.svg) ![Ubuntu](https://github.com/utilForever/HellSolver/workflows/Ubuntu/badge.svg) ![macOS](https://github.com/utilForever/HellSolver/workflows/macOS/badge.svg) ![Ubuntu - Codecov](https://github.com/utilForever/HellSolver/workflows/Ubuntu%20-%20Codecov/badge.svg) [![Build Status](https://travis-ci.com/utilForever/HellSolver.svg?branch=main)](https://travis-ci.com/utilForever/HellSolver)
 
 [![codecov](https://codecov.io/gh/utilForever/HellSolver/branch/master/graph/badge.svg)](https://codecov.io/gh/utilForever/HellSolver)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/dcd0a8f211bb46bfb50cec2ef369c024)](https://www.codacy.com/manual/utilForever/HellSolver?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=utilForever/HellSolver&amp;utm_campaign=Badge_Grade)
